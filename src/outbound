@@ -1,0 +1,881 @@
+From kent Sun Jun  7 20:42:30 1998
+Message-ID: <19980607204230.27173@songbird.com>
+Date: Sun, 7 Jun 1998 20:42:30 -0700
+From: Kent Crispin <kent@songbird.com>
+To: price@amazon.com
+Subject: Re: Your Amazon.com order (#002-7644798-1889459): response requested
+References: <199806080057.RAA21752@cs-danube.amazon.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <199806080057.RAA21752@cs-danube.amazon.com>; from price@amazon.com on Sun, Jun 07, 1998 at 05:57:42PM -0700
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 3085
+Status: RO
+
+On Sun, Jun 07, 1998 at 05:57:42PM -0700, price@amazon.com wrote:
+> 
+> Hello from Amazon.com!  We have new information about your order and
+> need to hear from you before proceeding.  We invite you to respond to
+> us using the form below.  Indicate preferences by typing an 'x' anywhere 
+> between the brackets to indicate your choice, like this: [ x  ].
+> 
+> You can also reply to us via e-mail without using this form if
+> you prefer.
+> 
+> We have excellent news from our out-of-print book buyers.  They have
+> been successful in searching for one of the items you ordered and
+> think you will be interested in what they have found.
+> 
+> No two out-of-print books are alike, and prices, even for the same title,
+> vary considerably according to condition and availability.  In order
+> to have the best chance of securing the particular book we've found,
+> we request that you reply within THREE DAYS.
+> 
+>   Ordered item:   William Oncken "Managing Management Time : Who's Got the 
+>                   Monkey?"
+> 
+>      Title located:  "Managing Management Time...who's Got the Monkey?"
+> 
+> 			Price:  $22.00
+> 			Shipping & handling charge:  $3.95
+> 			Total charge for item:  $25.95
+> 			Binding:  No information
+> 
+>         [x   ] approve ("Managing Management Time...." -- 0135510864)
+>         [    ] decline ("Managing Management Time...." -- 0135510864)
+> 
+> Amazon.com guarantees that our out of print matches are in 
+> good condition - or better.  "Good condition" refers to a 
+> previously-read book that shows some signs of wear and may have 
+> minor flaws, but has all pages and leaves present.  
+> 
+> All books are subject to prior sale.  While most suppliers keep
+> current information, we cannot absolutely guarantee that the match we
+> found will still be available when we again contact our supplier.
+> We will notify you immediately if that is the case.  Since we attempt
+> to provide the least expensive copy on the market first, the price
+> will likely be higher for any subsequent copies found.
+> 
+> We have included both a book price and shipping charge for the 
+> out of print item.  If you decide to purchase the book, please
+> remember that both of these charges will be applied in addition to 
+> any other charges associated with your order.
+> 
+> For your reference, here is a summary of your order:
+> 
+>   1 of  William Oncken "Managing Management Time 
+> 	: Who's Got the Monkey?"
+> 			Tentative out of print match -- your approval required
+> 
+> **PLEASE NOTE** that before we can continue processing your order we
+> need you to send us mail confirming your wish to purchase the item
+> marked "price notification" at the new price or instructing us to
+> cancel it from your order.
+> 
+> Thanks for shopping at Amazon.com, and we hope to see you again!
+> 
+> Sincerely,
+> 
+> Customer Service Department
+> Amazon.com
+> http://www.amazon.com/
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Sun Jun  7 20:56:08 1998
+Message-ID: <19980607205608.00803@songbird.com>
+Date: Sun, 7 Jun 1998 20:56:08 -0700
+From: Kent Crispin <kent@songbird.com>
+To: "Robert F. Connelly" <rconnell@psi-japan.com>
+Subject: Re: Testing our SRS.
+References: <199806072309.RAA00347@mailrelay.sni.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <199806072309.RAA00347@mailrelay.sni.net>; from Robert F. Connelly on Mon, Jun 08, 1998 at 08:09:15AM +0900
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 1581
+Status: RO
+
+On Mon, Jun 08, 1998 at 08:09:15AM +0900, Robert F. Connelly wrote:
+> Dear Kent:
+> 
+> During one of our BBC meetings (Friday evening or Saturday morning), you
+> stated that CORE had announced that it was going to test the SRS but did not.
+> 
+> My recollection was that you were referring to the proposal to run our
+> queues.  Was that what you really meant -- or just my inference?
+
+I can't remember exactly what I said. :-)
+
+> For reasons that I do not fully understand, some members are strongly in
+> favor of running our queues but a majority of Excom remains reluctant to do
+> so.  What are your thoughts on this matter?  I highly value your opinion.
+
+The exact way that a test is done is not important to me.  Actually
+running the queues has two advantages I can see -- first, it would be
+easy to set up, and second, it would be very realistic.  I can see 
+that there might be political problems with it, though.  With 
+suitable controls in place I don't think they would be serious.
+
+Running queues with lots of randomly generated data would be good, 
+too.  The bottom line from my perspective is that a serious load test 
+is needed.
+
+A possibility may be that Excom is afraid that the system actually is 
+not ready to handle the load, and a test that failed would be bad PR.  
+But several smaller scale, private, tests could lead up to the big 
+test... 
+
+Kent
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Tue Jun  9 08:03:37 1998
+Message-ID: <19980609080337.52892@songbird.com>
+Date: Tue, 9 Jun 1998 08:03:37 -0700
+From: Kent Crispin <kent@songbird.com>
+To: Masataka Ohta <mohta@necom830.hpcl.titech.ac.jp>
+Subject: Re: PAB nIANA facts
+References: <19980608222008.14370@songbird.com> <199806090729.QAA05192@necom830.hpcl.titech.ac.jp>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <199806090729.QAA05192@necom830.hpcl.titech.ac.jp>; from Masataka Ohta on Tue, Jun 09, 1998 at 04:29:25PM +0900
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 3921
+Status: RO
+
+Private reply:
+
+On Tue, Jun 09, 1998 at 04:29:25PM +0900, Masataka Ohta wrote:
+> As IANA today is not a US-local corporation and under the full
+                                                  ^^^^^^^^^^^^^^
+> control of ISOC, not USG, it's fine for IAHC leave root zone
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+> authority to IANA.
+
+This is incorrect, and this incorrect assumption has been an almost
+fatal oversight on the part of IAHC and many others.  It is an error I
+labored under for some time, as well, because many of the
+relationships are not public, and Jon Postel does not talk about 
+them.  The cold fact is that the USG actually does have a certain 
+amount of control over IANA, control that Jon recognizes; and 
+ISOC/IETF's control is nowhere near as strong as you imagine it to 
+be.  This is an unfortunate reality, one I learned with some 
+difficulty.  It is also not a reality I take a public position on, as 
+you might imagine, so I would appreciate it if you keep this private.
+
+Here is a quote from a paper written by Jon Postel in
+January, 1998:
+
+    The IANA function was originally performed at UCLA and (skipping
+    some intermediate steps) subsequently expanded over time at the
+    Information Sciences Institute (ISI) of the University of Southern
+    California (USC).  It was established under DARPA funding and it
+    has continued to be supported under the US Government's aegis
+    since its inception.  This had proven to be a satisfactory
+    arrangement until recently.  Currently, however, there are
+    enormous pressures to evolve the IANA into an organization based
+    on industry self-governance and support.  The US Government has
+    indicated to ISI that it is time to make the transition and that
+    it will not continue financial support after September 1998, in
+    the interest of encouraging self-governance based on industry
+    support. 
+
+Furthermore, Jon Postel considers himself primarily a network
+researcher, and IANA is a side issue for him.  The USG apparently
+controls a considerable percentage of his research funding, so they
+have leverage over him in that regard.  Plus, there are indications
+that he has ambivalent feelings about how the IAHC conducted itself,
+as well. 
+
+There are a number of other factors, as well: 1) The USG does not
+speak with a single voice -- the Department of Justice and the
+Department of Commerce have fought over this issue, and the US
+Congress is an unpredictable wild card; 2) SAIC, the parent
+corporation of NSI, is incredibly powerful in Washington (you have
+surely seen the "Raiders of the Lost Arc" story --
+http://songbird.com/pab/raiders); 3) Magaziner is a policy cripple,
+and has other problems, as well (see
+http://dolphin.gulf.net/jan02/Magaziner -- he has many enemies in
+Washington, as well, and Gore is not happy with him); 4) Gore's 
+political ambitions play a big role; 5) very important: the root 
+servers are a convention, and the alternate root movement would gain 
+many many converts if the USG was too blatant.
+
+In fact this has all been an incredibly complex and delicate balancing
+act, and for me a profound lesson in political reality.  Given all 
+this, the WP is a real victory for us.  
+
+The most important aspect is that it puts NSI firmly under the control
+of IANA, incidentally, and NSI, despite their press release, is not at
+all happy about it.  In fact, 1) they are trying to hijack the
+formation of the new IANA corporation; and 2) they have talked another
+congressman into holding hearings next week, and have totally stacked
+the witness list in their favor.  I don't think these efforts will
+succeed, but NSI is a determined and powerful enemy. 
+
+Please note that this is a private message.
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Tue Jun  9 17:53:54 1998
+Message-ID: <19980609175354.49560@songbird.com>
+Date: Tue, 9 Jun 1998 17:53:54 -0700
+From: Kent Crispin <kent@songbird.com>
+To: Albert Tramposch <atramposch@songbird.net>
+Subject: Re: White Paper and Monkeys
+References: <199806090911.LAA09006@ties.itu.ch>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <199806090911.LAA09006@ties.itu.ch>; from Albert Tramposch on Tue, Jun 09, 1998 at 11:13:00AM +0200
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 2115
+Status: RO
+
+On Tue, Jun 09, 1998 at 11:13:00AM +0200, Albert Tramposch wrote:
+> Kent:
+> 
+> Someone forwarded to me your list message of today concerning the White Paper. 
+> 
+> You wrote:
+> >Structurally, what is proposed is almost indistinguishable from the whole
+> IAHC process, and it is sadly
+> >amusing to watch how new terminology suddenly changes the minds of
+> presumably intelligent people.
+> 
+> I couldn't agree with you more.
+> 
+> While working with the IAHC/POC, there were many stories and metaphors that
+> came into my mind to help me cope, and the one that seemed to recur the most
+> was a story of the old Chinese Taoist, Chuang Tsu, called 'Three in the
+> Morning', which you may know.  A monkey keeper told his monkeys that they
+> would receive three nuts in the morning and four in the evening.  They
+> protested, as monkeys can do, loudly.  OK, OK, said the keeper.  You can
+> have four in the morning and three in the evening.  Then the monkeys were
+> very happy.  The total number was the same, but the arrangement was different.
+
+Yes, I do know that story.  Chuang Tzu is one of my favorite sages :-)
+
+	http://songbird.com/gc/river/chuangtzu.html
+
+It's an interesting time we live in -- where we can pick and choose 
+the wisdom of the ages.  It probably leads to shallow thought, but we 
+can hope that some of it rubs off, at least.
+
+> In particular, you can imagine how it impresses me that WIPO will begin the
+> whole process of last year over again, without even mentioning (or
+> admitting, I can tell you) that there even was a process last year.  I can't
+> wait to see how familiar is the outcome.
+
+One hopes that it will be very familiar, indeed.
+
+I was hoping to come to Geneva to the "internet names summit".  Do 
+you think that CORE would pay for the trip (going as a POC rep and 
+PAB chair)?  It may all be moot, if nothing comes of the "summit", 
+but it's an interesting thought.
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Tue Jun  9 19:04:00 1998
+Message-ID: <19980609190400.06067@songbird.com>
+Date: Tue, 9 Jun 1998 19:04:00 -0700
+From: Kent Crispin <kent@songbird.com>
+To: Jeff Scroggins <jeffs@sedona.net>
+Subject: Re: secondary dns
+References: <v04011700b1a3300ffc64@[204.245.57.23]>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <v04011700b1a3300ffc64@[204.245.57.23]>; from Jeff Scroggins on Tue, Jun 09, 1998 at 11:35:04AM -0700
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 762
+Status: RO
+
+On Tue, Jun 09, 1998 at 11:35:04AM -0700, Jeff Scroggins wrote:
+> Kent,
+> 
+> How are you?
+> 
+> I separated my shoulder kayaking recently and will probably not get to do
+> any boating this summer.
+
+Bummer! 
+
+> I am still looking for secondary dns for these 3 domains:
+> 
+> cjsd.k12.az.us
+> 
+> clarkdale.az.us
+> 
+> verderiver.org
+> 
+> Please let me know if you can help or can suggest someone who can.
+> 
+> Look forward to hearing from you.
+> 
+> Jeff
+
+OK, it's done.  I used cloobox.cjsd.k12.az.us as the primary.  Are 
+you the sysadmin for cloobox?
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Tue Jun  9 21:13:58 1998
+Message-ID: <19980609211358.33281@songbird.com>
+Date: Tue, 9 Jun 1998 21:13:58 -0700
+From: Kent Crispin <kent@songbird.com>
+To: Jeff Scroggins <jeffs@sedona.net>
+Subject: Re: secondary dns
+References: <v04011700b1a3300ffc64@[204.245.57.23]>; <v04011700b1a3300ffc64@[204.245.57.23]> <19980609190400.06067@songbird.com> <v04011701b1a39aaaacae@[204.245.57.23]>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <v04011701b1a39aaaacae@[204.245.57.23]>; from Jeff Scroggins on Tue, Jun 09, 1998 at 07:10:50PM -0700
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 568
+Status: RO
+
+On Tue, Jun 09, 1998 at 07:10:50PM -0700, Jeff Scroggins wrote:
+> Thanks, Kent.
+> 
+> I am the system administrator for cloobox.  Cloobox is my Sparc2. It sits
+> on thin ethernet at school.
+> 
+> Can you send me your host and IP info so I can inform Internic and the .us
+> domain registrar?
+
+Yes.  The nameserver is ns1.songbird.com; the ip is 206.14.4.2.
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Wed Jun 10 22:23:10 1998
+Message-ID: <19980610222310.09257@songbird.com>
+Date: Wed, 10 Jun 1998 22:23:10 -0700
+From: Kent Crispin <kent@songbird.com>
+To: Eric Weisberg <weisberg@texoma.net>
+Cc: Dave Crocker <dcrocker@BRANDENBURG.COM>
+Subject: Re: Global Incorporation Alliance Workshop?
+References: <001801bd94cf$0d4f8be0$4ac82599@valen> <19980610182139.42460@songbird.com> <357F5677.D020E2D6@texoma.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <357F5677.D020E2D6@texoma.net>; from Eric Weisberg on Wed, Jun 10, 1998 at 11:00:56PM -0500
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 3403
+Status: RO
+
+On Wed, Jun 10, 1998 at 11:00:56PM -0500, Eric Weisberg wrote:
+>
+>I know you have not had time to fully digest all this, so I am not
+>looking for a definitive answer.  Is this really a non-starter or can
+>it be made to work?
+
+Interestingly enough, POC's first reaction to the WP was to declare
+that we would host a conference.  But after an hour's discussion in a
+telecon we decided that it simply wouldn't work -- it would only make
+us look like opportunists, and there was no way that a real,
+representative conference could be held in such a short time -- many
+international participants would be necessary for legitimacy, and
+foreign travel requires planning, for the most part.  We concluded
+that only a genuine open forum could work, and it, unfortunately, 
+would take some time to create such a forum.
+
+I don't know whether this is a non-starter -- it looks pretty bad to
+me.  If NSI had good intentions they have certainly played it in an
+odd way.  
+
+>I am not sure where anyone else is coming from, but I am in this for
+>fair and open governance.  I am considering participation as the most
+>immediate (if not the best) way to work for that end.  I am interested
+>in knowing the extent to which we may share objectives and be able to
+>cooperate in accomplishing them.  I assume that organization and
+>coordination will pay off handsomely in a meeting such as this.
+
+Please read Tony Rutkowski's testimony.  Notice that in his testimony
+he is billing this event as THE industry response, and that he implies 
+that the corporation will come from this effort.  The workshop web page, 
+however, does not state this.  Instead it says: 
+
+    However, it is not the purpose of the workshop to actually create
+    a corporation or trust, but only to bring all the stakeholders and
+    experts in corporate law and organization together to provide the
+    basis for subsequent incorporation activity.
+
+
+This is what makes me worry about a hijacking attempt -- basically, if
+a corporation can be thrown together, and the USG blesses it, the game
+is close to over.  I think there is a very real possibility that this
+conference is a show to impress the USG, and that the result will not
+be representative at all.  But by the time the attendees realize and
+protest, the deed will be done. 
+
+I don't know -- perhaps I am just paranoid.  I don't trust Tony 
+Rutkowski at all.
+
+>BTW, one thing I have to offer is the ability to talk (if not work)
+>with some of your protagonists. 
+> 
+>The way I look at it, we are all in the same boat when it comes to
+>wanting broadly representative governance and fair hearings based upon
+>ascertainable criteria.  Once that structure is in place, we will all
+>accept the results even if we disagree with particular decisions.  If
+>we do not get a structure everyone is comfortable with, there will be
+>constant guerilla warfare, which is counter-productive. 
+> 
+>Please let me know your thoughts. 
+
+I am suspicious -- Don Telage originally claimed that he knew nothing 
+about this, and later admitted that NSI was organizing it.  
+Organizing things in such a sneaky way is quite puzzling.
+
+But my bottom line is that I will probably follow Jon Postel's lead.
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Wed Jun 10 23:32:29 1998
+Message-ID: <19980610233229.06826@songbird.com>
+Date: Wed, 10 Jun 1998 23:32:29 -0700
+From: Kent Crispin <kent@songbird.com>
+To: pam.co@erols.com
+Subject: Re: Security
+References: <357E9906.6A96@erols.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <357E9906.6A96@erols.com>; from Peter Moulton on Wed, Jun 10, 1998 at 02:32:38PM +0000
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 2166
+Status: RO
+
+On Wed, Jun 10, 1998 at 02:32:38PM +0000, Peter Moulton wrote:
+> Hi Kent,
+> 
+> How have you been? I haven't talked to you for a long time it seems. 
+> 
+> We got back from Puerto Rico and 90+ heat to be met with two weeks of
+> temps below 70 in the day and below 50 at night. It should be 80 degrees
+> here now. I'm ready to go back.
+> 
+> I have been experimenting with a way to take credit card info without a
+> secure server (for myself, not for my clients). I came up with this
+> mechanism which seems pretty good to me but I know you will blast a
+> bunch of holes in it. So blast away!
+> 
+> See:http://www.pamc.com/pamco/encryptor.html
+
+A very clever page, and a clever idea.  The fundamental flaw that I
+see is that anyone sniffing the line to pick up credit card numbers
+would also be picking up the text for the page, would see the
+javascript, and could therefore quickly figure out the card number. 
+So the cryptographic protection you are offering is very weak.  It
+does provide the security that it would not be a method an attacker
+was looking for.  This is known in the trade as "security through
+obscurity". 
+
+Nevertheless, it's a good idea that could be developed and 
+strengthened in several ways -- using java would be much more 
+powerful, too.  Depending on how it works out, it could be a *very* 
+good idea.
+
+> P.S. Nothing from US Media yet on Mac Tools but I am just about done
+> with Whitehall so I am going to get in touch with them about it.
+
+OK.
+
+By the way, I was looking through my records the other day, and
+noticed that your next years fees were due several months ago -- does
+that seem right to you? I haven't got around to sending you an invoice
+because I haven't had time. 
+
+> -- 
+> All the best,
+> Peter
+>                    "Reach For The World"
+> Web site design and maintenance    Peter A. Moulton & Co.
+> Website at: http://www.pamc.com    10568 Owen Brown Road
+> Mail at: pam.co@erols.com          Columbia MD 21044
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Thu Jun 11 04:33:21 1998
+Message-ID: <19980611043321.37372@songbird.com>
+Date: Thu, 11 Jun 1998 04:33:21 -0700
+From: Kent Crispin <kent@songbird.com>
+To: Douglas McGillivray <dmcgillivray@hotmail.com>
+Subject: Re: PAB QUESTION
+References: <19980611100527.17153.qmail@hotmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <19980611100527.17153.qmail@hotmail.com>; from Douglas McGillivray on Thu, Jun 11, 1998 at 03:05:26AM -0800
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 1614
+Status: RO
+
+On Thu, Jun 11, 1998 at 03:05:26AM -0800, Douglas McGillivray wrote:
+> I have a few more questions if its not too much trouble:
+> 
+> 1) Will more registers be qualified in the future, or will there only be 
+> 88.
+
+Many more will be qualified in the future.  There is absolutely no 
+question about this -- it is a requirement of support from the 
+European Union.
+
+> 2) What is your estimate (guesstimate) for when the registration will 
+> open
+
+That is a little tougher, because of the many uncertaintites in the 
+current fluid situation.  65%-75% probability that it will be open 
+within 6 months, 95% probability that it will be open within a year.
+
+> 3) Perhaps you didn't notice but the list I sent you also included .shop 
+> .firm .web .info .shop these will (I think) be seen by 99% of the 
+> internet community if they ever come about -- CORRECT?? or will they 
+> also exist on Private servers???
+
+Indeed I didn't look in detail at the list.  But the question, I 
+thought, was about names that really do exist, in the present time, 
+not that may exist at some future time.  At the present time .firm, 
+.web, etc don't exist, either.
+
+When new names go into the "real root", the CORE registrars will 
+register names for them.  They will also almost certainly register 
+names in .com, .org, and .net.  The exact set of new names to go in 
+the root will be determined by the new IANA corporation.
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Thu Jun 11 04:49:49 1998
+Message-ID: <19980611044949.17124@songbird.com>
+Date: Thu, 11 Jun 1998 04:49:49 -0700
+From: Kent Crispin <kent@songbird.com>
+To: Masataka Ohta <mohta@necom830.hpcl.titech.ac.jp>
+Subject: Re: PAB nIANA facts
+References: <19980609080337.52892@songbird.com> <199806110703.QAA09009@necom830.hpcl.titech.ac.jp>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <199806110703.QAA09009@necom830.hpcl.titech.ac.jp>; from Masataka Ohta on Thu, Jun 11, 1998 at 04:03:26PM +0900
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 5520
+Status: RO
+
+On Thu, Jun 11, 1998 at 04:03:26PM +0900, Masataka Ohta wrote:
+> Kent;
+> 
+> > Private reply:
+> 
+> Thank you.
+> 
+> > On Tue, Jun 09, 1998 at 04:29:25PM +0900, Masataka Ohta wrote:
+> > > As IANA today is not a US-local corporation and under the full
+> >                                                   ^^^^^^^^^^^^^^
+> > > control of ISOC, not USG, it's fine for IAHC leave root zone
+> >   ^^^^^^^^^^^^^^^^^^^^^^^^
+> > > authority to IANA.
+> > 
+> > This is incorrect,
+> 
+> It is correct.
+
+I was referring to the underlined part.  It is a simple, observable,
+fact that IANA is not under the full control of ISOC (modulo
+meaningless semantic discussions about the meaning of the word
+"control").  It's observable, because Jon does not always do what ISOC
+wants him to.  In fact, I think it is fair to say that Jon (and IANA)
+is not under the "full control" of *anyone*, the USG, ISOC, or anyone
+else. 
+
+> Whether USG has had some formal or informal influence over Jon does
+> not matter now.
+
+It is another simple, observable fact, about which there is no
+question, that the USG currently has some influence over what Jon
+does, and over what IANA does.  As does ISOC.
+
+> 
+> After IAHC, initiated partly by IANA with or without the administration
+> of USG, finished its job, IANA (and USG) has lost its right to comment
+> on the issue.
+> 
+> > Here is a quote from a paper written by Jon Postel in
+> > January, 1998:
+> 
+> It was too late.
+> 
+> > Furthermore, Jon Postel considers himself primarily a network
+> > researcher, and IANA is a side issue for him.  The USG apparently
+> > controls a considerable percentage of his research funding, so they
+> > have leverage over him in that regard.  Plus, there are indications
+> > that he has ambivalent feelings about how the IAHC conducted itself,
+> > as well. 
+> 
+> So, let USG understand that Jon Postel can't stop what he started.
+
+Sorry, can't be done.
+
+> > There are a number of other factors, as well: 1) The USG does not
+> > speak with a single voice -- the Department of Justice and the
+> > Department of Commerce have fought over this issue, and the US
+> > Congress is an unpredictable wild card;
+> 
+> ???
+> 
+> That is exactly a reason not to incorporate IANA in US.
+
+It's a reason, yes.
+
+> Don't forget US lawyers which has as bad voices as the US congress.
+> 
+> > 2) SAIC, the parent
+> > corporation of NSI, is incredibly powerful in Washington (you have
+> > surely seen the "Raiders of the Lost Arc" story --
+> > http://songbird.com/pab/raiders);
+> 
+> That, again, is exactly a reason not to incorporate IANA in US.
+> 
+> Seemlingly, you should have talked too much with people who believes
+> in US hegemony.
+> 
+> > 3) Magaziner is a policy cripple,
+> > and has other problems, as well (see
+> > http://dolphin.gulf.net/jan02/Magaziner -- he has many enemies in
+> > Washington, as well, and Gore is not happy with him);
+> 
+> That, once again, is exactly a reason not to incorporate IANA in US.
+> 
+> > 4) Gore's 
+> > political ambitions play a big role;
+> 
+> Several years of Gore's US-local governance does not play a big
+> role in the international Internet.
+> 
+> > 5) very important: the root 
+> > servers are a convention, and the alternate root movement would gain 
+> > many many converts if the USG was too blatant.
+> 
+> That, twice again, is exactly a reason not to incorporate IANA in US.
+> 
+> USG do not protect IANA from being sued by those who are running
+> alternate roots. US is the worst place to expect rational court
+> judgements.
+> 
+> > In fact this has all been an incredibly complex and delicate balancing
+> > act, and for me a profound lesson in political reality.  Given all 
+> > this, the WP is a real victory for us.  
+> 
+> The WP is fine, because it can be safely ignored.
+
+No, it cannot.  It states that the USG will enter into "an agreement" 
+with the new IANA.  That agreement is necessary, because the only 
+control over NSI is the USG.
+
+> > The most important aspect is that it puts NSI firmly under the control
+> > of IANA, incidentally, and NSI, despite their press release, is not at
+> > all happy about it.  In fact, 1) they are trying to hijack the
+> > formation of the new IANA corporation; and 2) they have talked another
+> > congressman into holding hearings next week, and have totally stacked
+> > the witness list in their favor.  I don't think these efforts will
+> > succeed, but NSI is a determined and powerful enemy. 
+> 
+> NSI or US-local congress is a problem only when you let USG control
+> DNS.
+
+What a nice, simplistic view you have.  The fact is that NSI has 
+claimed ownership of the database that contains the .com/.net/.org
+registrations.  If they make that claim stick, then they have control 
+over the vast majority of the DNS registrations.  NSI has a contract 
+with the USG, and that contract is the only realistic lever that can 
+be used to pry that database from NSI.  If that database is not 
+removed from NSI's control, then the actions of IANA are moot -- NSI 
+will simply run the root servers in fact, and IANA will be ignored.
+
+> > Please note that this is a private message.
+> 
+> Sure.
+> 
+> But, you should consult the problems w.r.t USG with Swiss lawyers. US
+> lawyers automatically think US-centric and of no help.
+
+This is not a legal question.  It is a pure question of power 
+politics.
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Thu Jun 11 06:13:52 1998
+Message-ID: <19980611061352.06573@songbird.com>
+Date: Thu, 11 Jun 1998 06:13:52 -0700
+From: Kent Crispin <kent@songbird.com>
+To: Roberto Gaetano <Roberto.Gaetano@etsi.fr>
+Cc: Don Heath <heath@isoc.org>, iab-adm@isi.edu, iesg@ietf.org,
+	Trustees <isoc-trustees@isoc.org>, poc@gtld-mou.org, isoc-eu@imag.fr,
+	Kees.Neggers@surfnet.nl, "'vinton g. cerf'" <vcerf@MCI.NET>,
+	Tom Gable <tomg@gablegroup.com>, Susan Davis <CEOSDI@aol.com>,
+	core-excom@corenic.org
+Subject: Re: Conference on DNS Self-Governance (CDS)
+References: <B3B34AF18759D011A2C500805FD25AF1D6CFCD@EMAIL1>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <B3B34AF18759D011A2C500805FD25AF1D6CFCD@EMAIL1>; from Roberto Gaetano on Thu, Jun 11, 1998 at 10:43:37AM +0200
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 2562
+Status: RO
+
+On Thu, Jun 11, 1998 at 10:43:37AM +0200, Roberto Gaetano wrote:
+> Vint,
+> 
+> vinton g. cerf wrote:
+> 
+> > best way to deal with the early conf is to raise problems with
+> > inadequate participation of legitimate parties. the list coming
+> > to geneva is a lever - the 1-2 july matter can be, at best,
+> > preliminary because not all critical parties are available. 
+> > 
+> Inadequate participation of legitimate parties is becoming a hard thing to
+> prove.
+> The initial participant list at http://www.giaw.org/organize.htm has been
+> modified to include many different stakeholders from around the world.
+> It is still an open question whether they will participate, given in
+> particular the short notice, but for sure it doesn't look anymore as if the
+> meeting is "one-way" only.
+> 
+> > if we have someone present at the 1-2 july event, must make
+> > sure this is NOT incorrectly interpreted as representation
+> > and therefore endorsement of the outcome. Do what you can to
+> > discredit attempts to exclude people who cannot, for whatever
+> > reason, attend in person. use IETF argument that final judgment
+> > should be reached via email for maximum participation, even in
+> > face/face develops proposals.
+> > 
+> Vint, I assume you wrote this when the participant list was still the closed
+> NSI+AlterNIC camp. If people like (just picking samples from the list)
+> APNIC, RIPE, Telecom Italia, BT, EuroISPA, EFF, not to speak about POC, CORE
+> and MCI ;>)) will attend, I doubt we can make such claims.
+
+That is a large "if".  What you see there is a list of *invitees*, 
+not a list of participants.
+
+Note also that the invitees are filtered by a rather convoluted criteria:
+
+   All stakeholders filing full comments to the NTIA proceeding
+   dealing with incorporation matters are being expressly invited, and
+   are listed below.  Experts and others are being added on a
+   case-by-case basis. 
+
+> It looks to me we have to go to David Maher's Plan B: mass participation.
+
+It doesn't follow at all.  In fact, given the convoluted criteria
+above, mass participation is likely not possible.  And given Amadeu's
+points about the difficulty of travel, attendance cannot be that
+large.  Furthermore, that list of invitees looks imposing, but in fact
+it is not that large, and very selective.  I note, for example, that
+PAB is not on it.  :-)
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+
+From kent Thu Jun 11 09:29:39 1998
+Message-ID: <19980611092939.57004@songbird.com>
+Date: Thu, 11 Jun 1998 09:29:39 -0700
+From: Kent Crispin <kent@songbird.com>
+To: Bob Allisat <bob@wtv.net>
+Subject: Re: Open Process: Towards IANA II
+References: <l03102802b1a56856a6aa@[207.245.209.9]>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+X-Mailer: Mutt 0.81
+In-Reply-To: <l03102802b1a56856a6aa@[207.245.209.9]>; from Bob Allisat on Thu, Jun 11, 1998 at 11:39:52AM -0400
+X-Disclaimer: Things are not as they seem
+X-PGP-Key: http://songbird.com/kent/pgp_key.html
+Content-Length: 1102
+Status: RO
+
+On Thu, Jun 11, 1998 at 11:39:52AM -0400, Bob Allisat wrote:
+> 
+>  Open Process: Towards IANA II
+
+Bob Allisat, Statesman.  I like it.  Keep up the good work.
+
+>  A Proposal:
+[...]
+> 
+>  Small bipartisan planning committee for all of the above is
+>  recommended. By "bipartisan" I mean containing representatives
+>  of major players. One overall FACILITATOR. By "facilitator"
+>  I mean a person whose task it is to forge consensus, leaving
+>  no reasonable voice out of the process, ensuring fairness and
+>  encouraging respectful, creative activity towards the specified
+>  ends.
+
+It turns out that the only entity that fits this bill is the current
+IANA: 1) it is explicitly called out in the WP; 2) continuity and
+stability are top priorities; 3) for better or worse, there is no 
+person who has a higher total level of respect across the totality of 
+the playes involved, than Postel.
+
+-- 
+Kent Crispin, PAB Chair			"No reason to get excited",
+kent@songbird.com			the thief he kindly spoke...
+PGP fingerprint:   B1 8B 72 ED 55 21 5E 44  61 F4 58 0F 72 10 65 55
+http://songbird.com/kent/pgp_key.html
+

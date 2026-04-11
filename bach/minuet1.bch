@@ -1,0 +1,35 @@
+#	Minuet in G
+-t 120 -ac f+
+12{
+	[12 d5 2[g4 a b c/] | d5 g4 g | e5 2[c d e f] | g5 g4 g ]
+	[12 2{g3 b d4} a3   | 3b      | 3c4           | 3b3     ]
+}
+12{ 
+	[12 c5 2[d c b4 a] | b4 2[c/ b a g] | f 2[g a b g] | b 2a ]
+	[12 3a3            | 3g             | d4 b3   g    | d4 2[d\ c b3 a]]
+}
+12{
+	[12 d5 2[g4 a b c/] | d5 g4 g | e5 2[c d e f] | g g4 g ]
+	[12 2b3       a     | g  b  g | 3c4           | b3 2[c/ b a g] ]
+}
+12{
+	[12 c5 2[d c b4 a] | b4 2[c/ b a g] | a 2[b a g f] | 3g ]
+	[12 2a3       f    | 2g        b    | c4  d   d\   | 2g3 g\]
+}
+
+12{ 
+	[12 b5 2[g a b g] | a 2[d e f d] | g 2[e f g d] | c+ [b\ c+] a\]
+	[12 3g3           | 3f           | e   g   e    | 2a        a\]
+}
+12{
+	[12 3[a4 b c+5 d e f] | g5 f e  | f a\ c+ | 3d ]
+	[12 3a3               | b d4 c+ | d f3 a  | d4 d\ c ]
+}
+12{
+	[12 d5 [g4 f] g4       | e5 [g4 f] g4       | d5 c b4 | 2[a g f g] a ]
+	[12 3{[r 2d4] [2b3 b]} | 3{[r 2e4] [2c4 c]} | b3 a g  | 2d4 r]
+}
+12{
+	[12 3[d4 e f g a b] | c/ b a | [b d/] g f | 3{ b3 d4 g}]
+	[12 2d3       f     | e  g f | g b\ d     | g d g\]
+}

@@ -1,0 +1,12 @@
+#[e d c d e e 2e d d 2d e g 2g e d c d e e e e d d e d 4c] 
+#r
+#[e d c d] [e e 2e] [d d 2d] [e g 2g] [e d c d] [e e e e] [d d e d] c 
+#r
+#4[e d c d e e 2e d d 2d e g 2g e d c d e e e e d d e d 4c]
+#r
+#4{
+#    [e d c d | e e 2e | d d 2d | e g 2g | e d c d | e e e e | d d e d | 4c]
+#    [2c  r r | 4c     | 4b\    | 4c     | 2c  r r | 4c      | 4b\     | 4r]
+#}
+ 
+c4 d4 e4 f4 g4 a4 b4 c5                                                          

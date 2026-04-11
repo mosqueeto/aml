@@ -1,0 +1,13 @@
+-t40
+{c e g} {d f a} {e g b d/} {e g b [5 d/ c/ b a g]}
+[5 g c d g c] [5 d g c d g] [7 a b g 2f 2d] [7 a b g 2f 2d]
+{ [5  c4 d e g a] [7 b5 a g f e d c] }
+{ [5  c4 d e g a] [8 c/ b5 a g f e d c]}
+{ [5  c4 d e g a] [9 d/ c/ b5 a g f e d c]}
+{ [5  c5 d e g a] [7 b a g f e d c] c2 }
+{ [3 d5 f+ {a a//}] [3 b\ d { d\\ f//}] }
+4[32 {d2 f+3 a4 a5} 2{d2 f+3 a4 a5} 3{d2 f+3 a4 a5} 4{ d2 f+3 a4 a5}
+      2{d2 f+3 a4 a6} 4{ d2 f+3 a4 a6} 16{ d2 f+3 a4 a6} ]
+{d4 f a e-} {e g b} {c2 e3 g5 [7 c5 b4 a g f e c]}
+[24 c c c c 2c 3c 4c 5c 6c] 2{ c\ c c/ e/ g/ }
+

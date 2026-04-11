@@ -1,0 +1,4 @@
+#!/bin/sh
+/home/kent/src/music/src/aml/src/amlx $*; \
+/home/kent/src/music/src/aml/src/atomx aml.mid
+

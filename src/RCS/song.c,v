@@ -1,0 +1,214 @@
+head	1.2;
+access;
+symbols;
+locks
+	kent:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.10.31.14.05.30;	author kent;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.08.29.15.13.17;	author kent;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@first release
+@
+text
+@#include "aml.h"
+static char rcsid[] = "$Id$";
+
+/**song
+ *	Parse a song
+ */
+int song(ENVIRONMENT song_env)
+{
+	node *list;
+	char c;
+	do {	
+		list = element(&song_env);	
+		output( list );
+		while( isspace(c = nextc()) ) ;
+		pushc(c);
+		song_env.start += 1.0 * (tempo/DEFAULT_TEMPO);
+	} while( IOflag != EOF );
+	if( nnodes != 0 ) {
+		error("Memory leak in nodes -- nnodes != 0\n",NULL);
+		return FALSE;
+	}
+	return TRUE;
+}
+
+
+/**element
+ *	Parse an element. 
+ */
+node *element( ENVIRONMENT *env)
+{
+	char c;
+	int n;
+	node *result;
+
+	enter("element");
+	result = NULL;
+
+	while( isspace(c = nextc()) ) ;
+	if( isdigit(c) ) {
+		level++;
+		result = dur(c,&n,env);
+		level--;
+	}
+	else if( c == BEGIN_PARAM ) {
+		level++;
+		param(c,env);
+		level--;
+	} 
+	else if( c == BEGIN_FUN ) {
+		level++;
+		result = fun(c,env);
+		level--;
+	}
+	else {
+		level++;
+		result = basic(c,env);
+		level--;
+	} 
+	leave("element");
+	return result;
+}
+
+/**dur
+	parse a dur
+*/
+node *dur(char c, int *n, ENVIRONMENT *env)
+{
+	node *list;
+
+	enter("dur");
+	pushc(c);
+	*n = get_num();
+	if( *n <= 0 ) {
+		parse_error("dur: illegal number\n");
+		return NULL;
+	}
+	c = nextc();
+	if( isspace(c) ) return NULL;
+	env->duration *= *n;
+	list = basic(c,env);
+	env->duration /= *n;
+	leave("dur");
+	return list;
+}
+/**dyn
+	parse a dynamic
+*/
+node *dyn(char c, ENVIRONMENT *env)
+{
+	node *list;
+	float mult = 1.0;
+
+	enter("dyn");
+	if( c == FORTE ) mult = EMPHASIZE;
+	else if( c == PIANO ) mult = DEEMPHASIZE;
+	else {
+		parse_error("dyn: eh? what happened?");
+		return NULL;
+	}
+	env->volume *= mult;
+	c = nextc();
+	list = basic(c,env);
+	env->volume /= mult;
+	leave("dyn");
+	return list;
+}
+
+/**basic
+	parse a basic
+*/
+node *basic(char c, ENVIRONMENT *env)
+{
+	node *list;
+	enter("basic");
+	if( c == BEGIN_SEQ ) {
+		list = seq(c,env);
+	}
+	else if( c == BEGIN_SET ) {
+		list = set(c,env);
+	}
+	else if( c == PIANO || c == FORTE ) {
+		list = dyn(c,env);
+	}
+	else if( c == BEGIN_PARAM ) {
+		param(c,env);
+		list = NULL;
+	}
+	else if( is_note_name(c) || c == TIE ) {
+		list = note(c,env);
+	}
+	else {
+		parse_error("basic: ");
+		return NULL;
+	}
+	leave("basic");
+	return list;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+
+d9 7
+a15 2
+	do {
+		output( element(&song_env) );
+d25 1
+d39 4
+a42 5
+	if( c == 0 ) {
+		if( IOflag != EOF ) {
+			error("element: null character in input file\n",NULL);
+		}
+		return NULL;
+d44 9
+a52 2
+	else if( isdigit(c) ) {
+		return( dur(c,&n,env) );
+a53 3
+//	else if( c == BEGIN_PARAM ) {
+//		return( param(c,env) );
+//	} 
+d55 3
+a57 1
+		return( basic(c,env) );
+d77 2
+a79 1
+	c = nextc();
+d109 1
+a109 1
+	parse a basic note-producing construct
+a120 3
+	else if( c == BEGIN_FUN ) {
+		list = fun(c,env);
+	}
+d124 4
+a129 2
+	}
+	else if( c == BEGIN_PARAM ) {
+@

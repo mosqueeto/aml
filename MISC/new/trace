@@ -1,0 +1,640 @@
+      ->do_entity
+         ->do_note
+            ->get_note_number
+            <-get_note_number: 60
+         <-do_note: 60
+         ->output
+node list:
+       0: note 60, start 0.000000, duration 1.000000
+end node list
+final node list:
+       0: on   60, start 0.000000, duration 1.000000
+       1: off  60, start 0.900000, duration 0.000000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_note
+            ->get_note_number
+            <-get_note_number: 60
+         <-do_note: 60
+         ->output
+node list:
+       2: note 60, start 0.000000, duration 1.000000
+end node list
+final node list:
+       2: on   60, start 0.000000, duration 1.000000
+       3: off  60, start 0.900000, duration 0.000000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_note
+            ->get_note_number
+            <-get_note_number: 60
+         <-do_note: 60
+         ->output
+node list:
+       4: note 60, start 0.000000, duration 1.000000
+end node list
+final node list:
+       4: on   60, start 0.000000, duration 1.000000
+       5: off  60, start 0.900000, duration 0.000000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_note
+            ->get_note_number
+            <-get_note_number: 60
+         <-do_note: 60
+         ->output
+node list:
+       6: note 60, start 0.000000, duration 1.000000
+end node list
+final node list:
+       6: on   60, start 0.000000, duration 1.000000
+       7: off  60, start 0.900000, duration 0.000000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_note
+            ->get_note_number
+            <-get_note_number: 60
+         <-do_note: 60
+         ->output
+node list:
+       8: note 60, start 0.000000, duration 1.000000
+end node list
+final node list:
+       8: on   60, start 0.000000, duration 1.000000
+       9: off  60, start 0.900000, duration 0.000000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_note
+            ->get_note_number
+            <-get_note_number: 60
+         <-do_note: 60
+         ->output
+node list:
+      10: note 60, start 0.000000, duration 1.000000
+end node list
+final node list:
+      10: on   60, start 0.000000, duration 1.000000
+      11: off  60, start 0.900000, duration 0.000000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_note
+            ->get_note_number
+            <-get_note_number: 60
+         <-do_note: 60
+         ->output
+node list:
+      12: note 60, start 0.000000, duration 1.000000
+end node list
+final node list:
+      12: on   60, start 0.000000, duration 1.000000
+      13: off  60, start 0.900000, duration 0.000000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_note
+            ->get_note_number
+            <-get_note_number: 60
+         <-do_note: 60
+         ->output
+node list:
+      14: note 60, start 0.000000, duration 1.000000
+end node list
+final node list:
+      14: on   60, start 0.000000, duration 1.000000
+      15: off  60, start 0.900000, duration 0.000000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_note
+            ->get_note_number
+            <-get_note_number: 0
+         <-do_note: 0
+         ->output
+node list:
+      16: rest 0, start 0.000000, duration 1.000000
+end node list
+final node list:
+      16: off  0, start 0.000000, duration 1.000000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_seq
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 60
+            <-do_note: 60
+node list:
+      17: note 60, start 0.000000, duration 1.000000
+end node list
+         <-do_seq
+         ->output
+node list:
+      17: note 60, start 0.000000, duration 1.000000
+end node list
+final node list:
+      17: on   60, start 0.000000, duration 1.000000
+      18: off  60, start 0.900000, duration 0.000000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_seq
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 60
+            <-do_note: 60
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 62
+            <-do_note: 62
+node list:
+      19: note 60, start 0.000000, duration 0.500000
+      20: note 62, start 0.500000, duration 0.500000
+end node list
+         <-do_seq
+         ->output
+node list:
+      19: note 60, start 0.000000, duration 0.500000
+      20: note 62, start 0.500000, duration 0.500000
+end node list
+final node list:
+      19: on   60, start 0.000000, duration 0.500000
+      21: off  60, start 0.450000, duration 0.000000
+      20: note 62, start 0.500000, duration 0.500000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_seq
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 60
+            <-do_note: 60
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 62
+            <-do_note: 62
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 64
+            <-do_note: 64
+node list:
+      22: note 60, start 0.000000, duration 0.333333
+      23: note 62, start 0.333333, duration 0.333333
+      24: note 64, start 0.666667, duration 0.333333
+end node list
+         <-do_seq
+         ->output
+node list:
+      22: note 60, start 0.000000, duration 0.333333
+      23: note 62, start 0.333333, duration 0.333333
+      24: note 64, start 0.666667, duration 0.333333
+end node list
+final node list:
+      22: on   60, start 0.000000, duration 0.333333
+      25: off  60, start 0.300000, duration 0.000000
+      23: note 62, start 0.333333, duration 0.333333
+      24: note 64, start 0.666667, duration 0.333333
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_seq
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 60
+            <-do_note: 60
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 62
+            <-do_note: 62
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 64
+            <-do_note: 64
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 65
+            <-do_note: 65
+node list:
+      26: note 60, start 0.000000, duration 0.250000
+      27: note 62, start 0.250000, duration 0.250000
+      28: note 64, start 0.500000, duration 0.250000
+      29: note 65, start 0.750000, duration 0.250000
+end node list
+         <-do_seq
+         ->output
+node list:
+      26: note 60, start 0.000000, duration 0.250000
+      27: note 62, start 0.250000, duration 0.250000
+      28: note 64, start 0.500000, duration 0.250000
+      29: note 65, start 0.750000, duration 0.250000
+end node list
+final node list:
+      26: on   60, start 0.000000, duration 0.250000
+      30: off  60, start 0.225000, duration 0.000000
+      27: note 62, start 0.250000, duration 0.250000
+      28: note 64, start 0.500000, duration 0.250000
+      29: note 65, start 0.750000, duration 0.250000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_seq
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 60
+            <-do_note: 60
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 62
+            <-do_note: 62
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 64
+            <-do_note: 64
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 65
+            <-do_note: 65
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 67
+            <-do_note: 67
+node list:
+      31: note 60, start 0.000000, duration 0.200000
+      32: note 62, start 0.200000, duration 0.200000
+      33: note 64, start 0.400000, duration 0.200000
+      34: note 65, start 0.600000, duration 0.200000
+      35: note 67, start 0.800000, duration 0.200000
+end node list
+         <-do_seq
+         ->output
+node list:
+      31: note 60, start 0.000000, duration 0.200000
+      32: note 62, start 0.200000, duration 0.200000
+      33: note 64, start 0.400000, duration 0.200000
+      34: note 65, start 0.600000, duration 0.200000
+      35: note 67, start 0.800000, duration 0.200000
+end node list
+final node list:
+      31: on   60, start 0.000000, duration 0.200000
+      36: off  60, start 0.180000, duration 0.000000
+      32: note 62, start 0.200000, duration 0.200000
+      33: note 64, start 0.400000, duration 0.200000
+      34: note 65, start 0.600000, duration 0.200000
+      35: note 67, start 0.800000, duration 0.200000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_seq
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 60
+            <-do_note: 60
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 62
+            <-do_note: 62
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 64
+            <-do_note: 64
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 65
+            <-do_note: 65
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 67
+            <-do_note: 67
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 69
+            <-do_note: 69
+node list:
+      37: note 60, start 0.000000, duration 0.166667
+      38: note 62, start 0.166667, duration 0.166667
+      39: note 64, start 0.333333, duration 0.166667
+      40: note 65, start 0.500000, duration 0.166667
+      41: note 67, start 0.666667, duration 0.166667
+      42: note 69, start 0.833333, duration 0.166667
+end node list
+         <-do_seq
+         ->output
+node list:
+      37: note 60, start 0.000000, duration 0.166667
+      38: note 62, start 0.166667, duration 0.166667
+      39: note 64, start 0.333333, duration 0.166667
+      40: note 65, start 0.500000, duration 0.166667
+      41: note 67, start 0.666667, duration 0.166667
+      42: note 69, start 0.833333, duration 0.166667
+end node list
+final node list:
+      37: on   60, start 0.000000, duration 0.166667
+      43: off  60, start 0.150000, duration 0.000000
+      38: note 62, start 0.166667, duration 0.166667
+      39: note 64, start 0.333333, duration 0.166667
+      40: note 65, start 0.500000, duration 0.166667
+      41: note 67, start 0.666667, duration 0.166667
+      42: note 69, start 0.833333, duration 0.166667
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_seq
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 60
+            <-do_note: 60
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 62
+            <-do_note: 62
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 64
+            <-do_note: 64
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 65
+            <-do_note: 65
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 67
+            <-do_note: 67
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 69
+            <-do_note: 69
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 71
+            <-do_note: 71
+node list:
+      44: note 60, start 0.000000, duration 0.142857
+      45: note 62, start 0.142857, duration 0.142857
+      46: note 64, start 0.285714, duration 0.142857
+      47: note 65, start 0.428571, duration 0.142857
+      48: note 67, start 0.571429, duration 0.142857
+      49: note 69, start 0.714286, duration 0.142857
+      50: note 71, start 0.857143, duration 0.142857
+end node list
+         <-do_seq
+         ->output
+node list:
+      44: note 60, start 0.000000, duration 0.142857
+      45: note 62, start 0.142857, duration 0.142857
+      46: note 64, start 0.285714, duration 0.142857
+      47: note 65, start 0.428571, duration 0.142857
+      48: note 67, start 0.571429, duration 0.142857
+      49: note 69, start 0.714286, duration 0.142857
+      50: note 71, start 0.857143, duration 0.142857
+end node list
+final node list:
+      44: on   60, start 0.000000, duration 0.142857
+      51: off  60, start 0.128571, duration 0.000000
+      45: note 62, start 0.142857, duration 0.142857
+      46: note 64, start 0.285714, duration 0.142857
+      47: note 65, start 0.428571, duration 0.142857
+      48: note 67, start 0.571429, duration 0.142857
+      49: note 69, start 0.714286, duration 0.142857
+      50: note 71, start 0.857143, duration 0.142857
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_seq
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 60
+            <-do_note: 60
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 62
+            <-do_note: 62
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 64
+            <-do_note: 64
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 65
+            <-do_note: 65
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 67
+            <-do_note: 67
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 69
+            <-do_note: 69
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 71
+            <-do_note: 71
+            ->do_note
+               ->get_note_number
+               <-get_note_number: 72
+            <-do_note: 72
+node list:
+      52: note 60, start 0.000000, duration 0.125000
+      53: note 62, start 0.125000, duration 0.125000
+      54: note 64, start 0.250000, duration 0.125000
+      55: note 65, start 0.375000, duration 0.125000
+      56: note 67, start 0.500000, duration 0.125000
+      57: note 69, start 0.625000, duration 0.125000
+      58: note 71, start 0.750000, duration 0.125000
+      59: note 72, start 0.875000, duration 0.125000
+end node list
+         <-do_seq
+         ->output
+node list:
+      52: note 60, start 0.000000, duration 0.125000
+      53: note 62, start 0.125000, duration 0.125000
+      54: note 64, start 0.250000, duration 0.125000
+      55: note 65, start 0.375000, duration 0.125000
+      56: note 67, start 0.500000, duration 0.125000
+      57: note 69, start 0.625000, duration 0.125000
+      58: note 71, start 0.750000, duration 0.125000
+      59: note 72, start 0.875000, duration 0.125000
+end node list
+final node list:
+      52: on   60, start 0.000000, duration 0.125000
+      60: off  60, start 0.112500, duration 0.000000
+      53: note 62, start 0.125000, duration 0.125000
+      54: note 64, start 0.250000, duration 0.125000
+      55: note 65, start 0.375000, duration 0.125000
+      56: note 67, start 0.500000, duration 0.125000
+      57: note 69, start 0.625000, duration 0.125000
+      58: note 71, start 0.750000, duration 0.125000
+      59: note 72, start 0.875000, duration 0.125000
+end node list
+         <-output
+      <-do_entity
+      ->do_entity
+         ->do_seq
+            ->do_seq
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 60
+               <-do_note: 60
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 62
+               <-do_note: 62
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 64
+               <-do_note: 64
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 65
+               <-do_note: 65
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 67
+               <-do_note: 67
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 69
+               <-do_note: 69
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 71
+               <-do_note: 71
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 72
+               <-do_note: 72
+node list:
+      61: note 60, start 0.000000, duration 0.125000
+      62: note 62, start 0.125000, duration 0.125000
+      63: note 64, start 0.250000, duration 0.125000
+      64: note 65, start 0.375000, duration 0.125000
+      65: note 67, start 0.500000, duration 0.125000
+      66: note 69, start 0.625000, duration 0.125000
+      67: note 71, start 0.750000, duration 0.125000
+      68: note 72, start 0.875000, duration 0.125000
+end node list
+            <-do_seq
+            ->do_seq
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 60
+               <-do_note: 60
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 62
+               <-do_note: 62
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 64
+               <-do_note: 64
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 65
+               <-do_note: 65
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 67
+               <-do_note: 67
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 69
+               <-do_note: 69
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 71
+               <-do_note: 71
+               ->do_note
+                  ->get_note_number
+                  <-get_note_number: 72
+               <-do_note: 72
+node list:
+      69: note 60, start 0.000000, duration 0.125000
+      70: note 62, start 0.125000, duration 0.125000
+      71: note 64, start 0.250000, duration 0.125000
+      72: note 65, start 0.375000, duration 0.125000
+      73: note 67, start 0.500000, duration 0.125000
+      74: note 69, start 0.625000, duration 0.125000
+      75: note 71, start 0.750000, duration 0.125000
+      76: note 72, start 0.875000, duration 0.125000
+end node list
+            <-do_seq
+node list:
+      61: note 60, start 0.000000, duration 0.062500
+      62: note 62, start 0.062500, duration 0.062500
+      63: note 64, start 0.125000, duration 0.062500
+      64: note 65, start 0.187500, duration 0.062500
+      65: note 67, start 0.250000, duration 0.062500
+      66: note 69, start 0.312500, duration 0.062500
+      67: note 71, start 0.375000, duration 0.062500
+      68: note 72, start 0.437500, duration 0.062500
+      69: note 60, start 0.500000, duration 0.062500
+      70: note 62, start 0.562500, duration 0.062500
+      71: note 64, start 0.625000, duration 0.062500
+      72: note 65, start 0.687500, duration 0.062500
+      73: note 67, start 0.750000, duration 0.062500
+      74: note 69, start 0.812500, duration 0.062500
+      75: note 71, start 0.875000, duration 0.062500
+      76: note 72, start 0.937500, duration 0.062500
+end node list
+         <-do_seq
+         ->output
+node list:
+      61: note 60, start 0.000000, duration 0.062500
+      62: note 62, start 0.062500, duration 0.062500
+      63: note 64, start 0.125000, duration 0.062500
+      64: note 65, start 0.187500, duration 0.062500
+      65: note 67, start 0.250000, duration 0.062500
+      66: note 69, start 0.312500, duration 0.062500
+      67: note 71, start 0.375000, duration 0.062500
+      68: note 72, start 0.437500, duration 0.062500
+      69: note 60, start 0.500000, duration 0.062500
+      70: note 62, start 0.562500, duration 0.062500
+      71: note 64, start 0.625000, duration 0.062500
+      72: note 65, start 0.687500, duration 0.062500
+      73: note 67, start 0.750000, duration 0.062500
+      74: note 69, start 0.812500, duration 0.062500
+      75: note 71, start 0.875000, duration 0.062500
+      76: note 72, start 0.937500, duration 0.062500
+end node list
+final node list:
+      61: on   60, start 0.000000, duration 0.062500
+      77: off  60, start 0.056250, duration 0.000000
+      62: note 62, start 0.062500, duration 0.062500
+      63: note 64, start 0.125000, duration 0.062500
+      64: note 65, start 0.187500, duration 0.062500
+      65: note 67, start 0.250000, duration 0.062500
+      66: note 69, start 0.312500, duration 0.062500
+      67: note 71, start 0.375000, duration 0.062500
+      68: note 72, start 0.437500, duration 0.062500
+      69: note 60, start 0.500000, duration 0.062500
+      70: note 62, start 0.562500, duration 0.062500
+      71: note 64, start 0.625000, duration 0.062500
+      72: note 65, start 0.687500, duration 0.062500
+      73: note 67, start 0.750000, duration 0.062500
+      74: note 69, start 0.812500, duration 0.062500
+      75: note 71, start 0.875000, duration 0.062500
+      76: note 72, start 0.937500, duration 0.062500
+end node list
+         <-output
+      <-do_entity
+      ->do_entity

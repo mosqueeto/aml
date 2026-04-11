@@ -1,0 +1,241 @@
+/*
+ *	Copyright (c) 1989 by Kent Crispin and Songbird Software.
+ *	All rights reserved.
+ *
+ *	file: io.c
+ *	-- contains the i/o interface for the aml compiler
+ *
+ */
+
+#include "aml.h"
+#include "stdlib.h"
+
+static char *input_buffer = NULL;
+static char *current_char,*current_line;
+static int total_bytes = 0;
+static int line_count=1;
+static FILE *sng_file;
+static FILE *ml1_file;
+
+static char push_stk[1024];
+static int push_top = 0;
+static int nchars_parsed = 0;
+
+static float startx = 0.0;
+
+
+/**init_io
+ * The input io package hides the mechanics of input.  Mostly
+ * important for the stand alone compiler.
+ */
+void init_io(char *ifname,char *ofname)
+{
+	/* just read the entire file into a buffer */
+	
+	if( (sng_file = fopen( ifname,"r" )) == NULL ) {
+		error("couldn't open %s\n",ifname);
+	}
+	input_buffer = (char *)malloc(32768);
+	if( input_buffer == NULL )
+		error("couldn't allocate an input buffer\n",NULL);
+	total_bytes = (int)fread(input_buffer,1,32767,sng_file);
+	if( !feof(sng_file) )
+		error("couldn't read entire file\n",NULL);
+	fclose(sng_file);
+	*(input_buffer + total_bytes + 0) = '\n';
+	*(input_buffer + total_bytes + 1) = '\0';
+	*(input_buffer + total_bytes + 2) = '\0';
+	current_char = input_buffer;
+	current_line = input_buffer;
+	if( ofname != NULL ) {
+		if( (ml1_file = fopen(ofname,"w")) == NULL ) {
+		error("couldn't create output file %s\n",ofname);
+		}
+	} else {
+		if( (ml1_file = fopen("ml1.o","w")) == NULL ) {
+		error("couldn't create output file ml1.o\n",NULL);
+		}
+	}
+
+	event = (byte*) malloc( 5000*sizeof(byte) );
+	note  = (byte*) malloc( 5000*sizeof(byte) );
+	vel   = (byte*) malloc( 5000*sizeof(byte) );
+	chan  = (byte*) malloc( 5000*sizeof(byte) );
+	dlay  = (int *) malloc( 5000*sizeof( int) );
+ 	output_index = 0;
+ 	nchars_parsed = 0;
+}
+
+
+int ml1_getc()
+{
+	int c;
+	if( push_top > 1024 )
+		return ERROR;
+	else if( push_top > 0 ) 
+		c = push_stk[--push_top];
+	else
+		return *current_char++;
+}
+int nextc()
+{
+	int c;
+	int in_quote = 0;
+another: c = ml1_getc();
+	if( c == '\"' ) {in_quote = 1 - in_quote; goto another; }
+	if( in_quote ) goto another;
+	
+	if( c == '#' ) while( (c = ml1_getc()) != '\n' ) ;
+	if( c == '\n')	c = ' ';
+	if( c == '|') c = ' ';
+	return( c );
+}
+
+int pushc(char c)
+{
+	current_char--;
+}
+
+/**get_num
+ *	parses a number from the input stream and leaves the current
+ *	character pointer at the next character.  If no digits are
+ *	found at all, it returns 0.  In most cases this is an error...
+ *	A single "-" or "+" is not a legal number, so in this case
+ *	get_num backs up the character pointer to before the offending
+ *	character, and returns 0.
+ */
+int get_num()
+{
+	char c;
+	int t = 0;
+	int sign = 1;
+	enter("get_num");
+	while( isspace( c = nextc() ) );
+	if( c == '-' ) {
+		sign = -1;
+		c = nextc();
+		if( !isdigit(c) ) {
+			pushc(c); pushc('-');
+			return( 0 );
+		}
+	}
+	else if( c == '+' ) {
+		c = nextc();
+		if( !isdigit(c) ) {
+			pushc(c); pushc('+');
+			return( 0 );
+		}
+	}
+	while( isdigit( c ) ) {
+		t = t*10 + c - '0';
+		c = nextc();
+	}
+	pushc(c);
+	t *= sign;
+	leaveint("get_num",t);
+	return( t );
+}
+
+/**parse_error
+ *	report a parsing error
+ */
+void parse_error(char *s)
+{
+	char *cp;
+	printf("parsing error in line %d:\n",line_count);
+	cp = current_line;
+	while( (*cp != '\n') && (*cp != '\0') ) putchar(*cp++);
+		cp = current_char;
+	putchar('\n');
+	while( cp-- > current_line ) {
+		putchar(' ');
+	}
+	putchar('^');
+	putchar('\n');
+	printf("%s\n",s);
+}
+
+/**output
+ *	run down a node list, doing any final calculations, and
+ *	writing the results to a file. 
+ */
+void output( node *list )
+{
+	int d = 0;
+	int v = 0;
+	int e = 0;
+	int nt= 0;
+	int c = 0;
+	node *np1;
+	node *np2;
+	float current_time;
+	float end_time;
+	enter("output");
+
+	if( list == NULL ) return;
+
+	if( trace ) dmp_list(list);
+
+	/* first pass -- convert all A_NOTE to NOTE_ON/NOTE_OFF */
+	np1 = head(list);
+	do {
+		if( np1->type == A_NOTE ) {
+dmp_node(np1);
+			/* change this from A_NOTE to NOTE_ON */
+			np1->type      = NOTE_ON;
+
+			/* and insert a NOTE_OFF node... */
+			np2 = new_node();
+			np2->start    = np1->start +
+					 np1->duration * (np1->duty/100.0);
+			np2->duration = 0.0;
+			np2->volume   = 0.0;
+			np2->type     = NOTE_OFF;
+			np2->duty     = 100.0;
+			np2->channel  = np1->channel;
+			np2->note     = np1->note;
+dmp_node(np2);
+			list = insert_after_node(list,np1,np2 );
+
+		}
+		if( np1->type == A_REST ) np1->type = NOTE_OFF;
+		np1 = np1->next;
+	} while( np1 != head(list) );
+
+	if( trace ) {
+		fprintf(stderr,"final ");			
+		dmp_list(list);
+	}
+
+	/* now, go through and dump the output */
+
+	current_time = 0.0;
+	end_time     = 0.0;
+	np1 = head(list);
+	do {
+		if( end_time < np1->start+np1->duration ) 
+			end_time = np1->start+np1->duration;
+
+		e = np1->type;
+		nt = np1->note;
+		v = MIN(((np1->volume)*song_volume + 0.5),127);
+		c = np1->channel;
+		if( np1 == tail(list) ) {
+			d = (end_time - np1->start) *
+				msec_per_beat*(48.0/100.0) + 0.5;
+		}
+		else {
+			d = (np1->next->start - np1->start) * 
+				msec_per_beat*(48.0/100.0) + 0.5;
+		}
+
+		/* print it to the "object file" */
+		fprintf(ml1_file,"%4d,%4d,%4d,%4d,%8d\n",e,nt,v,c,d);
+
+		np1 = np1->next;
+	} while( np1 != head(list) );
+
+	free_list(list);
+	if( nnodes != 0 ) error("nnodes is not 0",NULL);
+	leave("output");
+}	

@@ -1,0 +1,117 @@
+#
+#	Polonaise from p4 of Alfred book
+#
+-ac b- -ac e- -t 20
+
+#1
+6{
+	[-o5 [g [g f]] [g r]       r | [a  [a g ]] [a  r]       r ]
+	[-o4 [b [b a]] [b r]       r | [c/ [c/ b]] [c/ r]       r ]
+	[-o3 g\        [r [b\ g\]] d | r           [r [f+\ d\]] d ]
+}
+
+#3
+6{
+	[-o5 [b  [a g]]  [b  [a  g]] [a  [g f+]] | [g [d e]]  [d c] [c b\] ]
+	[-o4 [d/ [c/ b]] [d/ [c/ b]] [c/ [b a ]] | [b [b c/]] [b a] [a g]  ]
+	[-o3 g\          g           [c  d]      | g\          r    r      ]
+}
+
+#5
+6{
+	[-o5 [g [g f]] [g r]       r | [a  [a g ]] [a  r]       r ]
+	[-o4 [b [b a]] [b r]       r | [c/ [c/ b]] [c/ r]       r ]
+	[-o3 g\        [r [b\ g\]] d | r           [r [f+\ d\]] d ]
+}
+
+#7
+6{
+	[-o5 [b  [a g]]  [b  [a  g]] [a  [g f+]] | [g r]      r          r ]
+	[-o4 [d/ [c/ b]] [d/ [c/ b]] [c/ [b a ]] | [b [b d/]] [g [b d/]] g ]
+	[-o3 g\          g           [c  d]      | [g [b d/]] [g [b d/]] g ]
+}
+
+#9
+6{
+	[-o5 r         [r [b a]] [b r] | r          [r [c/ b]] [c/ r] ]
+	[-o5 r         [r [d c]] [d r] | r          [r [e  d]] [e  r] ]
+	[-o3 [d [d c]] [d r]     r     | [c [c b\]] [c r]      r      ]
+	[-o2 [b [b a]] [b r]     r     | [a [a b]]  [a r]      r      ]
+}
+
+#11
+6{
+	[-o5 [[f g] f] [b f]  [e      d]  | [d  b\ d  c ] 2c                  ]
+	[-o5 [[d e] d] [d d]  [c      b\] | [b\ r  b\ a\] 2a\                 ]
+	[-o3 b\        [r b_] [[_b a] b]  | f_            [_f e g f] [e d f e]]
+}
+
+#13
+3{
+	[-o5 [f e g f] 2f                         ]
+	[-o4 a         [a- g b a-] g_             ]
+	[-o3 [d c e d] [c b=\ d c] [b=\ a\ c b=\] ]
+}
+
+#14
+3{
+	[-o5 [e d f e]   2e ]
+	[-o4 2_g_         [_g f a g] f_ ]
+	[-o3 [c b=\ d c] [b\ a\ c b\] [a\ g\ b\ a\] ]
+}
+
+#15
+3{
+	[-o5 [d c e d_] [_d c e d_] [_d c e d_] ]
+	[-o4 2_f                    b_ ]
+	[-o3 [b\ b]     [a a\]      [g\ g] ]
+}
+
+#16
+3{
+	[-o5 [_d c e d] [c g]  [f e] ]
+	[-o4 _b_        [_b a] [b c/_]]
+	[-o3 [f f\] [e=\ e-] [d c] ]
+}
+
+#17
+3{
+	[-o5 [3d d] c_ [_c 3c_] ]
+	[-o4 [[_c/ a] b_] [_b a b g]  [a [f e]] ]
+	[-o3 [b\ g] [e c] [f f\] ]
+}
+
+#18
+3{
+	[-o5 [_c f\ b\ a\] 2b\]
+	[-o4 [d r d c]     2d]
+	[-o3 [b\ f] [b f] [b\ a\]]
+}
+
+#19
+6{
+	[-o5 [g [g f]] [g r]       r | [a  [a g ]] [a  r]       r ]
+	[-o4 [b [b a]] [b r]       r | [c/ [c/ b]] [c/ r]       r ]
+	[-o3 g\        [r [b\ g\]] d | r           [r [f+\ d\]] d ]
+}
+
+#21
+6{
+	[-o5 [b  [a g]]  [b  [a  g]] [a  [g f+]] | [g [d e]]  [d c] [c b\] ]
+	[-o4 [d/ [c/ b]] [d/ [c/ b]] [c/ [b a ]] | [b [b c/]] [b a] [a g]  ]
+	[-o3 g\          g           [c  d]      | g\          r    r      ]
+}
+
+#23
+6{
+	[-o5 [g [g f]] [g r]       r | [a  [a g ]] [a  r]       r ]
+	[-o4 [b [b a]] [b r]       r | [c/ [c/ b]] [c/ r]       r ]
+	[-o3 g\        [r [b\ g\]] d | r           [r [f+\ d\]] d ]
+}
+
+#25
+6{
+	[-o5 [b  [a g]]  [b  [a  g]] [a  [g f+]] | [g r]      r          r ]
+	[-o4 [d/ [c/ b]] [d/ [c/ b]] [c/ [b a ]] | [b [b d/]] [g [b d/]] g ]
+	[-o3 g\          g           [c  d]      | [g [b d/]] [g [b d/]] g ]
+}

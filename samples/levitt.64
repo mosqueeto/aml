@@ -1,0 +1,42 @@
+#
+#	Method for guitar by Levitt, chord etude on v1,p64
+#
+
+-t 60
+-ac f+ -ac c+
+
+#1 & 2
+8[ 2{d f [r a]} 2{f a d/ [r f/]} | a/ ??{e a c/ g/} 2?{f a [{d/ f/} e/] } ]
+
+#3 & 4
+8[ 2{g b [d/ c/]} 2{c g [b b-]} | 2{d f a [r b=]} 2{d f c=/ [r d/]} ]
+
+#5 & 6
+8[ 2{g b [e/ d/]} 2{g b- [f=/ e/]} | {f a d/} {e a+ c} 2{d b [r f/]} ]
+
+#7 & 8
+8[ 3{e [2b b] [d/ d/ r] f/} g+ | 4{a [r g f e+]} ]
+
+#1 & 2
+8[ 2{d f [r a]} 2{f a d/ [r f/]} | a/ {e a c/ g/} 2{f a [{d/ f/} e/] } ]
+
+#3 & 4
+8[ 2{g b [d/ c/]} 2{c g [b b-]} | 2{d f a [r b=]} 2{d f c=/ [r d/]} ]
+
+#5 & 9
+8[ 2{g b [e/ d/]} 2{g b- [f=/ e/]} |
+		 {f a d/ f/} {f\ c a+ e/} 2{b\ f a d/ [r f/]} ]
+
+#10 & 11
+8[ e\_ {_e\ g b d/} 2{a\ g b c/ [r e]} | 2{f a [d b]} 2{c= e b- [r d/]} ]
+
+#12 & 13
+8[ 4{a\ [r 3a] [r g f e+]} | 2{[d c] f a} 2{c e b- d/ [a/ g/]} ]
+
+#14
+5[ 4{a [r {g b d/ f/} {g b- c/ f/} {g a c/ f/}] } ]
+
+#15
+4[d_ {_d f= b- d/}] 6{d f a b e}
+
+

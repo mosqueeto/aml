@@ -1,0 +1,31 @@
+
+-t 140
+12{
+   [ -ch 1 2e 2e 2d+ | 4e 2b\ | 2g 2g 2f+ | 4e 2b\ ]
+   [ 2e\ 2b\ 2b\\ | 2e\ f+\ g\ a\ b\ | 2b\\ 2c\ 2d+\ | 2e\ f+\ g\ a\ b\ ] }
+12{
+   [ -ch 1 2b 2b 2a | 2g 2g 2f+ | 2e f+ e d+ e | 4f+ 2b\ ]
+   [ 2d+\ 2b\ 2b\\ | 2b\ 2c+ 2d+ | 2e 2d+ 2b\ | d+\ e\ f+\ g\ a\ b\ ] }
+12{
+   [ -ch 1 2e 2e 2d+ | 4e 2b\ | 2b\ c b\ c d+ | 4e 2b\ ]
+   [ 2e\ 2b\ 2b\\ | 2e\ f+\ g\ a\ b\ | 2b\\ 2c\ 2d+\ | 2e\ f+\ g\ a\ b\ ] }
+12{
+   [ -ch 1 2b b c/ b a | g f+ g a g f+ | 2e f+ e d+ f+ | 4e 2r ]
+   [ 2d+\ 2b\ 2b\\ | 2b\ 2c+ 2d+ | 2e 2d+ 2b\ | 2e 2e\ 2r ] }
+12{
+   [ -ch 1 2b 2b 2c/ | 4d/ 2c/ | 2a b a g a | 4b 2g ]
+   [ 6r | 2f+\ 2a\ 2d | 2f+\ g\ f+\ e\ f+\ | 2g\ 2b\ 2b\\ ] }
+12{
+   [ -ch 1 2g 2g 2a | 4b 2f+ | f+ a g f+ e f+ | 4g 2e ]
+   [ 6r | 2d+\ 2f+\ 2b\ | 2d+\ 2b\ 2b\\ | e\ c b\ a+\ b\ g\ ] }
+12{
+   [ -ch 1 2e 2e 2d+ | 4e 2b\ | 2g 2g 2f+ | 4e 2b\ ]
+   [ 2e\ 2b\ 2b\\ | 2e\ f+\ g\ a\ b\ | 2b\\ 2c\ 2d+\ | 2e\ f+\ g\ a\ b\ ] }
+12{
+   [ -ch 1 2b b c/ b a | g f+ g a g f+ | 2e f+ e d+ f+ | 2e 2r 2b\ ]
+   [ 2d+ 2b\ 2b\\ | 2b\ 2c+ 2d+ | 2e 2d+ 2b\ | e\ c b\ a\ g\ f+\] }
+ 3{
+   [ -ch 1 2e 4r ]
+   [ 2e\ 4r ] }
+
+

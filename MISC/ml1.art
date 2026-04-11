@@ -1,0 +1,151 @@
+
+
+Introduction:  Computer Languages and Music
+
+
+Concretely, a computer language is some formalized way of organizing a
+small set of atomic symbols (usually the ASCII character set) that is
+interpreted by a computer in a way that has meaning over some problem
+domain.  Computer languages have been developed for many such domains --
+mathematical calculations, simulation, text manipulation, pattern
+matching, symbol manipulation, and, of course, music.
+
+Music can be a very complex phenomenon, and computer languages by their
+very nature can only deal with a small part of that complexity.  Thus it
+is reasonable that over time there will be many languages that deal with
+various sets of characteristics of music.  Just as we have sports cars
+and big trucks that have different applications, we will have different
+music languages. 
+
+ML1 is a music language that is based on a straightforward but somewhat
+abstract notion of what music is.  In ML1, music is thought of in terms
+of "musical events".  A ML1 program represents one or more music events,
+played one after another.  Musical events can be composed of other
+musical events in well defined ways.
+
+This may sound unduly abstract.  In fact, ML1 was devised with several
+very practical goals in mind.  First, it was designed to control MIDI
+devices, and should allow the expression of anything that could be
+expressed using "raw MIDI".  Second, it should be possible to do a
+relatively mechanical translation from standard music notation to Ml1. 
+Third, it should be efficient -- it shouldn't take several lines of
+dense text to play a few notes.  Fourth, it is interactive -- listening
+to modified text is almost instantaneous. 
+
+
+Basic Description of ML1 Syntax and Semantics
+
+The syntax of ML1 is LISP-like, with lots of parenthesis and brackets of
+various kinds.  Unlike LISP, however, different bracket characters --
+(), [], <>, amd {} -- have different distinct meanings.  Syntactic elements
+are of two flavors -- those that produce sound (which are called
+"events"), and those that modify the characteristics of the sound
+produced (which are called "operators").  The most common events
+are Notes, which are defined in the obvious way: "c4"
+is middle c, "b-3" is the b flat below middle c, "c++4" is the c double
+sharp above middle c, and so on.  The "4" in each of these cases is the
+"octave designator".  Octaves run from C to B.  Octave designators are 
+optional -- if there isn't one, the note is played in the same octave as
+the preceeding note.  The original, default octave is "4".
+
+ML1 has an internal pulse called the "beat".  Beats occur at a
+certain tempo, which is represented in terms of beats per minute.  Beats
+can be arbitrarily subdivided.  
+
+
+At the highest level of abstraction am ML1 program looks something
+like this:
+
+       event(1) event(2) event(3) ....
+
+where "event(i)" is either a musical event (which will cause sound to be
+produced) or an operation that sets global characteristics (for example,
+the tempo could be specified, or some macro could be defined.)  Events
+have a start time and a duration, both measured in beats.  Many events have
+duration 0, but cause effects that persist.  The start time is
+determined only by the durations of events that have preceeded. 
+
+To be concrete, if our ML1 program were
+ 
+		c4 d4 e4
+
+ML1 would play those notes in sequence.  The duration for each
+note would be 1 beat, or, in this case, 1 second.
+
+The duration of events is controlled by three factors -- the tempo,
+syntactic rhythmic structure, and functions that affect the rhythm. 
+There are a couple of syntactic structures that affect durations. 
+
+			Rhythm
+
+First, a musical event may be preceeded by a number that multiplies its
+duration.  For example, 
+
+		c d e f g a b 2c5
+
+plays an ascending c major scale, with the last note having a duration
+of 2 seconds, and the rest having a duration of 1 second.  Second,
+syntactic structures called "sequences" cause the beat to be subdivided.
+For example,
+
+		[ 2c d 2e f 2g a 2b c5 ]
+
+once again plays an 8 note c major scale, but this time it is inclosed
+in square brackets, and so the entire scale occupies one beat.  However,
+the notes inside the sequence don't take equal amounts of time -- the
+first c, the e, the g, and the b each take twice as long as the other
+notes, because they have 2's in front of them.  In effect, this sequence
+divides the beat into 2+1+2+1+2+1+2+1 = 12 parts, and allocates the time
+according to the numbers in front of the lower level musical events (the
+notes).  (Of course, if no number is present, 1 is assumed). 
+
+Sequences can be arbitrarily nested.  For example, if we think of 4/4
+time with the quarter note getting the beat, then
+
+	c [d e] [f [c f a b]] c5
+
+is a quarter note followed by two eighths followed by an eighth followed
+by 4 thirty-seconds followed by a quarter note.
+This program:
+
+c [d d] 2[c c c] 5[d c d c d c d c d c d c d c d c d] c
+
+plays a 1 beat c, 2 d's that occupy 1 beat, 3 c's that
+occupy 2 beats, a 17 note trill that occupies 5 beats, and a c that
+occupies 1 beat.
+
+The curly braces {} enclose sets of events that play simultaneously.  For
+example
+
+		{c e g} 3{d f a} 5{d f g b} {c e g}
+
+plays the chords c major, d minor, g seven, and c major.  All of the
+notes are in octave 4.  The first one occupies 1 beat, the second 3
+beats, the third 5 beats, and the fourth 1 beat.  Note that in each case
+all the notes enclosed in the {}'s inherit the full duration of the set.
+
+Sequences and sets can be arbitrarily nested.  We can combine the
+preceeding two short programs like this:
+
+3{
+  [c       [d d]   2[c c c] 5[d c d c d c d c d c d c d c d c d] c]
+  [{c e g} 3{d f a}         5{d f g b}                           {c e g}]
+#  ^       ^                ^                                    ^
+}
+
+(The # character signifies a comment line -- the ^ characters just
+indicate where parts of the two sequences sound at exactly the same time.)
+At the highest level (the outer {}'s) there is a two element set that
+occupies 3 beats.  Each element is a sequence that inherits the duration
+of the set, namely, three beats.  Each sequence subdivides the
+three beats into 10 parts.
+
+
+
+
+
+
+
+
+
+

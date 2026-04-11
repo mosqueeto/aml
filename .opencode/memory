@@ -1,0 +1,11 @@
+**Project Memory Summary**
+
+**Project Type:** MIDI/Music Analysis Utility
+**Core Function:** Processing, analyzing, and potentially generating musical data, with a distinct focus on the works of Johann Sebastian Bach.
+**Primary Language:** C
+**Structure Highlights:**
+*   **`src/`**: Contains the core source logic, including modules for note handling (`note.c`), song sequencing (`song.c`), and MIDI file management (`midifile.c`).
+*   **`bach/`**: This directory serves as the primary corpus, holding numerous musical works, primarily in various Bach formats.
+*   **`tests/`**: A dedicated and extensive testing suite ensuring code reliability.
+*   **Build System:** Managed by `Makefile`.
+**Overall State:** The project is structured as a mature, utility-focused application with a clear separation between core logic, data sets, and tests.

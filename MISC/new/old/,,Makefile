@@ -1,0 +1,31 @@
+CC = cc
+CFLAGS=         -g 
+LIBS=
+BASE= /home/kent/src/music
+INCS= -I$(BASE)/include
+
+OFILES=	set.o entity.o io.o node.o param.o seq.o dur.o \
+	func.o note.o util.o aml.o
+
+CFILES=	set.c entity.c io.c node.c param.c seq.c dur.c \
+	func.c note.c util.c aml.c
+
+HFILES= aml.h
+
+all:	amlx atomx
+
+amlx:	$(OFILES) $(HFILES)
+	$(CC) $(CFLAGS) $(OFILES) $(LIBS) midifile.o -o amlx
+
+atomx:	atom.c
+	$(CC) $(CFLAGS) atom.c midifile.o -o atomx
+
+#pl:	play.o pl.o util.o
+#	$(CC) $(CFLAGS) play.o pl.o util.o -o pl
+#
+
+midifile.o: midifile.c midifile.h
+	$(CC) $(CFLAGS) -c midifile.c
+
+$(OFILES) : $(HFILES)
+

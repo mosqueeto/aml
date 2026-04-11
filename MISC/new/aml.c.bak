@@ -1,0 +1,57 @@
+/*
+ *	file: aml.c
+ *		-- the main for the aml compiler
+ *
+ *	Copyright (c) 1989 by Kent Crispin and Songbird Software.
+ *	All rights reserved.
+ *
+ */
+ 
+/*
+ * MAIN must be defined for "aml.h"
+ */
+
+#define AML
+ 
+#ifdef AML
+#define MAIN 1
+#endif
+
+#include "aml.h"
+
+char prompt[] = "%s [-T] [-o outfile] filename\n";
+
+main(argc,argv)
+int argc;
+char *argv[];
+{
+	char *ofname = "amlout";
+
+	pgmName = argv[0];	/* remember name for error messages */
+	while( (--argc > 0) && ((*++argv)[0] == '-') ) {
+	   switch ((*argv)[1]) {
+	    case 'o':
+		if( argc ) {
+		  ++argv; --argc;
+		  ofname = *argv;}
+                else
+		  error("no output file name specified",NULL);
+		break;
+	    case 't':
+	    	trace = 1;
+	    	break;
+	    default:
+		error("illegal option: %s",*argv);
+		break;
+	    }
+	}
+	if( argc == 1 ) {
+		init_io( *argv,ofname );
+		compile(song_env);
+	}
+	else {
+		printf( prompt, pgmName );
+	}
+	exit(0);
+}
+

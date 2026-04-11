@@ -1,0 +1,43 @@
+# each group should take 10 seconds...
+-t 60
+c c c c c c c c c c 
+#10
+-t 120
+d d d d d d d d d d
+d d d d d d d d d d
+#20
+-t 360
+c c c c c c c c c c
+d d d d d d d d d d
+e e e e e e e e e e
+f f f f f f f f f f
+g g g g g g g g g g
+a a a a a a a a a a
+#30
+-t 60
+[c] 
+[c d] 
+[c d e] 
+[c d e f] 
+[c d e f g]
+[c d e f g a]
+[c d e f g a b]
+[c d e f g a b c/]
+[c]
+[c]
+#40
+{c e g} {d f a} {e g b} {f a c/} {g b d/} {a c/ e/} 3{d f g b} {c e g c\}
+
+#50
+{[c e g b] [d f a c/]}
+[{a b e} {a c d} {a f g} {c e g}]
+{ [c e g b] [a c e] [g g+] }
+{ [c] [ d g ] [ a b c ] [ d e g g] [a g f e d c] }
+[c c d d e e f f g g ]
+{a c e}
+{d f a\} 
+{d f g b}
+2{c e g c/}
+#60
+
+

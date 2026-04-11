@@ -1,0 +1,19 @@
+#	"The Somker's Reflection"
+#	from "Bach for Beginners" p4
+-t80 -ac b-
+12{
+	[12 d4 d d   | 2[3g [a b]] a | g [f e] a  | f [e f] d ]
+	[12 d3 d/ c/ | b   e       f | g a     a\ | d a\    f\]
+}
+12{
+	[12 f4 f f  | 2[3a [b c/]]  f | g 2e    | 3f ]
+	[12 d2 d/ b | f3    c       d | b\ c c\ | 3f\]
+}
+12{
+	[12 g4 g  g | 2g   e  | a [g f] [e d] | 3c+           ]
+	[12 c4 e3 g | b= g c/ | 2f      g     | a [g f] [e d] ]
+}
+12{
+	[12   a3      c+4    e     | 2[3g [a b]] a  | f d c+ | 3d      ]
+	[12 3[c+3 b=\ a\ b=\ c+ d] | e3    d     c+ | d f a  | d a\ d\ ]
+}

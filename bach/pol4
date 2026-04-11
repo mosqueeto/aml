@@ -1,0 +1,172 @@
+#
+#		Polonaise in G, by Bach, from the Notebook for
+#		A M Bach
+#
+-t25 -ac f+
+
+#1
+6{
+    [ -o5 {b\ d} {c e} {a\ f} | {b\ g} 2{c [d [[e d] e]]} ]
+    [ -o3 g      g     g      | g      g      g           ]
+}
+
+#3
+6{ 
+    [ -o5 [d [g b\]] [c [e a\]] [b\ [d g\]] | [b4 a g f] e4          d ]
+    [ -o3 g          f          g           | d_         [_d d2 f a] d ]
+}
+
+#5
+6{
+    [ -o4 [d [g f]] [g d] d | [d [a g]] [a d] d ] 
+    [ -o3 [d [g f]] [g d] d | [d [a g]] [a d] d ]
+}
+
+#7
+3{
+    [ -o5 g_ [_g f e d] [c b4 a g] ]
+    [ -o2 b  c/         a          ]
+}
+
+#8 (extra beat as a fermata)
+4{
+ [ -o5 [f4 c/ a f] f4 [a g a 2g4_] _g4 ]
+ [ -o2 d/         3g                   ]
+}
+
+
+
+#9
+3{
+    [ -o5 {b\ d} {c+ e} {d f} ]
+    [ -o3 g      g      f     ]
+}
+
+#10
+3{
+    [ -o5 {[e 2e] [ [g [b g]] [a g a g a g] [a g a g f g] ] } ]
+    [ -o3           e         c+            a\                ]
+}
+
+#11
+3{
+    [ -o5 {d [f a g f]} [3b a] [g f e d] ]
+    [ -o3  d             g      e        ]
+}
+
+#12
+3{
+    [ -o5 [c+ a e c+] b\            a\ ]
+    [ -o3 a_          [ _a a\ c+ e] a  ]
+}
+
+#13
+3{
+    [ -o5 [a\ [d c+]] [d a\] a\ ]
+    [ -o4 [a\ [d c+]] [d a\] a\ ]
+}
+
+#14
+3{
+    [ -o5 [a\ [e d]] [e a\] a\ ]
+    [ -o4 [a\ [e d]] [e a\] a\ ]
+}
+
+#15
+3{
+    [ -o5 d/_ [_d/ c+/ b a] [g f e d] ]
+    [ -o3 f   g             e         ]
+}
+
+#16
+3{
+    [ -o5 [c+ g e c+] c+ d          ]
+    [ -o3 a          d_ [_d c/ b a] ]
+}
+
+#17
+3{
+    [ -o5 [[{b\ d} {c e}] {d f=}] 2{[d_            [_d [e d]]] 
+                                    [[g f= g f= g] [f= r]]    }]
+    [ -o3 g+                        g+             g+          ]
+}
+
+#18
+3{
+    [ -o5 [c a e c] b\ a\ ]
+    [ -o3 a_ [_a a\ c e] a]
+}
+
+-t 24
+#19
+3{
+    [ -o5 [[{a\ c} {b\ d}] {c e}] 2{[c_          [_c [d c]]]
+                                    [[f e f e f] [e  r]]    } ]
+    [ -o3 f                       f              f            ]
+}
+
+#20
+3{
+    [ -o4 [b g/ d/ b] a            [[g a g a] g] ]
+    [ -o3 g_          [_g g\ b\ d] g             ]
+}
+
+-t 23
+
+#21
+3{
+    [ -o5 [3d [g a]] [b d]  [d e] ]
+    [ -o4 b_         [_b b] c/    ]
+    [ -o3 g          g      g     ]
+}
+
+#22
+3{
+    [ -o5 [3d [g a]] [b d]  [d e] ]
+    [ -o4 b_         [_b b] c/    ]
+    [ -o3 g          g      g     ]
+}
+
+-t24
+
+#23
+3{
+    [ -o5 [3d [c d]] [3e d] [c b\ a\ g\] ]
+    [ -o4  b         r      r            ]
+    [ -o3  g         c      a\           ]
+}
+
+#24
+3{
+    [ -o4 [f d/ a f] e [[d e d e] d]  ]
+    [ -o3 d_         [_d d\ f\ a\] d  ]
+}
+
+-t23
+
+#25
+3{
+    [ -o4 [d [g f]] [g d] d ]
+    [ -o3 [d [g f]] [g d] d ]
+}
+
+-t24
+#26
+3{
+    [ -o4 [d [a g]] [a d] d ]
+    [ -o3 [d [a g]] [a d] d ]
+}
+
+-t25
+#27
+3{
+    [ -o5 g_ [_g f e d] [c b4 a g] ]
+    [ -o2 b  c/         a          ]
+}
+
+#28
+3{
+    [ -o4 [f c/ a f] f  g ]
+    [ -o3 d          2g\  ]
+}
+

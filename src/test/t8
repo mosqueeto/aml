@@ -1,0 +1,32 @@
+
+-t 60
+g g g g 
+#should take 2 minutes, exactly
+# first minute
+c c c c c c c c c c
+d d d d d d d d d d
+e e e e e e e e e e
+f f f f f f f f f f
+g g g g g g g g g g
+a a a a a a a a a a
+#
+# second minute 
+[b] [b] [b] [b] [b] [b] [b] [b] [b] [b] 
+[c/] [c/] [c/] [c/] [c/] [c/] [c/] [c/] [c/] [c/] 
+10[ c c c c c c c c c c ]
+10[ [c e g c/] [c e g c/] [c e g c/] [c e g c/] [c e g c/]
+    [c e g c/] [c e g c/] [c e g c/] [c e g c/] [c e g c/]
+  ]
+
+[c e g d f a e g b]
+[c e g d f a e g b]
+[c e g d f a e g b]
+[c e g d f a e g b]
+[c e g d f a e g b]
+[c e g d f a e g b]
+[c e g d f a e g b]
+[c e g d f a e g b]
+[c e g d f a e g b]
+[c e g d f a e g b]
+
+c c c c c c c c c c 

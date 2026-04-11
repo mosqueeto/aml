@@ -1,0 +1,24 @@
+-t 60 -ac b- -ac e-
+12{ 
+[12 [3g a] b c/ | [a [a b]] 2c/ | [b [b c/]] [d/ g/] [c/ g/] | [2b a b] 2g]
+[12 g3 g g | g [f+ e=] [f+ d] |  g g\ c | d [g g\] [b\ d] ]
+}
+12{
+[12 [3b4 c/] d/ f=/ | 3[12 2d/ c/ b a b c/ a 4f] |  2[f5 d b\  f] [g5 f e d] |
+       2[e5 c a\ e] [f5 e d c] ]
+[12 -o 3 [4 3g a] b a | b f [f e] | d g e | c f d]
+}
+12{
+[12 [2d5 c d] 2[e5 d c b\] | [a4 b c/ a] b4 b\ |  d5 e g\ | [2f+4 f+ g]
+        2[a4 d f+ a] ]
+[12 -o 3 b\ g e | 3[f e d e d c] |  b\ c e | d d c]
+}
+
+12{
+[12 -o 4 d/ e/ g | [2f+ f+ g] 2[a d f+ a] | [2d5 d e] [2d5 d e] [2 d5 g] |
+         [2b4 a b] g4 g\]
+[12 -o 3 b\ c e | 2d c  | b\ g\ b\ | d 2g\]
+}
+
+
+

@@ -1,0 +1,46 @@
+#
+#		Minuet in C minor, by Bach, from the Notebook for
+#		A M Bach
+#
+-t60 -ac e- -ac b- -ac a-
+12{
+  [12 c5 c d | e e f | g g a | [g f+ g f+ g f+] [g f+ g f+ e= f+] g_  ]
+  [12 2c3  r | c c d | e e c | d                c                 b=\ ]
+ }
+
+12{
+  [12  -o5 [_g a] [f= e=] f_ | [_f g] [e d] e | [c b=\] c d | 3g\             ]
+  [12  2b2             a=    | 2a           g | 2a        f | g [g3 f] [e3 d] ]
+}
+
+12{
+  [12 c5 c d | e e f | g g a | [g f+ g f+ g f+] [g f+ g f+ e= f+] g_  ]
+  [12 2c3  r | c c d | e e c | d                c                 b=\ ]
+ }
+
+12{
+  [12  -o5 [_g a] [f= e=] f_ | [_f g] [e d] e | [c b=\] c d | 3g\             ]
+  [12     2b2             a= | 2a           g | 2a        f | g [g3 f] [e3 d] ]
+}
+###
+
+12{
+  [12       g4 g  a     | [b a] [g a] b | c  e= [g a b] | [a g] 2f           ]
+  [12 -o3 3{[r e= f] c }| g     e=    c | e= c  e=      | f_    [_f g] [f e] ]
+}
+
+12{
+  [12     f4 f g   | [a g] [f g] a  | b\ d  [f g a] | [g f]  2e          ]
+  [12 -o3 3{ [2d  e] 
+         [r 2b\] } | f     d     b\ | d  b\  d      | e_    [_e f] [e d] ]
+}
+
+12{
+  [12 g4 a a= | b b= c/ | b= c5 d   | e e= f  ]
+  [12 c3 f e  | d g  e  | d  c  b=\ | c b\ a=\]
+}
+
+12{
+  [12 d5  e e= | f  f+ g | g\ [f e] [d e] | 3c]
+  [12 b=2 c/ b | a= a- g | e3  f     g    | 3c]
+}

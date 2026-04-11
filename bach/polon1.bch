@@ -1,0 +1,106 @@
+#
+#	Polonaise by bach
+#
+#
+-t72 -ac b- -ac e-
+
+#1
+6{
+	[-o4 [g a 2b] [a f+ 2g] e | [g a 2b] [a f+ 2g] d ]
+	[-o3 [g a 2b] [a f+ 2g] e | [g a 2b] [a f+ 2g] d ]
+}
+#3
+3{
+	[-o4 [2d5 d g4] [{e5 c5} {d5 b4}] [{c5 a4} {g b}] ]
+	[-o3 {g b\}     c                 c               ]
+}
+#4
+3{
+	[-o4 [2{a f+} {a f+} {b g}] 2{a [f+ d]}             ]
+	[-o3 d_                     [_d c d e=] [f+ e= f+ d]]
+}
+#5
+6{
+	[-o4 [g a 2b] [a f+ 2g] e | [g a 2b] [a f+ 2g] d ]
+	[-o3 [g a 2b] [a f+ 2g] e | [g a 2b] [a f+ 2g] d ]
+}
+#7
+3{
+	[-o4 [2d5 d g4] [{e5 c5} {d5 b4}] [{c5 a4} {g b}] ]
+	[-o3 {g b\}     c                 c               ]
+}
+#8
+3{
+	[-o4 [2{a f+} g f+] 2{b\ d g}]
+	[-o3 [d d\] [2g\ b\ d] g     ]
+}
+#9
+3{
+	[-o4 [b c/ 2d/] [c/ a 2b] {g/ b} ]
+	[-o3 [b c/ 2d/] [c/ a 2b] e      ]
+}
+#10
+3{
+	[-o4 [b c/ 2d/] [c/ a 2b] {f/ b} ]
+	[-o3 [b c/ 2d/] [c/ a 2b] d      ]
+}
+#11
+6{
+	[-o5 g 2g f e d  | c [c d] 4c    ]
+	[-o5 e 2e d c b\ | 2r      2a\ 2f\ ]
+	[-o3 e   e\ e    | f_ [_f e f g] [f e f d] ]
+}
+#13
+6{
+	[-o5 [e d  2e] [e d  2e] e_          | [_e d  2e] [e d  2e] e ]
+	[-o5 [c b\ 2c] [c b\ 2c] c_          | [_c b\ 2c] [c b\ 2c] c_]
+	[-o3 c         c/_       [_c b a- g] | a-\        a-_      [_a- g f e]]
+}
+#15
+3{
+	[-o5 [2d d a-] [2e e f] [2d d e] ]
+	[-o4 [_c/ b=]  c/        b=      ]
+	[-o3 f         g        a\       ]
+}
+#16
+3{
+	[-o5 [2c c b=\] 2c ]
+	[-o4 {g e}      2{g e} ]
+	[-o3 c\_ [_c\ c d e] [f g a= b=] ]
+}
+#17
+3{
+	[-o5 [b\ c 2e] [f\ c 2e] d]
+	[-o3 c/ b a f [b\ f] b_]
+}
+#18
+3{
+	[-o4 [f b 2d/] [e b 2d/] c/ ]
+	[-o3 _b a g e [a\ e] a_ ]
+}
+#19
+3{
+	[-o4 e a 2c/ d a 3c/ b a g ]
+	[-o3 _a   g f+ d g\ g]
+}
+#20
+3{
+	[-o4 c+/ d/ b g a f+ g a 4d ]
+	[-o3 d d\_ [_d\ c/ b a] ]
+}
+#21
+6{
+	[-o4 g a 2b a f+ 2g 4e  | g a 2b a f+ 2g 4d ]
+	[-o3 g a 2b a f+ 2g 4e  | g a 2b a f+ 2g 4d ]
+}
+#23
+3{
+	[-o5 d [d g\] e d c b\ ]
+	[-o4 2r c/ b a g ]
+	[-o3 {g b\} c c]
+}
+#24
+3{
+	[-o4 {a f+} [g f+] 4{g d b\} ]
+	[-o3 d d\ g\ [b\ d] 2g]
+}

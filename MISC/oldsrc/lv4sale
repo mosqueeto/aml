@@ -1,0 +1,232 @@
+#
+#	Love For Sale -- Cole Porter
+#
+#	Sounds good with "XFR" -- the "experimental Fender-Rhodes" patch
+#	on my DX7 -- for ch0, and PF03 on the tx81z for ch1 (perhaps with
+#	a change to the midi assignments).
+
+-ac b- -ac e- 
+60[
+#Intro
+16{#      Eb            | Eb6             | Bbm            | Bbm9
+  ???[-o5 {e g b/}      | {g b c//}       | {d-/ f/ b/}    | {d- f a- b/ c/} ]
+   ??[-o3 e e/ e {g b}  | e g !b !{e/ b}  | !b b/ b !{b f} | b !a- g !f  ]
+ }
+#1
+8{#            Eb                 | Eb6
+   ![-o4 -ch1 4b_                 | 3_b    !g ]
+????[-o7 -ch0 4r                  | 2c    d c ]
+????[-o5 -ch0 ?4{g b/}            | ?4{g b}    ]
+    [-o2 -ch0 ?e [3g g] ?b [3b b] | e ?[3b b] g ![3e e] ]
+}
+#3
+8{#           Bbm             | Bbm9
+   ![-o4 -ch1 !4f_            | 3_f   r ]
+????[-o6 -ch0 ?[2b c/ b]      | c/ ]
+????[-o5 -ch0 ?{b\ d- f}      | {b\ d- f a-} ]
+    [-o2 -ch0 !2[3d- d-] !f b | [3f f] b c/ b]
+}
+#5
+8{#           Eb             | Eb6
+   ![-o4 -ch1 r [b b] b b    | b 2b  g        ]
+ ???[-o6 -ch0 [5e e] c e e   | [5e e] c  !{c e} !{b g} ]
+????[-o5 -ch0 ??{g b/}       | ?{g b c/}      ]
+   ?[-o2 -ch0 e !!e e !!e | e !!e e !e        ]
+}
+#7
+8{#           Bbm          | Bbm9
+   ![-o4 -ch1 4f_          | 3_f   r ]
+ ???[-o6 -ch0 4f_ | 4_f  ]
+????[-o5 -ch0 ??{b\ d- f}  | ?{d- a- c/} ]
+   ?[-o2 -ch0 b !!b b !!b  | b !b b !!b ]
+}
+#9
+8{#           Eb           | Ab7
+   ![-o4 -ch1 r [b b] b b  | b  c/ 2c/     ]
+????[-o5 -ch0 {e g b}      | {c/ e/ g-/}   ]
+   ?[-o2 -ch0 e !!2e    e  | a- !b  c/ !a- ]
+}
+#11
+8{#           Db/F            | Ebm
+   ![-o4 -ch1 r [a- a-] a- a- | a- g- 2g-]
+????[-o5 -ch0 {f a- d-/}      | {e g- b} ]
+   ?[-o2 -ch0 f !!2f       f  | e !!2e e ] 
+}
+#13
+8{#           Bbm/F       | F7+5        
+   ![-o4 -ch1 !!4f_       | 3_f   !!d-  ]
+????[-o5 -ch0 ?{b\ d- f}  | ??{f a c+ e}]
+   ?[-o2 -ch0 b !!b b !!b | f !f f !!f  ]
+}
+#15
+8{#           Bbm         | Bbm
+   ![-o4 -ch1 !!4b\_      | 3_b\ r ]
+????[-o5 -ch0 ??{b d-/ f/}| {b\ b  d-/ f/} ]
+   ?[-o2 -ch0 b !b b !!b  | b !!b b !b]
+}
+#17
+8{#           Eb            | Eb6              
+   ![-o4 -ch1 4b_           | 3_b g            ]
+ ???[-o6 -ch0 {e g b}       | {c e g b}        ]
+    [-o2 -ch0 [3e e] f g a- | 2[3b [3b r]] g e ]
+}
+#19
+8{#           Bb       | BbM9
+   ![-o4 -ch1 4f_      | 3_f  r ]
+ ???[-o6 -ch0 {b\ d f} | {b\ d f a c/} ]
+    [-o2 -ch0 f g a- b | ![3b b] d/ e/ f/ ]
+}
+#21
+8{#           Eb                      | Eb
+    [-o4 -ch1 r      [b b] b      b   | e/   c/     b      g ]
+  ??[-o6 -ch0 r      g     [3b a] g   |{g b} {g b} {g b} {g b}    ]
+    [-o2 -ch0 [3e e] e/    d/     c/  | b    !e     !g    !b ]
+}
+#23
+8{#           Bb              | BbM9
+    [-o4 -ch1 4f_             | 3_f r]
+   ?[-o6 -ch0 4{b\ d f}       | ?4{b\ d f a- c/} ]
+    [-o2 -ch0 ![3b b] !b\ d f | ![3b b] !b\ c/ b]
+}
+#25
+8{#           Eb           | Ab7      
+    [-o4 -ch1 r [b b] b b  | b c/ 2c/ ]
+ ???[-o5 -ch0 r [b b] b b  | b c/ 2c/ ]
+ ???[-o6 -ch0 {e g b}      | {c e g-} ] 
+    [-o2 -ch0 [3e e] e f g | [3a- a-] a- g g- ]
+}
+#27
+8{#           Db/F            | Ebm
+   ![-o5 -ch1 r [d- d-] d- d- | d- g-\ 2g-\]
+ ???[-o5 -ch0 r [d- d-] d- d- | d- g-\ 2g-\]
+  ??[-o6 -ch0 a- b      a- g- | 2{g- b} !2{e g- b} ]
+    [-o2 -ch0 f f f f         | [3e e] e f g]
+}
+#29
+8{#           Bbm/F                 | F7+5    
+   ![-o4 -ch1 4f_                   | 3_f   d- ]
+   ![-o5 -ch1 4f_                   | 3_f  !d- ]
+  ??[-o6 -ch0 !4{b\ d- ![2f e a] }  | 3{f\ a\ c+ e f}  [d- [e f] g a] ]
+    [-o2 -ch0 b !b b !b             | f !f f !f ]
+}
+#31
+8{#           Bbm          | Bbm7/Ab
+   ![-o4 -ch1 !4b\_        | 3_b\ r ]
+   ![-o5 -ch1 !!4b\_       | 3_b\ r ]
+ ???[-o7 -ch0 4{b\ d- f}   | 3?{b\\ d-\ f\} r ]
+    [-o2 -ch0 [3b b] b b b | [3b1 b] b2 a  a-]
+}
+#33
+8{#           Gb6           | Ab7
+    [-o5 -ch1 r [b\ c] d- e | f e 2e ]
+    [-o6 -ch0 {b d-}        | {c e g-} ]
+    [-o2 -ch0 g- d- g- g-   | a- a- a- c/]
+}
+#35
+8{#           Db           | Db/F
+    [-o5 -ch1 r [c d-] e f | 4a- ]
+    [-o6 -ch0 {f a-}       | ??{d d\} ]
+    [-o2 -ch0 d-/ d- d- d- | f f f f]
+}
+]
+#
+#
+####
+#37
+8{#           Gb6           | Ab7
+    [-o5 -ch1 r [b\ c] d- e | f e 2e      ]
+    [-o2 -ch0 g- g- g- g-   | a- a- a- a- ]
+}
+#39
+8{#           Db           | Db6/F
+    [-o5 -ch1 [c d-] e f | 4b ]
+    [-o2 -ch0 d- d- d- d-  | f f f f]
+}
+#41
+8{#           Bb7           | Adim/Bb Bb7
+    [-o5 -ch1 r [b\ c] d= f | g- f    2f  ]
+    [-o2 -ch0 b b b b       | b b     b b ]
+}
+#43
+8{#           Ebm D Ebm       | Ebm
+    [-o5 -ch1 r d 2[e f g-] | c/ b 2b ]
+    [-o2 -ch0 e   d e e     | e e e e]
+}
+#45
+8{#           Gb   Ebm6/Gb | Gdim C7/G
+    [-o5 -ch1 2d-/ 2c/     | 2d-/ 2c/ ]
+    [-o2 -ch0 g- g- g- g-  | g= g= c c]
+}
+#47
+8{#           B7/F#           | Fdim  E7-5  
+    [-o5 -ch1 r [b= b=] b= b= | 2b=   2b- ]
+    [-o2 -ch0 b\ b\     b\ b\ | f f   e= e= ]
+}
+]
+#
+#	Start of second half
+#
+#49
+8{#           Eb      | Eb6     
+    [-o5 -ch1 4b_     | 3_b g   ]
+    [-o2 -ch0 e e e e | e e e e ]
+}
+#51
+8{#           Bbm     | Bbm9
+    [-o5 -ch1 4f_     | 3_f  r ]
+    [-o2 -ch0 b b b b | b b b b]
+}
+#53
+8{#           Eb          | Eb6
+    [-o5 -ch1 r [b b] b b | b 2b  g ]
+    [-o2 -ch0 e e     e e | e e e e ]
+}
+#55
+8{#           Bb      | BbM7
+    [-o5 -ch1 4f_     | 3_f   r ]
+    [-o2 -ch0 b b b b | b b b b ]
+}
+#57
+8{#           Eb          | Ab7        
+    [-o5 -ch1 r [b b] b b | b  c6 2c    ]
+    [-o2 -ch0 e e     e e | a- a- a- a- ]
+}
+#59
+8{#           Db/F            | Gb6
+    [-o5 -ch1 r [d- d-] d- d- | d- e  2e]
+    [-o2 -ch0 f f       f f   | g- g- g- g-]
+}
+#61
+8{#           F7+5    | F7+5     
+    [-o5 -ch1 4f/_    | 3_f/ d-/ ]
+    [-o2 -ch0 f f f f | f f f f  ]
+}
+#63
+8{#           Bbm    | Bbm7/Ab
+    [-o5 -ch1 4b_    | 3_b      r ]
+    [-o2 -ch0 b b b b| a- a- a- a- ]
+}
+#65
+8{#           Bbm6/G  | Eb7                  
+    [-o6 -ch1 4f_     | 2_f_ [_f d-] [b\ g\] ]
+    [-o2 -ch0 g g g g | e e  e       e       ]
+}
+#68
+8{#           Ebm7/Gb             | F7+5
+    [-o6 -ch1 [b\ c] [d- e] !f !f | 3f    d-]
+    [-o2 -ch0 e      e       e  e | f f f f ]
+}
+#69
+8{#           Edim        | Ebm6    
+    [-o5 -ch1 8b_         |         ]
+    [-o2 -ch0 e= e= e= e= | e e e e ]
+}
+#69
+8{#           Bb      | Bb
+    [-o5 -ch1 5_b     |   3r]
+    [-o2 -ch0 b b b b | b b b b]
+}
+
+
+]
+

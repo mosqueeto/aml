@@ -1,0 +1,21 @@
+#	"Song"
+#	from "Bach for Beginners" p3
+-t120 -ac b-
+16{
+	[16 3r c5 | 2f5  2e   | f a4 b c5 | 2a4  g c/]
+	[16 4r    | r f3 c/ c | a f  g e  | f f\ e r ]
+}
+16{
+	[16 2a4 2d/ | b= [a g] g5 f | e [d c] d [c b=\] | 3c [e4 f]  ]
+	[16 2f3 2d  | 2g       e  f | 2g      2g\       |  c g\ c\ r ]
+}
+16{
+	[16 3g4  a    | 3b   c/ | a [g f] d/ [b a] | 3g      c/ ]
+	[16 r c4 c3 r | r c 2c\ | 2f      2b\      | c g\ c\ a\ ]
+}
+16{
+	[16 2d5 2e  | f [e d] c b\ | 2a4 2g  | 3f     r ]
+	[16 2b2 2g  | 2a      r b  | 2c/ 2c  | f c3 f r ]
+}
+
+

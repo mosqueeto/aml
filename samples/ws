@@ -1,0 +1,52 @@
+-t60
+
+!!{d2 d1 d0}
+
+3{
+	!{f4 a d5 f5} 
+	[ 2!{a3 d4} !!{d2 d1 d0} ]
+}
+
+3{
+	!{e4 g b= e5}
+	[ 2!{ g+3 b= d4} !!{d2 d1 d0} ]
+}
+
+3{
+	{b-4 c5 e5 b-5}
+	[ 2{ g3 b-3 c+4 e g} {d2 d1 d0} ]
+}
+
+3{
+	[ 7!!{a4 d5 f a} {f5 a d6 f} 7!!{f5 a d6 f}  {e5 a c6 e} ]
+	[ 7!!{f3 a d4 f} {d3 f a d4} 7!!{d3 f a d4}  {a3 c4 e a}]
+}
+3{
+	[ 7{e5 a c6 e}    {e5 a} 
+	  7{e5 a}         {d5 f b-6 d} 
+	  7{d5 f b-6 d}   {c5 f a c6} ]
+	[ 7{a3 c4 e a}    {a4 c5} 
+	  7{a4 c5}        {b-2 d3 f b-} 
+	  7{b-2 d3 f b-}  {f3 a c4 f} ]
+
+} 
+3{
+	[ 7{c5 f a c6}    {c5 f} 
+	  7{c5 f}         {b-4 d5 g b-} 
+	  7{b-4 d5 g b-}  {b-4 d5 e} ]
+	[ 7{f3 a c4 f}    {f4 a} 
+	  7{f4 a}         {g2 d3 g} 
+	  7{g2 d3 g}      {g3 b- d4} ]
+
+}
+3{
+	[ 7{b-4 d5 e}     {g4 d5 g} 
+	  7{g4 d5 g}      {e4 g a c+5} 
+	  7{e4 g a c+5}   {f4 d5} ]
+	[ 7{g3 b- d4}     {b-3 e4 b-} 
+	  7{b-3 e4 b-}    {a2 a3} 
+	  7{a2 a3}        {d3 a d4} ]
+
+}
+{d3 a d4 f d5}
+

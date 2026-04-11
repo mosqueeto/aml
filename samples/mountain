@@ -1,0 +1,39 @@
+#
+#	She'll be coming round the mountain
+#
+#Try this sometime:
+#-ac b- -ac e- -ac a- -ac d-
+#-ac f+ -ac c+ -ac g+
+-ac b- 
+-t 120
+64[
+2[ c4 d ]
+16{
+   [ -o4 f f f f  | d c c d  | 6f              f g ]
+   [ -o3 2a  2a   | 4b       | 8a                  ]
+   [ -o3 f\ c d c | f\ c d c | f\ c d c | f\ c d c ]
+}
+16{
+   [ -o4 a a a a | c/ a g f  | 6g               c/ b ]
+   [ -o4 6f              2 r | 6e               2e   ]
+   [ -o3 f\ c d c | f\ c d c | r c d c  | 2g 2r      ]
+}
+16{
+   [ -o4 a a a a | g f f f | d d d d | g f e d ]
+   [ -o4 4f      | 4e-     | 8r                ]
+   [ -o3 6f      |     2a  | 4b      | 2b 2g+  ]
+}
+16{
+   [ -o4 c c f g | a g f e | 2f {a f/} c/ | 2{b d/} g c/]
+   [ -o3 3a   r  | 4r      | f\ c d c     | f\ c r c    ]
+}
+16{
+   [ -o4 2{a f} f c | 2{d b\} {g b\} c | 8{f_ a\_} ]
+   [ -o3 f\ c d c | f\ c r c | f\ c d c | a\ c d c ]
+}
+8{
+   [ -o4 2{_f _a\} a c/ | 4{f/ a} ]
+   [ -o3 2f\ 2r         | 4{c/ f} ]
+}
+
+]

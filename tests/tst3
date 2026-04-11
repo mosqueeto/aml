@@ -1,0 +1,16 @@
+-t120
+c4 d e
+f4 g [3 a b c5]
+c4 d [3 e f [3 g a b]]
+c4 d [3 e f [3 g a [3 b c5 g4]]]
+c4 d [3 e f [3 g a [3 b c5 [3 g4 b3 b3]]]]
+c4 d [3 e f [3 g a [3 b c5 [3 g4 b3 [3 b b [3 b b c]]]]]]
+c5 d [3 e f [3 g a [3 b c+ [3 g B [3 b b [3 b b c]]]]]]
+c4 d [3 e f [3 g a [3 b c5 [3 g4 b3 [3 b b [3 b b c]]]]]]
+c4 d [3 e f [3 g a [3 b c5 [3 g4 b3 b3]]]]
+c4 d [3 e f [3 g a [3 b c5 g4]]]
+c4 d [3 e f [3 g a b]]
+f4 g [3 a b c5]
+c4 d e
+c4
+

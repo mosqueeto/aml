@@ -1,0 +1,20 @@
+#	"Chorale"
+#	from "Bach for Beginners" p5
+12{
+	[12 c5 b\ c | a4 b c/ | 2[3f [g a]] g  | e [d e] c ]
+	[12 c3 d  e | 2f   e  | d    g      g\ | c g\   c\ ]
+}
+12{
+	[12 g4 a b | 2c/   d/ | [b a] 2a | 3g ]
+	[12 2c3 b2 | a   g f+ | g  d/ d  | g 2[g3 f e d] ]
+}
+12{
+	[12 c5 d     e    | a4 b c5 | d_ [_d [e f]] e | 3d ]
+	[12 e3 2[f e d c] | 2f   e  | b2 g         c3 | g\ 2[g a b g] ]
+}
+12{
+	[12 3[e5 [f g] f e d c] | a4 b    c5   | f 2d  | 3c ]
+	[12 c4        c3   e    | f 2[e d e c] | a f g | 3c ]
+}
+ 
+

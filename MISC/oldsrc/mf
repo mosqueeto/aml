@@ -1,0 +1,13 @@
+.c.obj:
+	cl -Zi -AC -c $<
+
+ansi.obj  basic.obj buffer.obj display.obj file.obj fileio.obj \
+line.obj main.obj random.obj region.obj search.obj spawn.obj \
+tcap.obj termio.obj vt52.obj window.obj word.obj : ed.h
+
+em:	ansi.obj  basic.obj buffer.obj display.obj file.obj fileio.obj \
+	line.obj main.obj random.obj region.obj search.obj spawn.obj \
+	tcap.obj termio.obj vt52.obj window.obj word.obj
+
+	link	/co ansi basic buffer display file fileio line main \
+		random region search spawn tcap termio vt52 window word,em,nul;

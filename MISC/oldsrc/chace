@@ -1,0 +1,52 @@
+#
+#	Chace -- evolution of the motet, very canonic.  This is
+#	"Talent m'est pris".  Tx81 pf10 (elec choir)
+#
+-ac b-
+63 [
+7{
+   [ -ch0 -o4 2f [g a] b [a g] f [2f g 2a b] ]
+}
+7{
+    [ -ch0 -o5 [3c 2r f] [3d 2r f] [d r] [f d] [5e d] [f f] [5e d] ]
+    [ -ch1 -o4 2f [g a] b [a g] f [2f g 2a b] ]
+}
+7{
+    [ -ch0 -o5 [f e f 3c] [2r f 3d] [2r g 3e] [2r d 2r f] [c r] [2a\ c 2c a\] 
+		[b\ g\] 
+    ]
+    [ -ch1 -o5 [3c 2r f] [3d 2r f] [d r] [f d] [5e d] [f f] [5e d] ]
+    [ -ch2 -o4 2f [g a] b [a g] f [2f g 2a b] ]
+}7{
+    [ -ch1 -o5 [f e f 3c] [2r f 3d] [2r g 3e] [2r d 2r f] [c r] [2a\ c 2c a\] 
+		[b\ g\] 
+    ]
+    [ -ch2 -o5 [3c 2r f] [3d 2r f] [d r] [f d] [5e d] [f f] [5e d] ]
+    [ -ch0 -o4 2f [g a] b [a g] f [2f g 2a b] ]
+}7{
+    [ -ch2 -o5 [f e f 3c] [2r f 3d] [2r g 3e] [2r d 2r f] [c r] [2a\ c 2c a\] 
+		[b\ g\] 
+    ]
+    [ -ch0 -o5 [3c 2r f] [3d 2r f] [d r] [f d] [5e d] [f f] [5e d] ]
+    [ -ch1 -o4 2f [g a] b [a g] f [2f g 2a b] ]
+}7{
+    [ -ch0 -o5 [f e f 3c] [2r f 3d] [2r g 3e] [2r d 2r f] [c r] [2a\ c 2c a\] 
+		[b\ g\] 
+    ]
+    [ -ch1 -o5 [3c 2r f] [3d 2r f] [d r] [f d] [5e d] [f f] [5e d] ]
+    [ -ch2 -o4 2f [g a] b [a g] f [2f g 2a b] ]
+}
+7{
+    [ -ch1 -o5 [f e f 3c] [2r f 3d] [2r g 3e] [2r d 2r f] [c r] [2a\ c 2c a\] 
+		[b\ g\] 
+    ]
+    [ -ch2 -o5 [3c 2r f] [3d 2r f] [d r] [f d] [5e d] [f f] [5e d] ]
+}
+7{
+    [ -ch2 -o5 [f e f 3c] [2r f 3d] [2r g 3e] [2r d 2r f] [c r] [2a\ c 2c a\] 
+		[b\ g\] 
+    ]
+}
+f
+]
+

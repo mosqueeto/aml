@@ -1,0 +1,33 @@
+$Id: bnf,v 1.2 1997/08/30 05:21:09 kent Exp kent $
+
+BNF 
+
+	a text string that occurs in the left column is a syntactic category
+	literal characters are indictated by being surrounded by 
+		single quote marks
+	":=" means "is composed of"
+	'*' means "zero or more occurences of"
+	'+' means "one or more occurences of"
+	'|' separates alternatives
+	an item enclosed in square brackets '[' and ']' is option
+
+song		:= song
+element		:= duration | param | basic | fun | octave
+dur		:= number basic
+param		:= '-' string
+basic		:= seq | set | dyn | note
+seq		:= '[' element* ']'
+set		:= '{' element* '}'
+fun		:= '(' string+ ')'
+dyn		:= '!' basic | '?' basic
+note		:= tie note_name accidental octave tie | 'r'
+tie		:= '_' | ''
+note_name	:= 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g'
+accidental	:= natural | sharps | flats
+natural		:= '='
+sharps		:= sharp+
+flats		:= flat+
+sharp 		:= '+'
+flat		:= '-'
+number		:= digit+
+digit		:= '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '0'
