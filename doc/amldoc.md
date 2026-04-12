@@ -571,6 +571,11 @@ definition itself produces no musical output; it is a compile-time
 directive only.  Definitions must appear at the top level of the program,
 not inside a sequence, chord, or function call.
 
+A macro may be redefined at the top level -- for example, to use one
+pattern in the first half of a piece and a different one in the second
+half.  Redefining a macro causes a warning on stderr; suppress it with the
+`-w` compiler flag (see Appendix A).
+
 
 ## Scope, Operator Order, and Other Technical Details
 
@@ -601,6 +606,31 @@ indentation. The above two lines might be more clearly represented as:
         [...]   # level 3
       }         # level 2
     ]           # level 1
+
+
+---
+
+## Appendix A: Running the Compiler
+
+The AML compiler is invoked as:
+
+    aml [options] inputfile
+
+The input file is conventionally given a `.bch` extension.  The output is
+a MIDI file; by default it is written to `inputfile.mid`.
+
+Options:
+
+| Flag        | Description |
+|-------------|-------------|
+| `-o file`   | Write MIDI output to `file` instead of the default |
+| `-t`        | Enable trace output to stderr (for debugging) |
+| `-P`        | Print the internal event representation to stdout |
+| `-w`        | Suppress compiler warnings (e.g. macro redefinition) |
+
+Example:
+
+    aml -o minuet.mid minuet.bch
 
 
 ---
