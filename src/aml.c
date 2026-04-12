@@ -20,9 +20,7 @@
 
 char prompt[] = "%s [-T] [-o outfile] filename\n";
 
-int main(argc,argv)
-int argc;
-char *argv[];
+int main(int argc, char *argv[])
 {
 	char *ofname = NULL;
         char buf[100];

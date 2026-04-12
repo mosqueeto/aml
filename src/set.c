@@ -1,7 +1,7 @@
 #include "aml.h"
 node *do_set_element( int *status, ENVIRONMENT *env );
 
-float accent;
+double accent;
 
 /**do_set
  *	parse a set.  This involves processing all the set elements,

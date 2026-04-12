@@ -31,8 +31,8 @@
 #define MAX(a,b) ((a)>(b)?(a):(b))
 #define MIN(a,b) ((a)<(b)?(a):(b))
 
-#define EMPHASIZE (1.25)
-#define DEEMPHASIZE (0.75)
+#define EMPHASIZE   (1.2)
+#define DEEMPHASIZE (1.0/1.2)
 #define TUNING_BIAS (-52)       /* bias note numbers for a DX7 */
 #define DEFAULT_TEMPO 60.0
 
@@ -75,7 +75,7 @@
 
 /*  A few macros
  */
-#define round(f) ( (int) (f+0.5) )
+
 #define is_real_note(c) ( ((tolower(c) >= 'a') && (tolower(c) <= 'g')) )
 #define is_note_name(c) ( is_real_note(c) || (tolower(c)=='r') || (c=='_') )
 
@@ -89,10 +89,10 @@ struct node_struct {
     int n;
     int type;
     struct  node_struct *next;
-    float   start;
-    float   duration;
-    float   delay;
-    float   volume;
+    double  start;
+    double  duration;
+    double  delay;
+    double  volume;
     byte    duty;
     byte    channel;
     byte    note;
@@ -100,9 +100,9 @@ struct node_struct {
 typedef struct node_struct node;
 
 struct scope_env {
-    float   start;
-    float   duration;
-    float   volume;
+    double  start;
+    double  duration;
+    double  volume;
     byte    tempo;
     byte    velocity;
     byte    channel;
@@ -133,11 +133,11 @@ ENVIRONMENT song_env =
       64,           /* transpose */
     };
 
-float   master_start = 0.0;
+double  master_start = 0.0;
 char    *type_name[] = { "rest","on  ","off ","note","start_tie","end_tie",0,0,0};
 char    *program = NULL; /* name of this program */
-int     trace   = 0; 
-int     print_object= 0; 
+int     trace   = 0;
+int     print_object= 0;
 FILE    *tfile = NULL;
 FILE    *sng_file  = NULL;
 FILE    *aml_file  = NULL;
@@ -150,11 +150,11 @@ int     nnodes  = 0;
  *  Global state determining default duration of a beat, default
  *  volume parameters, and so on
  */
- 
-float tempo = DEFAULT_TEMPO;    /* tempo in beats per minute.  This */
+
+double tempo = DEFAULT_TEMPO;   /* tempo in beats per minute.  This */
                 /* is the fundamental time keeper. */
-                
-float msec_per_beat =  (1000.0*60.0)/DEFAULT_TEMPO;
+
+double msec_per_beat = (1000.0*60.0)/DEFAULT_TEMPO;
                 /* msec_per_beat is milliseconds per */
                 /* beat -- a function of the tempo.  */
                 
@@ -170,7 +170,7 @@ int song_volume = 64; /* the default value that is  */
 #else
 
 /**************************************************************************/
-extern float master_start;
+extern double master_start;
 extern char *program;    /* name of this program */
 extern char *type_name[];
 extern int   trace;
@@ -183,10 +183,11 @@ extern int   debugflag;
 extern int   level;
 extern int   IOflag;
 extern int   nnodes;
-extern float tempo;
-extern byte  beat_duration_value;
-extern float msec_per_beat;
-extern int   song_volume;
+extern double tempo;
+extern byte   beat_duration_value;
+extern int    fn_element_count;
+extern double msec_per_beat;
+extern int    song_volume;
 extern ENVIRONMENT song_env;
 
 #endif
@@ -205,20 +206,20 @@ node    *note( char base_note_name, ENVIRONMENT *env);
 node    *element( ENVIRONMENT *env);
 
 
-void    traceinit();
-void    traceclose();
-void    enter( char *s );
+void    traceinit(void);
+void    traceclose(void);
+void    enter(char *s);
 void    error(char *s1, void *s2);
-int     get_num();
-void    init_io(char *ifname,char *ofname);
-int     empty();
-int     create_midi_file();
-int     close_midi_file();
-int     write_note();
-void    close_io();
-void    set_key();
-void    leave();
-void    leavechar( char *s, char c );
+int     get_num(void);
+void    init_io(char *ifname, char *ofname);
+int     empty(node *list);
+void    create_midi_file(char *name);
+void    close_midi_file(int tail);
+int     write_note(int delay, int event, int chan, int note, int vel);
+void    close_io(void);
+void    set_key(ENVIRONMENT *env);
+void    leave(char *s);
+void    leavechar(char *s, char c);
 void    leavefloat( char *s1, float f);
 void    leaveint( char *s, int i );
 void    leavestring( char *s1, char *s2 );

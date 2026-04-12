@@ -1,7 +1,7 @@
 #$Id: Makefile,v 1.2 1997/10/31 14:08:14 kent Exp kent $
 CC = cc
 CFLAGS=         -g 
-LIBS=
+LIBS= -lm
 BASE= /home/kent/src/music
 INCS= -I$(BASE)/include
 
@@ -13,13 +13,16 @@ CFILES=	midifile.c song.c seq.c set.c io.c node.c param.c fun.c  \
 
 HFILES= aml.h
 
-all:	aml atom
+all:	aml atom midump
 
 aml:	$(OFILES) $(HFILES)
 	$(CC) $(CFLAGS) $(OFILES) $(LIBS) -o aml
 
 atom:	atom.c midifile.o
 	$(CC) $(CFLAGS) atom.c midifile.o -o atom
+
+midump:	midump.c midifile.o
+	$(CC) $(CFLAGS) midump.c midifile.o -o midump
 
 #pl:	play.o pl.o util.o
 #	$(CC) $(CFLAGS) play.o pl.o util.o -o pl
@@ -29,7 +32,7 @@ install:	aml
 	chmod 755 /usr/local/bin/aml
 
 clean:
-	rm -f *.o *.out *.mid core ,,*
+	rm -f *.o *.out *.mid core ,,* aml atom midump
 
 $(OFILES) : $(HFILES)
 

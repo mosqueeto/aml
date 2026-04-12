@@ -74,3 +74,7 @@
 #define MTrk 0x4d54726b
 #define lowerbyte(x) ((unsigned char)(x & 0xff))
 #define upperbyte(x) ((unsigned char)((x & 0xff00)>>8))
+
+void create_midi_file(char *name);
+void close_midi_file(int tail);
+int  write_note(int delay, int event, int chan, int note, int vel);

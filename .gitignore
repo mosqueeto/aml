@@ -1,1 +1,14 @@
 *.tar
+,,*
+
+# build artifacts
+src/*.o
+src/aml
+src/atom
+src/midump
+
+# generated MIDI files
+*.mid
+
+# editor/tool artifacts
+.opencode/

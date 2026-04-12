@@ -124,6 +124,9 @@ node *basic(char c, ENVIRONMENT *env)
 		param(c,env);
 		list = NULL;
 	}
+	else if( c == BEGIN_FUN ) {
+		list = fun(c,env);
+	}
 	else if( is_note_name(c) || c == TIE ) {
 		list = note(c,env);
 	}

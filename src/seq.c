@@ -51,6 +51,22 @@ node *seq(char c, ENVIRONMENT *env )
 			}
 			count += n;
 		}
+		else if( c == BEGIN_FUN ) {
+			/* Functions can consume N events and report back via
+			 * fn_element_count, so their inner notes each occupy
+			 * one time slot in the outer sequence rather than the
+			 * whole call counting as one.
+			 */
+			fn_element_count = 1;
+			np = fun(c, &local_env);
+			count += fn_element_count;
+			if( np == NULL ) {
+				local_env.start = (double)count;
+				local_env.duration = 1.0;
+				local_env.volume = env->volume;
+				continue;
+			}
+		}
 		else {
 			np = basic(c,&local_env);
 			if( np == NULL ) continue;
@@ -60,7 +76,7 @@ node *seq(char c, ENVIRONMENT *env )
 			We just completed one element.  If it had events
 			in it, append them to the growing list.
 		 */
-		local_env.start = (float)count;
+		local_env.start = (double)count;
 		local_env.duration = 1.0;
 		local_env.volume = env->volume;
 		list = append_list(list,np);

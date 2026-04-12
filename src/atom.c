@@ -13,7 +13,6 @@
 #include "midifile.h"
 
 FILE *aml_out;
-FILE *fp;
 
 void write_track()
 {
@@ -33,9 +32,7 @@ void write_track()
     return;
 }
 
-int main(argc,argv)
-int argc;
-char **argv;
+int main(int argc, char **argv)
 {
     if( !(aml_out = fopen("aml.out","r")) ) {
         fprintf(stderr,"couldn't open output file <%s>\n",argv[1]);
@@ -44,7 +41,7 @@ char **argv;
 
     create_midi_file(argv[1]);
     write_track();
-    close_midi_file();
+    close_midi_file(0);
     
     exit(0);
 }

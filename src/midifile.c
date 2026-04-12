@@ -6,16 +6,16 @@
 
 #define BUFZ 4096
 
-FILE *aml_out;
-FILE *fp;
+static FILE *fp;
+static void mput(int c);
+static void mput_delay(int d);
 
 int  trk_len_p;
 long nbytes = 0;
 
 int prev_event = 0;
 
-void create_midi_file(name)
-char *name;
+void create_midi_file(char *name)
 {
     int i;
 //  char header[] = {'M','T','h','d',0,0,0,6,0,0,0,1,0xe2,0x50,
@@ -44,26 +44,25 @@ char *name;
     for( i=0;i<4;i++ ) putc(' ',fp);
 }
 
-void mput(c)
-int c;
+static void mput(int c)
 {
     nbytes++;
     putc(c,fp);
 // printf(" %02x",c);
 }
 
-void close_midi_file()
+void close_midi_file(int tail)
 {
     union {
         long l;
         char c[4];
     } u;
 
-    /* put "end of track" meta-event */
-    mput(0x00,fp);
-    mput(0xff,fp);
-    mput(0x2f,fp);
-    mput(0x00,fp);
+    /* put "end of track" meta-event, using the tail delay */
+    mput_delay(tail);
+    mput(0xff);
+    mput(0x2f);
+    mput(0x00);
 
     u.l = nbytes;
     
@@ -76,8 +75,7 @@ void close_midi_file()
     fclose(fp);
 }
 
-void mput_delay(d)
-int d;
+static void mput_delay(int d)
 {
     int i1,i2,i3;
 
@@ -104,8 +102,7 @@ int d;
     mput(i3);
 }
 
-int write_note(delay,event,chan,note,vel)
-int delay,event,chan,note,vel;
+int write_note(int delay, int event, int chan, int note, int vel)
 {
 //  printf("\n%8d,%4d,%4d,%4d",delay,event,note,vel);
     mput_delay(delay);
@@ -115,6 +112,7 @@ int delay,event,chan,note,vel;
     }
     mput(note);
     mput(vel);
+    return 0;
 }
 #if 0
 

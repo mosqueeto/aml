@@ -9,6 +9,7 @@
 
 #include "aml.h"
 #include "stdlib.h"
+#include <math.h>
 
 static char *input_buffer = NULL;
 static char *current_char,*current_line;
@@ -66,7 +67,7 @@ void init_io(char *ifname,char *ofname)
 
 void close_io()
 {
-	close_midi_file();
+	close_midi_file(duration);
 }
 
 
@@ -166,7 +167,7 @@ void parse_error(char *s)
 	putchar('\n');
 
 	c = nextc();
-	while( !index("[]{}() ",c) ) c = nextc();
+	while( !strchr("[]{}() ",c) ) c = nextc();
 	if( IOflag == EOF ) {
 		printf("End of file reached\n");
 		exit(1);
@@ -189,8 +190,8 @@ void output( node *list )
 	node *np1;
 	node *np2;
 	node *list1;
-	float current_time;
-	float end_time;
+	double current_time;
+	double end_time;
 	enter("output");
 
 	if( list == NULL ) {
@@ -272,12 +273,10 @@ void output( node *list )
 		v = MIN(((np1->volume)*song_volume + 0.5),127);
 		c = np1->channel;
 		if( empty(list1) ) {
-			d = (int)((end_time - np1->start) *
-				msec_per_beat*(1.0));
+			d = (int)lround((end_time - np1->start) * msec_per_beat);
 		}
 		else {
-			d = (int)(( (head(list1))->start - np1->start) * 
-				msec_per_beat*1.0);
+			d = (int)lround(((head(list1))->start - np1->start) * msec_per_beat);
 		}
 
 		/* print it to the "object file" */

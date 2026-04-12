@@ -30,16 +30,16 @@ void param(char c, ENVIRONMENT *env)
 		env->octave = get_num();
 	}
         else if( !strcmp(param_name,"v") ) { //volume (velocity)
-                env->volume = (float)get_num();
+                env->volume = (double)get_num();
         }
 	else if( !strcmp(param_name,"t") || !strcmp(param_name,"tempo") ) {
         if( level != 1 ) {
                 parse_error("tempo must be at top level");
         }
         else {
-                tempo = (float)get_num();
+                tempo = (double)get_num();
                 if( tempo > 1024 ) tempo = 1024;
-                if( tempo < 8 ) tempo = 8; 
+                if( tempo < 8 ) tempo = 8;
                 msec_per_beat = (60.0*1000.0)/tempo;
         }
     } 
@@ -49,7 +49,7 @@ void param(char c, ENVIRONMENT *env)
             parse_error("duty must be at top level");
         }
         else {
-            duty = (float)get_num();
+            duty = get_num();
             if( duty > 100 ) tempo = 100;
             if( duty < 8 ) duty = 8; 
             song_env.duty = duty;
