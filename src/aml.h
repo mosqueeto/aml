@@ -147,6 +147,7 @@ int     debugflag   = 0;
 int     level = 0;
 int     IOflag = 0;
 int     nnodes  = 0;
+int     nowarn  = 0;
 /*
  *  Global state determining default duration of a beat, default
  *  volume parameters, and so on
@@ -184,6 +185,7 @@ extern int   debugflag;
 extern int   level;
 extern int   IOflag;
 extern int   nnodes;
+extern int   nowarn;
 extern double tempo;
 extern byte   beat_duration_value;
 extern int    fn_element_count;

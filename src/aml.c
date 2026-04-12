@@ -44,6 +44,9 @@ int main(int argc, char *argv[])
 	    case 'P':
 	    	print_object = 1;
 	    	break;
+	    case 'w':
+	    	nowarn = 1;
+	    	break;
 	    default:
 		error("illegal option: %s\n",*argv);
 		break;

@@ -401,25 +401,40 @@ node *fn_def(ENVIRONMENT *env)
 {
     char c;
     int i, bi, depth;
-
-    if( n_macros >= MAX_MACROS ) {
-        parse_error("def: macro table full");
-        while( (c = nextc()) != END_FUN );
-        return NULL;
-    }
+    char name_buf[MAX_MACRO_NAME];
 
     /* read macro name */
     while( isspace(c = nextc()) );
     i = 0;
     while( !isspace(c) && c != END_FUN && i < MAX_MACRO_NAME-1 ) {
-        macro_table[n_macros].name[i++] = c;
+        name_buf[i++] = c;
         c = nextc();
     }
-    macro_table[n_macros].name[i] = '\0';
+    name_buf[i] = '\0';
 
     if( c == END_FUN ) {
         parse_error("def: empty macro body");
         return NULL;
+    }
+
+    /* check for redefinition */
+    int slot = -1;
+    for( i = 0; i < n_macros; i++ ) {
+        if( strcmp(name_buf, macro_table[i].name) == 0 ) {
+            if( !nowarn )
+                fprintf(stderr, "warning: redefining macro '%s'\n", name_buf);
+            slot = i;
+            break;
+        }
+    }
+    if( slot == -1 ) {
+        if( n_macros >= MAX_MACROS ) {
+            parse_error("def: macro table full");
+            while( (c = nextc()) != END_FUN );
+            return NULL;
+        }
+        slot = n_macros++;
+        strcpy(macro_table[slot].name, name_buf);
     }
 
     /* read body -- depth-count brackets so we catch the right closing ) */
@@ -432,13 +447,12 @@ node *fn_def(ENVIRONMENT *env)
             if( --depth == 0 ) break;
         }
         if( IOflag == EOI ) { parse_error("def: unexpected end of file"); break; }
-        macro_table[n_macros].body[bi++] = c;
+        macro_table[slot].body[bi++] = c;
     }
     /* trim trailing whitespace */
-    while( bi > 0 && isspace(macro_table[n_macros].body[bi-1]) ) bi--;
-    macro_table[n_macros].body[bi] = '\0';
+    while( bi > 0 && isspace(macro_table[slot].body[bi-1]) ) bi--;
+    macro_table[slot].body[bi] = '\0';
 
-    n_macros++;
     return NULL;
 }
 
