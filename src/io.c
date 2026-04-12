@@ -18,9 +18,20 @@ static int line_count=1;
 //static FILE *sng_file;
 //static FILE *aml_file;
 
-static char push_stk[1024];
-static int push_top = 0;
 static int nchars_parsed = 0;
+
+/* Two-slot pushback buffer -- enough for get_num's double-pushback */
+static int pushback_buf[2];
+static int pushback_count = 0;
+
+/* Macro expansion stream stack */
+#define MAX_MACRO_DEPTH 16
+struct macro_stream {
+    char buf[MAX_MACRO_BODY];
+    int  pos;
+};
+static struct macro_stream macro_stack[MAX_MACRO_DEPTH];
+static int macro_depth = 0;
 
 static float startx = 0.0;
 static int duration = 0;
@@ -73,17 +84,40 @@ void close_io()
 
 int aml_getc()
 {
-	int c;
+	/* pushback takes priority over everything */
+	if( pushback_count > 0 )
+		return pushback_buf[--pushback_count];
+
+	/* then macro expansion streams, innermost first */
+	while( macro_depth > 0 ) {
+		struct macro_stream *ms = &macro_stack[macro_depth-1];
+		if( ms->buf[ms->pos] != '\0' )
+			return (unsigned char)ms->buf[ms->pos++];
+		macro_depth--;		/* stream exhausted, pop */
+	}
+
+	/* then main input buffer */
 	if( *current_char == '\0' ) {
 		IOflag = EOI;
 		return 0;
 	}
-
 	if( *current_char == '\n' ) {
 		line_count++;
 		current_line = current_char+1;
 	}
 	return *current_char++;
+}
+
+void push_macro_body(const char *body)
+{
+	if( macro_depth >= MAX_MACRO_DEPTH ) {
+		fprintf(stderr,"macro nesting too deep\n");
+		return;
+	}
+	strncpy(macro_stack[macro_depth].buf, body, MAX_MACRO_BODY-1);
+	macro_stack[macro_depth].buf[MAX_MACRO_BODY-1] = '\0';
+	macro_stack[macro_depth].pos = 0;
+	macro_depth++;
 }
 int nextc()
 {
@@ -101,7 +135,9 @@ another: c = aml_getc();
 
 int pushc(char c)
 {
-	current_char--;
+	if( pushback_count < 2 )
+		pushback_buf[pushback_count++] = (unsigned char)c;
+	return 0;
 }
 
 /**get_num

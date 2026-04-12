@@ -70,6 +70,7 @@
  *  misc constants
  */
 #define EOI         -1
+#define MAX_MACRO_BODY 2048
 #define DID_NOTES   1
 #define NO_NOTES    2
 
@@ -186,6 +187,7 @@ extern int   nnodes;
 extern double tempo;
 extern byte   beat_duration_value;
 extern int    fn_element_count;
+void          push_macro_body(const char *body);
 extern double msec_per_beat;
 extern int    song_volume;
 extern ENVIRONMENT song_env;

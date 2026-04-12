@@ -1,0 +1,2 @@
+(def motif (turn c) d (turn e))
+[ (motif) (motif) ]

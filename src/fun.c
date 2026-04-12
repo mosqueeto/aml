@@ -7,13 +7,23 @@ node *fn_add(void);
 node *fn_sub(void);
 node *fn_mul(void);
 node *fn_div(void);
-node *fn_def(void);
 node *fn_tempo(void);
 node *fn_volume(void);
 node *fn_turn(ENVIRONMENT *env);
 node *fn_cresc(ENVIRONMENT *env);
 node *fn_decresc(ENVIRONMENT *env);
 node *fn_rpt(ENVIRONMENT *env);
+node *fn_def(ENVIRONMENT *env);
+
+/* Macro definition table */
+#define MAX_MACROS     64
+#define MAX_MACRO_NAME 32
+
+static struct macro_def {
+    char name[MAX_MACRO_NAME];
+    char body[MAX_MACRO_BODY];
+} macro_table[MAX_MACROS];
+static int n_macros = 0;
 
 /* fn_element_count: set by multi-element functions so seq() can count
  * each consumed note/event separately rather than the whole call as 1.
@@ -88,7 +98,9 @@ node *fun( char c, ENVIRONMENT *env )
 		error("fun: bad beginning\n",NULL);
 	}
 	get_function_name();
-	if( strcmp(current_function, "turn") == 0 ) {
+	if( strcmp(current_function, "def") == 0 ) {
+		np = fn_def(env);
+	} else if( strcmp(current_function, "turn") == 0 ) {
 		np = fn_turn(env);
 	} else if( strcmp(current_function, "rpt") == 0 ) {
 		np = fn_rpt(env);
@@ -97,12 +109,26 @@ node *fun( char c, ENVIRONMENT *env )
 	} else if( strcmp(current_function, "decresc") == 0 ) {
 		np = fn_decresc(env);
 	} else {
-		while( fn_table[i].name != NULL ) {
-			if( strcmp( current_function,fn_table[i].name ) == 0 ) {
-				np = (void *)fn_table[i].ex();
+		/* check user-defined macros -- transparent text substitution */
+		int found = 0;
+		for( int mi = 0; mi < n_macros; mi++ ) {
+			if( strcmp(current_function, macro_table[mi].name) == 0 ) {
+				push_macro_body(macro_table[mi].body);
+				fn_element_count = 0;  /* transparent to seq counter */
+				found = 1;
 				break;
 			}
-			i++;
+		}
+		if( !found ) {
+			while( fn_table[i].name != NULL ) {
+				if( strcmp( current_function,fn_table[i].name ) == 0 ) {
+					np = (void *)fn_table[i].ex();
+					break;
+				}
+				i++;
+			}
+			if( fn_table[i].name == NULL )
+				parse_error("unknown function");
 		}
 	}
 	leave("fun");
@@ -127,11 +153,6 @@ node *fn_mul(void)
 node *fn_div(void)
 {
 	printf("fn_div called\n");
-	return NULL;
-}
-node *fn_def(void)
-{
-	printf("fn_def called\n");
 	return NULL;
 }
 node *fn_tempo(void)
@@ -367,6 +388,58 @@ node *fn_decresc(ENVIRONMENT *env)
     double vol_start = parse_vol_spec(env, env->volume * EMPHASIZE);
     double vol_end   = parse_vol_spec(env, env->volume * DEEMPHASIZE);
     return build_cresc(env, vol_start, vol_end);
+}
+
+/**fn_def
+ *	Define a named macro.  Syntax: (def name body...)
+ *
+ *	Stores the body text verbatim.  When the macro is later invoked as
+ *	(name), the body is pushed onto the input stream and re-parsed in
+ *	place, transparent to the surrounding context (fn_element_count=0).
+ */
+node *fn_def(ENVIRONMENT *env)
+{
+    char c;
+    int i, bi, depth;
+
+    if( n_macros >= MAX_MACROS ) {
+        parse_error("def: macro table full");
+        while( (c = nextc()) != END_FUN );
+        return NULL;
+    }
+
+    /* read macro name */
+    while( isspace(c = nextc()) );
+    i = 0;
+    while( !isspace(c) && c != END_FUN && i < MAX_MACRO_NAME-1 ) {
+        macro_table[n_macros].name[i++] = c;
+        c = nextc();
+    }
+    macro_table[n_macros].name[i] = '\0';
+
+    if( c == END_FUN ) {
+        parse_error("def: empty macro body");
+        return NULL;
+    }
+
+    /* read body -- depth-count brackets so we catch the right closing ) */
+    depth = 1;  /* we're inside the outer ( of (def ...) */
+    bi = 0;
+    while( depth > 0 && bi < MAX_MACRO_BODY-1 ) {
+        c = nextc();
+        if( c == BEGIN_FUN || c == BEGIN_SEQ || c == BEGIN_SET ) depth++;
+        else if( c == END_FUN || c == END_SEQ || c == END_SET ) {
+            if( --depth == 0 ) break;
+        }
+        if( IOflag == EOI ) { parse_error("def: unexpected end of file"); break; }
+        macro_table[n_macros].body[bi++] = c;
+    }
+    /* trim trailing whitespace */
+    while( bi > 0 && isspace(macro_table[n_macros].body[bi-1]) ) bi--;
+    macro_table[n_macros].body[bi] = '\0';
+
+    n_macros++;
+    return NULL;
 }
 
 /**fn_turn
