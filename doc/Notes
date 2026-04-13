@@ -5,42 +5,80 @@ Install fluidsynth if not already present:
 
     sudo apt install fluidsynth
 
-FluidSynth can be configured via ~/.config/fluidsynth/fluidsynth.cfg.
-The following config works with a Scarlett 4i4 interface under JACK
-on Ubuntu Studio:
+However, the version in the Ubuntu repos (2.4.7 as of 2026) is
+significantly behind the current release (2.5.3).  The config file
+format changed between these versions in ways that matter, so building
+from source is recommended (see "Building FluidSynth from source" below).
 
-    audio.driver jack
-    audio.jack.autoconnect 1
-    soundfont /usr/share/sounds/sf2/FluidR3_GM.sf2
 
-With this config in place, invoke fluidsynth as:
+Config file: location and format
+---------------------------------
 
-    fluidsynth -i -g 4.0 somefile.mid
+FluidSynth 2.5.x reads its config from ~/.fluidsynth (not
+~/.config/fluidsynth/fluidsynth.cfg as in earlier versions).
+
+The format also changed: settings now require a "set" prefix, and
+soundfonts are loaded with "load" rather than "soundfont".
+
+Working config for a Scarlett 4i4 interface under JACK on Ubuntu Studio:
+
+    set audio.driver jack
+    set audio.jack.autoconnect 1
+    load /usr/share/sounds/sf2/FluidR3_GM.sf2
+    set synth.gain 2
+
+"synth.gain" controls output volume (default is 0.2, which is very quiet
+relative to other audio sources; 2 is a reasonable value).
+
+Note: with the repo version (2.4.7), the config file was read from
+~/.config/fluidsynth/fluidsynth.cfg, used a different format (no "set"
+prefix, "soundfont" instead of "load"), and synth.gain had no effect
+regardless of syntax.  The -g flag on the command line was the only
+reliable workaround.  All of this is fixed in 2.5.x.
+
+
+Invocation
+----------
+
+With the config file in place:
+
+    fluidsynth -i somefile.mid
 
 The -i flag runs non-interactively (plays the file and exits).  Without
 it, fluidsynth drops into an interactive prompt after playing.
 
-The -g flag sets the output gain (volume multiplier).  4.0 brings the
-volume in line with other audio sources on this setup.  The config file
-syntax "synth.gain 4.0" is documented as the equivalent setting but
-appears to have no effect in practice; use -g on the command line.
+The aml compiler's -p flag uses "fluidsynth -i" as its compiled-in
+default (see src/Makefile).  Override per-run with:
 
-To make this the default player for aml, set the PLAYER variable in
-src/Makefile and rebuild:
+    export AML_PLAYER="fluidsynth -i"
 
-    PLAYER = fluidsynth -i -g 4.0
 
-Or override at build time without editing the Makefile:
+Building FluidSynth from source
+---------------------------------
 
-    make PLAYER="fluidsynth -i -g 4.0"
+Dependencies:
 
-Or set the environment variable (no rebuild needed):
+    sudo apt install cmake libglib2.0-dev libjack-jackd2-dev
 
-    export AML_PLAYER="fluidsynth -i -g 4.0"
+Build and install:
 
-Notes:
-- "audio.jack.autoconnect 1" connects fluidsynth's output ports to the
-  system playback ports automatically.
+    wget https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.5.3.tar.gz
+    tar xf v2.5.3.tar.gz
+    cd fluidsynth-2.5.3
+    mkdir build && cd build
+    cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
+    make -j$(nproc)
+    sudo make install
+    sudo ldconfig
+
+The /usr/local prefix keeps it separate from the distro package.
+
+
+Other notes
+-----------
+
+- "set audio.jack.autoconnect 1" connects fluidsynth's output ports to
+  the system playback ports automatically.
 - If you see "Jack sample rate mismatch" warnings, check that the JACK
   server sample rate matches the soundfont's expected rate (usually 44100).
 - Substituting "pipewire" for "jack" as the audio driver may work but
