@@ -1,0 +1,3 @@
+# test '.' current note and diatonic stepping
+# 'a b c . ./  c' should give a b c c d c
+a b c . ./ c

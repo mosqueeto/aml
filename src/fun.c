@@ -3,6 +3,13 @@
 extern int note_table[7];
 extern int get_note_number(char base_note_name, ENVIRONMENT *env);
 
+/* Macro table dimensions -- needed by forward decls below */
+#define MAX_MACROS       64
+#define MAX_MACRO_NAME   32
+#define MAX_MACRO_PARAMS 16
+#define MAX_PARAM_NAME   32
+#define MAX_ARG_LEN     256
+
 node *fn_add(void);
 node *fn_sub(void);
 node *fn_mul(void);
@@ -14,14 +21,18 @@ node *fn_cresc(ENVIRONMENT *env);
 node *fn_decresc(ENVIRONMENT *env);
 node *fn_rpt(ENVIRONMENT *env);
 node *fn_def(ENVIRONMENT *env);
+static int  read_arg(char *buf, int bufsize);
+static void subst_params(const char *body, int nparams,
+                         char params[][MAX_PARAM_NAME],
+                         char args[][MAX_ARG_LEN],
+                         char *out, int outsize);
 
 /* Macro definition table */
-#define MAX_MACROS     64
-#define MAX_MACRO_NAME 32
-
 static struct macro_def {
     char name[MAX_MACRO_NAME];
     char body[MAX_MACRO_BODY];
+    int  nparams;
+    char params[MAX_MACRO_PARAMS][MAX_PARAM_NAME];
 } macro_table[MAX_MACROS];
 static int n_macros = 0;
 
@@ -113,7 +124,25 @@ node *fun( char c, ENVIRONMENT *env )
 		int found = 0;
 		for( int mi = 0; mi < n_macros; mi++ ) {
 			if( strcmp(current_function, macro_table[mi].name) == 0 ) {
-				push_macro_body(macro_table[mi].body);
+				if( macro_table[mi].nparams == 0 ) {
+					push_macro_body(macro_table[mi].body);
+				} else {
+					/* read arguments, substitute, push expanded body */
+					char args[MAX_MACRO_PARAMS][MAX_ARG_LEN];
+					char expanded[MAX_MACRO_BODY];
+					char tmp[MAX_ARG_LEN];
+					int pi;
+					for( pi = 0; pi < macro_table[mi].nparams; pi++ ) {
+						if( !read_arg(args[pi], MAX_ARG_LEN) )
+							args[pi][0] = '\0';
+					}
+					while( read_arg(tmp, MAX_ARG_LEN) ); /* drain extras, consume ) */
+					subst_params(macro_table[mi].body,
+					             macro_table[mi].nparams,
+					             macro_table[mi].params,
+					             args, expanded, MAX_MACRO_BODY);
+					push_macro_body(expanded);
+				}
 				fn_element_count = 0;  /* transparent to seq counter */
 				found = 1;
 				break;
@@ -390,31 +419,134 @@ node *fn_decresc(ENVIRONMENT *env)
     return build_cresc(env, vol_start, vol_end);
 }
 
+/**read_arg
+ *  Read one bracket-aware argument from the input stream.
+ *  Skips leading whitespace.  Returns 1 if an arg was read into buf,
+ *  0 if the closing ')' of the enclosing call was consumed (no more args).
+ */
+static int read_arg(char *buf, int bufsize)
+{
+    int c, depth, bi;
+
+    while( isspace(c = nextc()) );     /* skip leading whitespace */
+
+    if( c == END_FUN || IOflag == EOI ) return 0;
+
+    bi = 0;
+    if( c == BEGIN_FUN || c == BEGIN_SEQ || c == BEGIN_SET ) {
+        /* bracket-delimited: capture including outer brackets */
+        depth = 1;
+        if( bi < bufsize-1 ) buf[bi++] = c;
+        while( depth > 0 && IOflag != EOI ) {
+            c = nextc();
+            if( c == BEGIN_FUN || c == BEGIN_SEQ || c == BEGIN_SET ) depth++;
+            else if( c == END_FUN || c == END_SEQ || c == END_SET ) depth--;
+            if( bi < bufsize-1 ) buf[bi++] = c;
+        }
+    } else {
+        /* bare token: read until whitespace or ')' */
+        while( !isspace(c) && c != END_FUN && IOflag != EOI ) {
+            if( bi < bufsize-1 ) buf[bi++] = c;
+            c = nextc();
+        }
+        if( c == END_FUN ) pushc(c);   /* put back ')' for next read_arg call */
+    }
+    buf[bi] = '\0';
+    return 1;
+}
+
+/**subst_params
+ *  Copy body to out, replacing each $name reference with the corresponding
+ *  argument text.  Uses greedy longest-match against the parameter list.
+ *  A $name is only substituted when followed by a non-alphanumeric char
+ *  (word boundary), so $root does not fire inside $rootnote.
+ */
+static void subst_params(const char *body, int nparams,
+                         char params[][MAX_PARAM_NAME],
+                         char args[][MAX_ARG_LEN],
+                         char *out, int outsize)
+{
+    int bi = 0, oi = 0;
+    while( body[bi] && oi < outsize-1 ) {
+        if( body[bi] == '$' ) {
+            int best = -1, bestlen = 0, pi, plen;
+            for( pi = 0; pi < nparams; pi++ ) {
+                plen = (int)strlen(params[pi]);
+                if( plen > bestlen &&
+                    strncmp(body+bi+1, params[pi], plen) == 0 &&
+                    !isalnum((unsigned char)body[bi+1+plen]) ) {
+                    best    = pi;
+                    bestlen = plen;
+                }
+            }
+            if( best >= 0 ) {
+                int alen = (int)strlen(args[best]);
+                if( oi + alen < outsize-1 )
+                    memcpy(out+oi, args[best], alen);
+                oi += alen;
+                bi += 1 + bestlen;
+            } else {
+                out[oi++] = body[bi++];  /* unrecognised $x -- keep literally */
+            }
+        } else {
+            out[oi++] = body[bi++];
+        }
+    }
+    out[oi] = '\0';
+}
+
 /**fn_def
- *	Define a named macro.  Syntax: (def name body...)
+ *  Define a named macro.
  *
- *	Stores the body text verbatim.  When the macro is later invoked as
- *	(name), the body is pushed onto the input stream and re-parsed in
- *	place, transparent to the surrounding context (fn_element_count=0).
+ *  Zero-parameter form:   (def name body...)
+ *  Parametric form:       (def (name p1 p2 ... pn) body...)
+ *
+ *  Parameter references in the body are written as $pname.  On invocation
+ *  the body is expanded with arguments substituted, then pushed onto the
+ *  input stream and re-parsed in place, transparent to the surrounding
+ *  context (fn_element_count=0).
  */
 node *fn_def(ENVIRONMENT *env)
 {
     char c;
-    int i, bi, depth;
+    int  i, bi, depth, nparams = 0;
     char name_buf[MAX_MACRO_NAME];
+    char param_buf[MAX_MACRO_PARAMS][MAX_PARAM_NAME];
 
-    /* read macro name */
     while( isspace(c = nextc()) );
-    i = 0;
-    while( !isspace(c) && c != END_FUN && i < MAX_MACRO_NAME-1 ) {
-        name_buf[i++] = c;
-        c = nextc();
-    }
-    name_buf[i] = '\0';
 
-    if( c == END_FUN ) {
-        parse_error("def: empty macro body");
-        return NULL;
+    if( c == BEGIN_FUN ) {
+        /* parametric form: (def (name p1 p2 ...) body) */
+        while( isspace(c = nextc()) );
+        i = 0;
+        while( !isspace(c) && c != END_FUN && i < MAX_MACRO_NAME-1 )
+            { name_buf[i++] = c; c = nextc(); }
+        name_buf[i] = '\0';
+        /* read parameter names until closing ) */
+        while( c != END_FUN && IOflag != EOI ) {
+            while( isspace(c = nextc()) );
+            if( c == END_FUN ) break;
+            i = 0;
+            while( !isspace(c) && c != END_FUN && i < MAX_PARAM_NAME-1 )
+                { param_buf[nparams][i++] = c; c = nextc(); }
+            param_buf[nparams][i] = '\0';
+            if( i > 0 && nparams < MAX_MACRO_PARAMS ) nparams++;
+        }
+        /* skip whitespace before body */
+        while( isspace(c = nextc()) );
+        /* push c back -- body reader starts with nextc() */
+        pushc(c);
+    } else {
+        /* zero-parameter form: (def name body) */
+        i = 0;
+        while( !isspace(c) && c != END_FUN && i < MAX_MACRO_NAME-1 )
+            { name_buf[i++] = c; c = nextc(); }
+        name_buf[i] = '\0';
+        if( c == END_FUN ) {
+            parse_error("def: empty macro body");
+            return NULL;
+        }
+        pushc(c);
     }
 
     /* check for redefinition */
@@ -436,9 +568,12 @@ node *fn_def(ENVIRONMENT *env)
         slot = n_macros++;
         strcpy(macro_table[slot].name, name_buf);
     }
+    macro_table[slot].nparams = nparams;
+    for( i = 0; i < nparams; i++ )
+        strcpy(macro_table[slot].params[i], param_buf[i]);
 
-    /* read body -- depth-count brackets so we catch the right closing ) */
-    depth = 1;  /* we're inside the outer ( of (def ...) */
+    /* read body -- depth-count so we find the right closing ) */
+    depth = 1;
     bi = 0;
     while( depth > 0 && bi < MAX_MACRO_BODY-1 ) {
         c = nextc();
@@ -449,7 +584,6 @@ node *fn_def(ENVIRONMENT *env)
         if( IOflag == EOI ) { parse_error("def: unexpected end of file"); break; }
         macro_table[slot].body[bi++] = c;
     }
-    /* trim trailing whitespace */
     while( bi > 0 && isspace(macro_table[slot].body[bi-1]) ) bi--;
     macro_table[slot].body[bi] = '\0';
 

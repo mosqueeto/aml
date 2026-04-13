@@ -1,0 +1,6 @@
+# parametric macro: (def (triad root) $root . {. .// .//})
+# (triad c) should give c c {c e g}
+# (triad e) should give e e {e g b}
+(def (triad root) $root . {. .// .//})
+(triad c)
+(triad e)

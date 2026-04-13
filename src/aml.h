@@ -148,6 +148,7 @@ int     level = 0;
 int     IOflag = 0;
 int     nnodes  = 0;
 int     nowarn  = 0;
+int     current_note = 60;  /* MIDI note last played; updated by every note event */
 /*
  *  Global state determining default duration of a beat, default
  *  volume parameters, and so on
@@ -186,6 +187,7 @@ extern int   level;
 extern int   IOflag;
 extern int   nnodes;
 extern int   nowarn;
+extern int   current_note;
 extern double tempo;
 extern byte   beat_duration_value;
 extern int    fn_element_count;
@@ -207,6 +209,8 @@ node    *set( char c, ENVIRONMENT *env );
 node    *fun( char c, ENVIRONMENT *env);
 node    *dyn( char c, ENVIRONMENT *env);
 node    *note( char base_note_name, ENVIRONMENT *env);
+node    *dot_note( ENVIRONMENT *env);
+int      diatonic_step( int midi_note, int steps, ENVIRONMENT *env);
 node    *element( ENVIRONMENT *env);
 
 

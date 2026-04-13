@@ -69,7 +69,8 @@ node *note( char base_note_name, ENVIRONMENT *env )
 	else if( end_tie )  note_node->type = END_TIE;
 	else 		    note_node->type = A_NOTE;
 	if( note == 0 ) note_node->type = A_REST;
-	leaveint("note",note_node->note);	
+	else current_note = note;
+	leaveint("note",note_node->note);
 	return note_node;
 }
 
@@ -155,6 +156,75 @@ int get_note_number(char base_note_name, ENVIRONMENT *env)
 rest:	
 	leaveint("get_note_number",note);
 	return note;
+}
+
+/**diatonic_step
+ *  Move a MIDI note by 'steps' diatonic scale degrees (positive=up,
+ *  negative=down) according to the current key signature.
+ *  Returns the new MIDI note number, or midi_note unchanged if the
+ *  pitch class is not on a scale degree.
+ */
+int diatonic_step(int midi_note, int steps, ENVIRONMENT *env)
+{
+    int i, degree, oct, pc, raw;
+    /* Build scale: 7 semitone values sorted by pitch (c d e f g a b).
+     * note_table indices: a=0 b=1 c=2 d=3 e=4 f=5 g=6             */
+    static const int degree_order[7] = {2,3,4,5,6,0,1};
+    int scale[7];
+    for( i = 0; i < 7; i++ ) {
+        int idx = degree_order[i];
+        scale[i] = ((note_table[idx] + env->key[idx]) % 12 + 12) % 12;
+    }
+
+    /* Decompose midi_note into octave and pitch class */
+    raw = midi_note - TUNING_BIAS - env->transpose;
+    oct = raw / 12;
+    pc  = raw % 12;
+    if( pc < 0 ) { pc += 12; oct--; }
+
+    /* Find the scale degree */
+    degree = -1;
+    for( i = 0; i < 7; i++ ) {
+        if( scale[i] == pc ) { degree = i; break; }
+    }
+    if( degree < 0 ) return midi_note;  /* not on scale -- return unchanged */
+
+    /* Apply steps with octave wrap */
+    degree += steps;
+    while( degree >= 7 ) { degree -= 7; oct++; }
+    while( degree <  0 ) { degree += 7; oct--; }
+
+    return oct * 12 + scale[degree] + TUNING_BIAS + env->transpose;
+}
+
+/**dot_note
+ *  Parse a '.' (current note) with optional suffix '/' or '\' modifiers
+ *  for diatonic stepping.  Each '/' steps up one scale degree; each '\'
+ *  steps down one.  Updates current_note and returns a note node.
+ */
+node *dot_note(ENVIRONMENT *env)
+{
+    int c, steps = 0;
+    node *np;
+
+    while( (c = nextc()) == OCTAVE_UP || c == OCTAVE_DOWN ) {
+        if( c == OCTAVE_UP ) steps++;
+        else                 steps--;
+    }
+    pushc(c);
+
+    current_note = diatonic_step(current_note, steps, env);
+
+    np           = new_node();
+    np->next     = np;
+    np->start    = env->start;
+    np->duration = env->duration;
+    np->volume   = env->volume;
+    np->duty     = env->duty;
+    np->channel  = env->channel;
+    np->note     = current_note;
+    np->type     = A_NOTE;
+    return np;
 }
 
 void set_key(ENVIRONMENT *env)
