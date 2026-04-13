@@ -1,0 +1,3 @@
+# test direct MIDI events
+# program change to violin (40), then a note, then a cc (volume=100)
+(prog 40) c d e (cc 7 100) f g

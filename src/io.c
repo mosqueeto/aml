@@ -279,6 +279,11 @@ void output( node *list )
 		case NOTE_ON:
 			list1 = insert_node(list1,np1);
 			break;
+		case A_CC:
+		case A_PROG:
+		case A_BEND:
+			list1 = insert_node(list1,np1);
+			break;
 		default:
 			trace = 1;
 			fprintf(stderr,"**node type is %d\n",np1->type);
@@ -320,9 +325,24 @@ void output( node *list )
 			printf("\n%4d,%4d,%4d,%4d,%8d",e,nt,v,c,d);
 		delay = duration;
 		duration = d;
-		if( e != NOTE_ON && e != NOTE_OFF ) 
+		switch( e ) {
+		case NOTE_ON:
+		case NOTE_OFF:
+			write_note(delay,e,c,nt,v);
+			break;
+		case A_CC:
+			write_cc(delay,c,nt,(int)np1->volume);
+			break;
+		case A_PROG:
+			write_prog(delay,c,nt);
+			break;
+		case A_BEND:
+			write_bend(delay,c,(int)np1->volume);
+			break;
+		default:
 			printf("odd event: %d\n",e);
-		write_note(delay,e,c,nt,v);
+			break;
+		}
 		if( trace ) 
 			fprintf(stderr,"%4d,%4d,%4d,%4d,%8d\n",e,nt,v,c,d);
 

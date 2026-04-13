@@ -44,6 +44,9 @@
 #define A_NOTE      3
 #define START_TIE   4
 #define END_TIE     5
+#define A_CC        6       /* midi control change */
+#define A_PROG      7       /* midi program change */
+#define A_BEND      8       /* midi pitch bend */
 #define UNDEFINED   15
 
 

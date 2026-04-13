@@ -21,6 +21,9 @@ node *fn_cresc(ENVIRONMENT *env);
 node *fn_decresc(ENVIRONMENT *env);
 node *fn_rpt(ENVIRONMENT *env);
 node *fn_def(ENVIRONMENT *env);
+node *fn_cc(ENVIRONMENT *env);
+node *fn_prog(ENVIRONMENT *env);
+node *fn_bend(ENVIRONMENT *env);
 static int  read_arg(char *buf, int bufsize);
 static void subst_params(const char *body, int nparams,
                          char params[][MAX_PARAM_NAME],
@@ -119,6 +122,12 @@ node *fun( char c, ENVIRONMENT *env )
 		np = fn_cresc(env);
 	} else if( strcmp(current_function, "decresc") == 0 ) {
 		np = fn_decresc(env);
+	} else if( strcmp(current_function, "cc") == 0 ) {
+		np = fn_cc(env);
+	} else if( strcmp(current_function, "prog") == 0 ) {
+		np = fn_prog(env);
+	} else if( strcmp(current_function, "bend") == 0 ) {
+		np = fn_bend(env);
 	} else {
 		/* check user-defined macros -- transparent text substitution */
 		int found = 0;
@@ -588,6 +597,66 @@ node *fn_def(ENVIRONMENT *env)
     macro_table[slot].body[bi] = '\0';
 
     return NULL;
+}
+
+/**make_control_node
+ *  Allocate a zero-duration node for a MIDI control event.
+ */
+static node *make_control_node(int type, int num, int value, ENVIRONMENT *env)
+{
+    node *np = new_node();
+    np->next     = np;
+    np->type     = type;
+    np->start    = env->start;
+    np->duration = 0.0;
+    np->channel  = env->channel;
+    np->note     = num;
+    np->volume   = (double)value;
+    np->duty     = 0;
+    return np;
+}
+
+/**fn_cc
+ *  MIDI Control Change.  Syntax: (cc controller value)
+ *  controller: 0-127, value: 0-127.
+ *  Channel comes from the current environment (-ch).
+ */
+node *fn_cc(ENVIRONMENT *env)
+{
+    char c;
+    int controller = get_num();
+    int value      = get_num();
+    while( isspace(c = nextc()) );
+    if( c != END_FUN ) pushc(c);
+    return make_control_node(A_CC, controller, value, env);
+}
+
+/**fn_prog
+ *  MIDI Program Change.  Syntax: (prog program)
+ *  program: 0-127 (General MIDI programs are 0-127, displayed as 1-128).
+ *  Channel comes from the current environment (-ch).
+ */
+node *fn_prog(ENVIRONMENT *env)
+{
+    char c;
+    int program = get_num();
+    while( isspace(c = nextc()) );
+    if( c != END_FUN ) pushc(c);
+    return make_control_node(A_PROG, program, 0, env);
+}
+
+/**fn_bend
+ *  MIDI Pitch Bend.  Syntax: (bend value)
+ *  value: 0-16383, center (no bend) = 8192.
+ *  Channel comes from the current environment (-ch).
+ */
+node *fn_bend(ENVIRONMENT *env)
+{
+    char c;
+    int value = get_num();
+    while( isspace(c = nextc()) );
+    if( c != END_FUN ) pushc(c);
+    return make_control_node(A_BEND, 0, value, env);
 }
 
 /**fn_turn

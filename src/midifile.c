@@ -104,14 +104,47 @@ static void mput_delay(int d)
 
 int write_note(int delay, int event, int chan, int note, int vel)
 {
-//  printf("\n%8d,%4d,%4d,%4d",delay,event,note,vel);
+    int status = event | (chan & 0x0f);
     mput_delay(delay);
-    if( event != prev_event ) {
-        prev_event = event;
-        mput(event);
+    if( status != prev_event ) {
+        prev_event = status;
+        mput(status);
     }
-    mput(note);
-    mput(vel);
+    mput(note & 0x7f);
+    mput(vel  & 0x7f);
+    return 0;
+}
+
+int write_cc(int delay, int chan, int controller, int value)
+{
+    int status = CONTROL_CHANGE | (chan & 0x0f);
+    mput_delay(delay);
+    prev_event = status;
+    mput(status);
+    mput(controller & 0x7f);
+    mput(value      & 0x7f);
+    return 0;
+}
+
+int write_prog(int delay, int chan, int program)
+{
+    int status = PROGRAM_CHNG | (chan & 0x0f);
+    mput_delay(delay);
+    prev_event = status;
+    mput(status);
+    mput(program & 0x7f);
+    return 0;
+}
+
+/* bend value: 0-16383, center=8192 (no bend) */
+int write_bend(int delay, int chan, int value)
+{
+    int status = PITCH_WHEEL | (chan & 0x0f);
+    mput_delay(delay);
+    prev_event = status;
+    mput(status);
+    mput(value & 0x7f);         /* LSB */
+    mput((value >> 7) & 0x7f);  /* MSB */
     return 0;
 }
 #if 0

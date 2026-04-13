@@ -78,3 +78,6 @@
 void create_midi_file(char *name);
 void close_midi_file(int tail);
 int  write_note(int delay, int event, int chan, int note, int vel);
+int  write_cc(int delay, int chan, int controller, int value);
+int  write_prog(int delay, int chan, int program);
+int  write_bend(int delay, int chan, int value);
