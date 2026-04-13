@@ -28,6 +28,24 @@ that happen one after another; sets are lists of events that start at the
 same time and take up the same duration. Sets and sequences are themselves
 events, so they can be nested to arbitrary complexity.
 
+It is worth being clear about what kind of thing AML is.  Despite the word
+"language" and the existence of a "compiler", AML is spiritually a form of
+music notation, not a programming language.  An AML file describes a fixed
+musical artifact -- there is a direct, static correspondence between the AML
+source and the MIDI file it produces.  Nothing in the output depends on
+runtime state, execution history, or context that changes as the file is
+"run".  A MIDI file has no mechanism for altering its own behavior, and
+neither does AML.
+
+This shapes the design in a concrete way.  Constructs that make sense in a
+notation system -- shorthands, abbreviations, parametric ornaments, repeat
+marks -- are natural additions to AML.  Constructs that belong to a
+programming language -- conditionals, loops with evolving state, variables
+whose values change during execution -- are outside the model entirely.
+When AML compilation is finished, every shorthand has been expanded and
+every event has a fixed start time and duration.  The notation disappears;
+only the music remains.
+
 
 ## A Quick Start to AML
 
