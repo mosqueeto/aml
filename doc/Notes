@@ -1,0 +1,36 @@
+Configuring FluidSynth for JACK playback (Ubuntu Studio)
+---------------------------------------------------------
+
+Install fluidsynth if not already present:
+
+    sudo apt install fluidsynth
+
+FluidSynth can be configured via ~/.config/fluidsynth/fluidsynth.cfg.
+The following config works with a Scarlett 4i4 interface under JACK
+on Ubuntu Studio:
+
+    audio.driver jack
+    audio.jack.autoconnect 1
+    soundfont /usr/share/sounds/sf2/FluidR3_GM.sf2
+
+With this config in place, invoke fluidsynth as:
+
+    fluidsynth -i somefile.mid
+
+The -i flag runs non-interactively (plays the file and exits).  Without
+it, fluidsynth drops into an interactive prompt after playing.
+
+To make this the default player for aml, the compiled-in default is
+already "fluidsynth -i".  Alternatively, set the environment variable:
+
+    export AML_PLAYER="fluidsynth -i"
+
+Notes:
+- "audio.jack.autoconnect 1" connects fluidsynth's output ports to the
+  system playback ports automatically.
+- If you see "Jack sample rate mismatch" warnings, check that the JACK
+  server sample rate matches the soundfont's expected rate (usually 44100).
+- Substituting "pipewire" for "jack" as the audio driver may work but
+  can produce very low volume; JACK is the right driver on Ubuntu Studio.
+- The -i flag is important: without it fluidsynth waits for input and
+  the aml -p flag will appear to hang.
