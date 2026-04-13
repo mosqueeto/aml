@@ -474,6 +474,13 @@ setting. The current parameters are:
 | `-ch`     | Set MIDI channel (0-15; default 0) |
 | `-v`      | Set overall volume (0-127; default 64) |
 | `-o`      | Set default octave number (0-9; default 4) |
+| `-t`      | Set tempo in beats per minute (top level only) |
+| `-d`      | Set duty cycle as a percentage (top level only) |
+
+Parameters are scoped: a parameter set inside a sequence or chord affects
+only that construct and its contents -- it does not persist once the
+enclosing `[...]` or `{...}` closes.  The exceptions are `-t` and `-d`,
+which are explicitly restricted to the top level and modify global state.
 
 
 ## Dynamics
@@ -662,6 +669,53 @@ is equivalent to `a b c c d c` -- the `.` repeats C, the `./` steps to D,
 then `c` plays C and resets the current note to C.
 
 The initial default current note is middle C.
+
+
+### (prog n)
+
+Sends a MIDI Program Change on the current channel.  Program numbers are
+0-127; General MIDI instruments are numbered 0-127 (often displayed as
+1-128 in software).  The program change takes effect immediately at the
+point where `(prog n)` appears.
+
+    (prog 40) c d e f g
+
+plays a scale on program 40 (violin in General MIDI).  A program change
+at the top level persists for the rest of the piece; inside a sequence or
+chord it fires at the start time of that position.
+
+
+### (cc n v)
+
+Sends a MIDI Control Change message: controller number `n` (0-127), value
+`v` (0-127).  Commonly useful controllers include:
+
+| Controller | Function        |
+|------------|-----------------|
+| 7          | Channel volume  |
+| 10         | Pan             |
+| 11         | Expression      |
+| 64         | Sustain pedal   |
+
+Example -- set volume to 100 then play a chord:
+
+    (cc 7 100) {c e g}
+
+
+### (bend n)
+
+Sends a MIDI Pitch Bend message.  The value `n` ranges from 0 to 16383,
+with 8192 representing no bend.  The actual pitch deviation depends on the
+synthesizer's bend range setting (typically +/- 2 semitones).
+
+    (bend 12288) c d (bend 8192) e f
+
+bends up (12288 is halfway between center and maximum), plays two notes,
+then resets the bend before continuing.
+
+All three control functions use the channel set by `-ch`.  They are
+zero-duration events and do not consume any time in the sequence -- they
+fire at the same moment as the next note.
 
 
 ## Scope, Operator Order, and Other Technical Details
