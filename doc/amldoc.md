@@ -569,9 +569,9 @@ plays a C major chord four times in succession.
 
 ### (def name body)
 
-Defines a macro named `name` with the given body.  After the definition,
-`(name)` anywhere in the program is replaced by the body text and
-re-parsed in place.  The body can contain any AML notation.
+Defines a zero-parameter macro named `name` with the given body.  After
+the definition, `(name)` anywhere in the program is replaced by the body
+text and re-parsed in place.  The body can contain any AML notation.
 
     (def run1 c d e f g)
 
@@ -593,6 +593,75 @@ A macro may be redefined at the top level -- for example, to use one
 pattern in the first half of a piece and a different one in the second
 half.  Redefining a macro causes a warning on stderr; suppress it with the
 `-w` compiler flag (see Appendix A).
+
+
+### (def (name p1 p2 ... pn) body)
+
+Defines a parametric macro.  The parameter names are listed inside
+parentheses after the macro name.  In the body, each parameter is
+referenced as `$pname`.  When the macro is invoked, the arguments
+are substituted for the corresponding `$pname` references and the
+result is re-parsed in place.
+
+    (def (triad root) $root . {. .// .//})
+
+After this definition:
+
+    (triad c)
+
+expands and plays: C, C (current note), then the chord {C, E, G}.
+
+    (triad e)
+
+expands and plays: E, E, then the chord {E, G, B}.
+
+Arguments at the call site are separated by whitespace.  A bracketed
+group `[...]`, `{...}`, or `(...)` is treated as a single argument,
+so compound expressions can be passed:
+
+    (def (loud x) !!!$x)
+    (loud [c d e])          # plays [c d e] at high volume
+
+Parameter names consist of letters and digits and must start with a
+letter.  The `$name` reference in the body uses greedy longest-match,
+so `$root` does not fire inside `$rootnote` -- they are distinct names.
+If you need a parameter reference immediately followed by a literal
+digit (e.g. param `v` then `2c`), insert a space: `$v 2c`.
+
+
+### The '.' notation: current note and diatonic stepping
+
+The `.` character refers to the "current note" -- the last note played.
+It can appear anywhere a note can.  Suffix `/` and `\` modifiers step
+the current note up or down by diatonic scale degrees (following the
+current key signature), exactly as `/` and `\` shift octaves on a
+regular note.
+
+    .       play the current note again
+    ./      step up one diatonic degree and play
+    .//     step up two diatonic degrees and play
+    .\      step down one diatonic degree and play
+    .\\     step down two diatonic degrees and play
+
+Every note event -- whether a named note, a `.` expression, or a macro
+expansion -- updates the current note.  This includes notes inside chords,
+which are processed left to right, so successive `.` expressions within
+a chord build on each other:
+
+    c . {. .// .//}
+
+plays C, C, then the chord {C, E, G} -- each `.//` steps two degrees
+from wherever the current note currently stands.
+
+The current note is global and persists across sequences and chords.  At
+the top level:
+
+    a b c . ./ c
+
+is equivalent to `a b c c d c` -- the `.` repeats C, the `./` steps to D,
+then `c` plays C and resets the current note to C.
+
+The initial default current note is middle C.
 
 
 ## Scope, Operator Order, and Other Technical Details
