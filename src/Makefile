@@ -1,6 +1,9 @@
 #$Id: Makefile,v 1.2 1997/10/31 14:08:14 kent Exp kent $
 CC = cc
-CFLAGS=         -g 
+# Default MIDI player command.  Override at build time with:
+#   make PLAYER="timidity"
+PLAYER = fluidsynth -i
+CFLAGS= -g -DAML_DEFAULT_PLAYER='"$(PLAYER)"'
 LIBS= -lm
 BASE= /home/kent/src/music
 INCS= -I$(BASE)/include

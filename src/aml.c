@@ -18,14 +18,17 @@
 #endif
 #include "aml.h"
 
-char prompt[] = "%s [-T] [-o outfile] filename\n";
+#ifndef AML_DEFAULT_PLAYER
+#define AML_DEFAULT_PLAYER "fluidsynth -i"
+#endif
+
+char prompt[] = "%s [-t] [-P] [-w] [-p] [-o outfile] filename\n";
 
 int main(int argc, char *argv[])
 {
 	char *ofname = NULL;
-        char buf[100];
-
-	int perserve_output = 0;
+	char buf[256];
+	int  play = 0;
 
 	program = argv[0];	/* remember name for error messages */
 	while( (--argc > 0) && ((*++argv)[0] == '-') ) {
@@ -47,6 +50,9 @@ int main(int argc, char *argv[])
 	    case 'w':
 	    	nowarn = 1;
 	    	break;
+	    case 'p':
+	    	play = 1;
+	    	break;
 	    default:
 		error("illegal option: %s\n",*argv);
 		break;
@@ -58,10 +64,18 @@ int main(int argc, char *argv[])
                     sprintf(buf,"%s.mid",*argv);
                     ofname = buf;
                 }
-                    
+
 		init_io( *argv,ofname );
 		song(song_env);
 		close_io();
+
+		if( play ) {
+			char cmd[512];
+			const char *player = getenv("AML_PLAYER");
+			if( !player ) player = AML_DEFAULT_PLAYER;
+			snprintf(cmd, sizeof(cmd), "%s %s", player, ofname);
+			system(cmd);
+		}
 	}
 	else {
 		printf( prompt, program );

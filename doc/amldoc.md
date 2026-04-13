@@ -714,10 +714,26 @@ Options:
 | `-t`        | Enable trace output to stderr (for debugging) |
 | `-P`        | Print the internal event representation to stdout |
 | `-w`        | Suppress compiler warnings (e.g. macro redefinition) |
+| `-p`        | Play the MIDI file after compiling |
 
 Example:
 
     aml -o minuet.mid minuet.bch
+    aml -p minuet.bch
+
+The `-p` flag always writes the MIDI file first, then invokes the player.
+The player command is selected in this order:
+
+1. The `AML_PLAYER` environment variable, if set
+2. The default compiled into the binary at build time
+3. The hardcoded fallback `fluidsynth -i`
+
+The player is invoked as `player-command midifile`, so any player that
+accepts a filename as its last argument will work.  To change the
+compiled-in default (e.g. to use timidity on a machine without
+fluidsynth), build with:
+
+    make PLAYER="timidity"
 
 
 ---
