@@ -15,15 +15,28 @@ on Ubuntu Studio:
 
 With this config in place, invoke fluidsynth as:
 
-    fluidsynth -i somefile.mid
+    fluidsynth -i -g 4.0 somefile.mid
 
 The -i flag runs non-interactively (plays the file and exits).  Without
 it, fluidsynth drops into an interactive prompt after playing.
 
-To make this the default player for aml, the compiled-in default is
-already "fluidsynth -i".  Alternatively, set the environment variable:
+The -g flag sets the output gain (volume multiplier).  4.0 brings the
+volume in line with other audio sources on this setup.  The config file
+syntax "synth.gain 4.0" is documented as the equivalent setting but
+appears to have no effect in practice; use -g on the command line.
 
-    export AML_PLAYER="fluidsynth -i"
+To make this the default player for aml, set the PLAYER variable in
+src/Makefile and rebuild:
+
+    PLAYER = fluidsynth -i -g 4.0
+
+Or override at build time without editing the Makefile:
+
+    make PLAYER="fluidsynth -i -g 4.0"
+
+Or set the environment variable (no rebuild needed):
+
+    export AML_PLAYER="fluidsynth -i -g 4.0"
 
 Notes:
 - "audio.jack.autoconnect 1" connects fluidsynth's output ports to the

@@ -2,7 +2,7 @@
 CC = cc
 # Default MIDI player command.  Override at build time with:
 #   make PLAYER="timidity"
-PLAYER = fluidsynth -i
+PLAYER = fluidsynth -i -g 4.0
 CFLAGS= -g -DAML_DEFAULT_PLAYER='"$(PLAYER)"'
 LIBS= -lm
 BASE= /home/kent/src/music
