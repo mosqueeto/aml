@@ -783,11 +783,20 @@ The player command is selected in this order:
 3. The hardcoded fallback `fluidsynth -i`
 
 The player is invoked as `player-command midifile`, so any player that
-accepts a filename as its last argument will work.  To change the
-compiled-in default (e.g. to use timidity on a machine without
-fluidsynth), build with:
+accepts a filename as its last argument will work.  Common choices:
 
-    make PLAYER="timidity"
+| Platform | Player          | Notes                              |
+|----------|-----------------|------------------------------------|
+| Linux    | `fluidsynth -i` | Default; requires JACK or PipeWire |
+| Linux    | `timidity`      | Lighter-weight alternative         |
+| macOS    | `afplay`        | Built in, no install needed        |
+| macOS    | `fluidsynth -i` | Higher quality; via Homebrew       |
+
+To change the compiled-in default, build with:
+
+    make PLAYER="afplay"
+
+See `doc/Notes` for platform-specific setup details.
 
 
 ---

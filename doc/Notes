@@ -74,6 +74,34 @@ Build and install:
 The /usr/local prefix keeps it separate from the distro package.
 
 
+macOS
+-----
+
+macOS includes a built-in command-line audio player, afplay, that handles
+MIDI files without any additional software:
+
+    afplay somefile.mid
+
+To use it with aml's -p flag, either build with:
+
+    make PLAYER="afplay"
+
+or set the environment variable:
+
+    export AML_PLAYER="afplay"
+
+afplay uses the macOS CoreMIDI/QuickTime synthesizer for MIDI playback,
+which uses the built-in General MIDI soundset.  No configuration is needed.
+
+For higher quality playback on macOS, fluidsynth is also available via
+Homebrew:
+
+    brew install fluidsynth
+
+and can then be used in the same way as on Linux, though the audio driver
+will be "coreaudio" rather than "jack".
+
+
 Other notes
 -----------
 
