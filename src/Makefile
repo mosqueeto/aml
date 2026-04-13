@@ -2,6 +2,8 @@
 CC = cc
 # Default MIDI player command.  Override at build time with:
 #   make PLAYER="timidity"
+# On macOS, the built-in player is available without any install:
+#   make PLAYER="afplay"
 PLAYER = fluidsynth -i
 CFLAGS= -g -DAML_DEFAULT_PLAYER='"$(PLAYER)"'
 LIBS= -lm
