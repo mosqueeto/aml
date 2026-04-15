@@ -1,0 +1,2 @@
+(def (triad r) $r .// .//)
+(triad c) (triad d) (triad e) (triad f) (triad g) (triad a) (triad b) (triad c/)

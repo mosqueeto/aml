@@ -34,7 +34,9 @@ midump:	midump.c midifile.o
 #
 install:	aml
 	cp aml /usr/local/bin; chown bin:bin /usr/local/bin/aml; \
-	chmod 755 /usr/local/bin/aml
+	chmod 755 /usr/local/bin/aml; \
+	cp midump /usr/local/bin; chown bin:bin /usr/local/bin/midump; \
+	chmod 755 /usr/local/bin/midump
 
 clean:
 	rm -f *.o *.out *.mid core ,,* aml atom midump
