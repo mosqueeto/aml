@@ -5,6 +5,7 @@ CC = cc
 # On macOS, the built-in player is available without any install:
 #   make PLAYER="afplay"
 PLAYER = fluidsynth -i
+-include config.mk
 CFLAGS= -g -DAML_DEFAULT_PLAYER='"$(PLAYER)"'
 LIBS= -lm
 BASE= /home/kent/src/music

@@ -38,6 +38,34 @@ regardless of syntax.  The -g flag on the command line was the only
 reliable workaround.  All of this is fixed in 2.5.x.
 
 
+Arch Linux / PipeWire
+---------------------
+
+Install fluidsynth and a soundfont:
+
+    sudo pacman -S fluidsynth soundfont-fluid
+
+The soundfont installs to /usr/share/soundfonts/FluidR3_GM.sf2.
+
+Create ~/.fluidsynth with the following (2.5.x format):
+
+    set audio.driver pipewire
+    set synth.gain 2
+    load /usr/share/soundfonts/FluidR3_GM.sf2
+
+This allows bare invocation from the command line:
+
+    fluidsynth -i somefile.mid
+
+The default synth.gain is 0.2, which is very quiet; 2 is a reasonable value.
+
+With ~/.fluidsynth in place, the aml compiler's default player command
+("fluidsynth -i") works as-is on Arch Linux with no src/config.mk needed.
+
+See "Per-machine player configuration" below if you need to override
+the default.
+
+
 Invocation
 ----------
 
@@ -52,6 +80,25 @@ The aml compiler's -p flag uses "fluidsynth -i" as its compiled-in
 default (see src/Makefile).  Override per-run with:
 
     export AML_PLAYER="fluidsynth -i"
+
+
+Per-machine player configuration (config.mk)
+--------------------------------------------
+
+Because the correct PLAYER command varies by machine (audio driver,
+soundfont path, etc.), the Makefile supports a local override file:
+
+    src/config.mk
+
+This file is excluded from version control (.gitignore).  Create it on
+each machine as needed.  Example for macOS:
+
+    PLAYER = afplay
+
+The Makefile defines "fluidsynth -i" as the default if config.mk is
+absent, so existing setups with a ~/.fluidsynth config (e.g. Ubuntu
+with JACK, or Arch with PipeWire) continue to work without any local
+file.
 
 
 Building FluidSynth from source on ubuntu studio

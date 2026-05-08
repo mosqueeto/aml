@@ -1,6 +1,9 @@
 *.tar
 ,,*
 
+# per-machine build config
+src/config.mk
+
 # build artifacts
 src/*.o
 src/aml
