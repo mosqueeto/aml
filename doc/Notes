@@ -3,7 +3,8 @@ Configuring FluidSynth for JACK playback (Ubuntu Studio)
 
 Install fluidsynth if not already present:
 
-    sudo apt install fluidsynth
+    (deb) sudo apt install fluidsynth
+    (arch) sudo pacman -S fluidsynth
 
 However, the version in the Ubuntu repos (2.4.7 as of 2026) is
 significantly behind the current release (2.5.3).  The config file
@@ -53,8 +54,8 @@ default (see src/Makefile).  Override per-run with:
     export AML_PLAYER="fluidsynth -i"
 
 
-Building FluidSynth from source
----------------------------------
+Building FluidSynth from source on ubuntu studio
+------------------------------------------------
 
 Dependencies:
 
