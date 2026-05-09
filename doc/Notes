@@ -150,6 +150,29 @@ and can then be used in the same way as on Linux, though the audio driver
 will be "coreaudio" rather than "jack".
 
 
+TiMidity++ (Arch Linux)
+-----------------------
+
+Install timidity:
+
+    sudo pacman -S timidity++
+
+The default config at /etc/timidity/timidity.cfg has the soundfont line
+commented out.  Point it at the FluidR3 soundfont (already installed for
+fluidsynth):
+
+    sudo sed -i 's|# soundfont /usr/share/soundfonts/DX7Piano.SF2|soundfont /usr/share/soundfonts/FluidR3_GM.sf2|' /etc/timidity/timidity.cfg
+
+Then play a MIDI file:
+
+    timidity somefile.mid
+
+If there is no sound, try forcing ALSA output (PipeWire intercepts it via
+its ALSA compatibility layer):
+
+    timidity -Oa somefile.mid
+
+
 Other notes
 -----------
 
