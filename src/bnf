@@ -8,6 +8,7 @@ BNF
     '|' separates alternatives
     an item enclosed in square brackets '[' and ']' is option
 
+comment     := '#' any* newline | '/*' any* '*/'
 song        := song
 element     := dur | param | basic | fun | octave
 dur         := number basic
