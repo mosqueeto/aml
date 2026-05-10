@@ -33,11 +33,14 @@ midump:	midump.c midifile.o
 #pl:	play.o pl.o util.o
 #	$(CC) $(CFLAGS) play.o pl.o util.o -o pl
 #
-install:	aml
-	sudo cp aml /usr/local/bin; chown bin:bin /usr/local/bin/aml; \
-	sudo chmod 755 /usr/local/bin/aml; \
-	sudo cp midump /usr/local/bin; chown bin:bin /usr/local/bin/midump; \
-	sudo chmod 755 /usr/local/bin/midump
+install:	aml atom midump
+	install -d $(HOME)/.local/bin
+	install -m 755 aml atom midump $(HOME)/.local/bin
+
+install-system:	aml atom midump
+	sudo cp aml atom midump /usr/local/bin; \
+	sudo chown bin:bin /usr/local/bin/aml /usr/local/bin/atom /usr/local/bin/midump; \
+	sudo chmod 755 /usr/local/bin/aml /usr/local/bin/atom /usr/local/bin/midump
 
 clean:
 	rm -f *.o *.out *.mid core ,,* aml atom midump
