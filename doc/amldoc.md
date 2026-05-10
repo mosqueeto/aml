@@ -748,6 +748,18 @@ indentation. The above two lines might be more clearly represented as:
       }         # level 2
     ]           # level 1
 
+### Comments
+
+AML supports two comment styles:
+
+- `#` introduces a line comment: everything from `#` to the end of the line
+  is ignored.
+- `/* ... */` is a block comment: everything between `/*` and `*/` is
+  ignored, including newlines.
+
+Block comments are useful for temporarily disabling large sections of AML
+source without deleting them.
+
 
 ---
 

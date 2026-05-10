@@ -128,6 +128,18 @@ another: c = aml_getc();
 	if( in_quote ) goto another;
 	
 	if( c == '#' ) while( (c = aml_getc()) != '\n' ) ;
+	if( c == '/' ) {
+		int c2 = aml_getc();
+		if( c2 == '*' ) {
+			int prev = 0;
+			while( (c = aml_getc()) != 0 ) {
+				if( prev == '*' && c == '/' ) goto another;
+				prev = c;
+			}
+		} else {
+			pushc(c2);
+		}
+	}
 	if( c == '\n')	c = ' ';
 	if( c == '|') c = ' ';
 	return( c );
