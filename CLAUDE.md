@@ -28,7 +28,7 @@ The Makefile uses `cc` with `-g`. There are no external dependencies beyond stan
 - Input is an `.bch` text file; output defaults to `inputfile.mid`
 - `-t`: enable trace output to stderr
 - `-P`: print object representation to stdout
-- `#`: comment character in AML source files
+- `#`: line comment in AML source files; `/* ... */`: block comment
 
 Test inputs are in `tests/` (t1–t9, t_cresc, t_rpt, t_turn, etc.) and `bach/` (real pieces). The `src/test/` directory contains older minimal tests; `tests/` is the primary location.
 
