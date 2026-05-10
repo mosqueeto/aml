@@ -1,0 +1,734 @@
+<h1 id="aml-a-music-language">AML – A Music Language</h1>
+<h2 id="introduction">Introduction</h2>
+<p>AML the “language” represents notes and other musical events in text
+form. AML the compiler converts that text into a format (a MIDI file)
+that can be used on a computer to play those notes. Here, in AML, are
+the first few notes of “Mary Had a Little Lamb”:</p>
+<pre><code>e d c d e e 2e</code></pre>
+<p>At the most abstract level, however, AML is a language that describes
+a temporal structure for events. That is, AML describes rhythms in
+events a computer can control. The constructs in AML, then, fall into
+two classes – constructs for describing events; and constructs defining
+rhythm (or temporal structure).</p>
+<p>Controllable events are intrinsically platform specific, so the
+language constructs describing events are somewhat ad hoc. Currently the
+basic event descriptions are oriented to the idea of a “musical note”,
+and the output is converted to MIDI files, which can be played on a
+computer.</p>
+<p>For the purpose of describing rhythms, however, events have only two
+important characteristics – a start time, and a duration. So the
+language constructs defining rhythm are abstract and constant.
+Basically, there are only two of them – “sequences”, and “sets”.
+Sequences are lists of events that happen one after another; sets are
+lists of events that start at the same time and take up the same
+duration. Sets and sequences are themselves events, so they can be
+nested to arbitrary complexity.</p>
+<p>It is worth being clear about what kind of thing AML is. Despite the
+word “language” and the existence of a “compiler”, AML is spiritually a
+form of music notation, not a programming language. An AML file
+describes a fixed musical artifact – there is a direct, static
+correspondence between the AML source and the MIDI file it produces.
+Nothing in the output depends on runtime state, execution history, or
+context that changes as the file is “run”. A MIDI file has no mechanism
+for altering its own behavior, and neither does AML.</p>
+<p>This shapes the design in a concrete way. Constructs that make sense
+in a notation system – shorthands, abbreviations, parametric ornaments,
+repeat marks – are natural additions to AML. Constructs that belong to a
+programming language – conditionals, loops with evolving state,
+variables whose values change during execution – are outside the model
+entirely. When AML compilation is finished, every shorthand has been
+expanded and every event has a fixed start time and duration. The
+notation disappears; only the music remains.</p>
+<h2 id="a-quick-start-to-aml">A Quick Start to AML</h2>
+<p>AML is a language, and the compiler for AML is called
+<code>aml</code>. AML programs are just text files, like “C” or “perl”
+or any other computer language. The output of the aml compiler is a MIDI
+file, called <code>aml.mid</code> by default. This MIDI file can be fed
+to any program that will play MIDI files, and you can hear the result.
+(In fact, this section will be much more useful if you compile the
+examples and play them as you go through. More information on running
+the compiler is in Appendix A.)</p>
+<p>The following line is a very simple AML program:</p>
+<pre><code>c</code></pre>
+<p>This program plays the note middle C for one second. It is easy to
+elaborate on this theme:</p>
+<pre><code>c c</code></pre>
+<p>This program will play 2 middle C notes, one after another, each one
+lasting 1 second.</p>
+<p>You might think that</p>
+<pre><code>2c</code></pre>
+<p>would do the same thing, but it doesn’t. Instead, it plays a single
+note that lasts two seconds.</p>
+<p>It’s easy to play other notes as well:</p>
+<pre><code>c d e f g 2r 2c</code></pre>
+<p>plays the first 5 notes of the C major scale, one after another, each
+one lasting 1 second. Then it plays the special event <code>r</code> (a
+“rest”) for 2 seconds. And finally, it plays a C note for 2 seconds.</p>
+<p>The special event “rest” just takes up time without doing anything –
+it’s an instruction for the musician to take a rest. This illustrates
+that notes aren’t the only thing described in AML. In fact, AML views
+the above short program as a sequence of events, like this:</p>
+<pre><code>event event event event event 2event 2event</code></pre>
+<p>AML has a basic idea of how long an event should last. If it sees
+that the beginning of an event is a number, it multiplies the basic
+duration by that number. The default duration for an event depends on
+the context surrounding the event in the program; here, where you just
+have a top-level list of events, the default duration is one second per
+event.</p>
+<p>What if you want to play more than one note at a time? In AML, you do
+that by specifying a “set” of notes:</p>
+<pre><code>{c e g}</code></pre>
+<p>will play the three notes <code>c</code>, <code>e</code>, and
+<code>g</code>, all at the same time. The <code>{</code> marks the
+beginning of a set; the <code>}</code> marks its end. AML considers a
+set to be a single event (which is further composed of other events).
+So, in this case the whole set will last for one second, and each of the
+notes in the set persists during that one second. We can elaborate on
+this theme as well:</p>
+<pre><code>{c e g} {d f a} {b d f g} 2{c e g}</code></pre>
+<p>will play 4 sets of notes. The first three sets last one second each;
+the last one takes 2 seconds. Remember that AML sees this program
+as:</p>
+<pre><code>event event event 2event</code></pre>
+<p>The <code>{</code> and <code>}</code> characters group subsidiary
+events into a larger event. The <code>[</code> and <code>]</code>
+characters also group events into a larger event, but in a more
+interesting way called a “sequence”. For example, AML sees</p>
+<pre><code>[c e g]</code></pre>
+<p>as a single event, composed of 3 smaller events. The meaning of a
+“sequence” event is to play the included events one after another,
+dividing up the time among them. So the above example would play the
+three notes <code>c</code>, <code>e</code>, and <code>g</code> one after
+the other, and give each note a third of a second, because the time
+allocated for the whole sequence is 1 second, and there are three events
+in the sequence.</p>
+<p>Inside a sequence the time is divided in the same way as described
+previously – if an event has a number in front of it, that number
+represents its portion of the total time. So, for example, the program
+consisting of the single sequence</p>
+<pre><code>[2c d e f g 2c]</code></pre>
+<p>lasts 1 second. There are 6 events inside the sequence, but the first
+and last events have a leading <code>2</code>, and so are supposed to
+last twice as long as they otherwise would. So the first event lasts for
+a quarter of a second, the next 4 events last an eighth of a second
+apiece, and the last event also lasts a quarter second. Here’s “Mary Had
+a Little Lamb” (MHALL) in one second:</p>
+<pre><code>[e d c d e e 2e d d 2d e g 2g e d c d e e e e d d e d 4c]</code></pre>
+<p>That’s a little fast. We can easily spread it out to take 8
+seconds:</p>
+<pre><code>8[e d c d e e 2e d d 2d e g 2g e d c d e e e e d d e d 4c]</code></pre>
+<p>Of course, sequences and sets can be freely intermixed. Here’s an
+embellished version of MHALL:</p>
+<pre><code>8{
+    [e d c d  e e 2e  d d 2d  e g 2g  e d c d  e e e e  d d e d  4c]
+    [2c  r r  4c      4b\     4c      2c  r r  4c       4b\      4r]
+}</code></pre>
+<p>This is an AML program consisting of a single set that lasts 8
+seconds. The set is in turn composed of two sequences, each of which
+inherits the full duration of the set. The top sequence has the MHALL
+melody; the bottom sequence is a very simple harmony. They both play at
+the same time. The bottom line has two new bits of notation – the
+<code>r</code> note, which is a “rest”, and the <code>\</code>
+character, which modifies the preceding note to play an octave lower
+than it otherwise would. Notice that the spacing between the notes in
+the bottom sequence has been carefully adjusted so that things line up –
+experience has shown that it is <em>very</em> important to arrange
+things so they make sense visually. For example, the program could be
+written like this:</p>
+<pre><code>8{[e d c d e e 2e d d 2d e g 2g e d c d e e e e d d e d 4c] [2c r r 4c 4b\
+4c 2c r r 4c 4b\ 4r]}</code></pre>
+<p>It will sound exactly the same. However, the following</p>
+<pre><code>8{[e d c d e e 2e d d 2d e g 2g e d c d e e e e d d e d 4c] [2c r r
+4c 4b\ 4c 2c r r 4c 4b\]}</code></pre>
+<p>will sound quite different, and it can be quite difficult to spot the
+problem: the final <code>4r</code> is missing from the second sequence,
+and the timing is off – all the other notes and rests have to stretch
+their time out a little to compensate for the missing time.</p>
+<h2 id="notes">Notes</h2>
+<p>The preceding examples have used a fairly restricted set of notes. In
+generality, a note is considerably more complicated. Notes consist of a
+basic note name, with additional characters that modify the meaning.
+Notes (and other events) are separated from each other by space
+characters.</p>
+<p>The seven lower case letters <code>a</code>, <code>b</code>,
+<code>c</code>, <code>d</code>, <code>e</code>, <code>f</code>, and
+<code>g</code> are the “note name characters”. A note name character,
+optionally followed by an accidental, defines a “note name”. Sharps and
+flats are represented by the <code>+</code> and <code>-</code>
+characters, respectively, added after the primary note name. Thus,
+<code>c+</code> refers to C sharp, <code>e-</code> is an E flat. Double
+flats and double sharps are allowed. A mechanism analogous to a key
+signature can change the interpretation of a note name, so that
+<code>b</code> would refer to B flat, for example. The <code>=</code> is
+a natural, so, in such a case, <code>b=</code> would play a B
+natural.</p>
+<p>Note names do not specify absolute pitches. The absolute pitch of a
+note is determined either through context, or by an explicit octave
+specifier. The octave specifier, if present, is a digit that follows the
+note name. The octave specifiers are ranged so that <code>a4</code> is
+the standard tuning fork pitch A440:</p>
+<pre><code>a0 =    27.5 Hz
+a1 =    55   Hz
+a2 =   110   Hz
+a3 =   220   Hz
+a4 =   440   Hz
+a5 =   880   Hz
+a6 =  1760   Hz
+a7 =  3520   Hz
+a8 =  7040   Hz
+a9 = 14080   Hz</code></pre>
+<p>In accordance with common musical usage, we start the scale at
+<code>c</code>. So the ascending notes of the C major scale, starting at
+<code>c4</code> (middle C), are:</p>
+<pre><code>c4 d4 e4 f4 g4 a4 b4 c5</code></pre>
+<p>That is, the <code>a</code> and <code>b</code> represent pitches
+<em>above</em> <code>c</code>, not below it. Incidentally, 4 is the
+default octave number.</p>
+<p>The characters <code>/</code> and <code>\</code> are used to indicate
+a shift in pitch of one octave – <code>/</code> indicates raising the
+pitch one octave; <code>\</code> indicates that the pitch should be
+dropped one octave. These characters can be “cascaded” – <code>//</code>
+means raise the pitch two octaves, for example.</p>
+<p>The following AML program would play a C major scale, one note per
+second, starting on middle C, and ending on the <code>c</code> an octave
+higher:</p>
+<pre><code>c d e f g a b c/</code></pre>
+<p>The chromatic scale starting with middle C looks like this:</p>
+<pre><code>c c+ d d+ e f f+ g g+ a a+ b c/ b- a a- g g- f e e- d d- c</code></pre>
+<p>Absolute octave numbers are “modal” – when one appears, it sets the
+default octave number. For example,</p>
+<pre><code>c6 d e f g a b c/</code></pre>
+<p>plays a C major scale 2 octaves above middle C. Once the
+<code>6</code> appears, all the notes following will be assumed to be in
+the sixth octave.</p>
+<p>However, the relative octave designators <code>/</code> and
+<code>\</code> are NOT modal.</p>
+<p>An AML program consisting of the following two lines will play the
+same 10 note sequence twice:</p>
+<pre><code>c\\\\ c\\\ c\\ c\ c  c/ c// c/// c//// c/////
+c0    c1   c2  c3 c4 c5 c6  c7   c8    c9</code></pre>
+<blockquote>
+<p>Note: not all hardware will play this full range.</p>
+</blockquote>
+<p>The important difference between the two lines is that the first line
+leaves the default octave number at 4, and the second line leaves it at
+9.</p>
+<p>Notes have a duration, and that duration is defined in terms of a
+“current tempo”. In all the above examples the current tempo has been
+the initial default tempo of 60 beats per minute, or one beat per
+second. The tempo can be changed. The beat is very frequently subdivided
+into parts, in a way that will be described when we get to sequences.
+Notes can be any number of beats long. The following line illustrates
+this:</p>
+<pre><code>7c 6d 5e 4f 3g 2a 1b c/</code></pre>
+<p>The first C lasts 7 beats, the D lasts 6 beats, the E lasts 5, and so
+on. The <code>1</code> in front of the B is redundant – both the
+<code>1b</code> and the <code>c/</code> last one beat. The numbers 7, 6,
+and so on in the above examples are known as “duration modifiers”, and
+can be applied to any event, not just notes. They will be described more
+fully below. One important point about them – they are always whole
+numbers; there is no direct way to express a fractional duration.
+Instead, beats are subdivided using sequences.</p>
+<h2 id="sequences">Sequences</h2>
+<p>A sequence is a list of events that will occur one after another.
+Because sequences can be arbitrarily nested they are a surprisingly
+powerful and compact way to express very complex rhythms.</p>
+<p>A sequence is notated by enclosing the listed events in square
+brackets, like this:</p>
+<pre><code>[c d e f g a b c/]</code></pre>
+<p>Here the events are individual note events, and this sequence plays a
+C major scale. For long sequences it is sometimes nice to have AML check
+to be sure that you really have the number of notes in the sequence that
+you think you do. If a number immediately follows the opening
+<code>[</code>, and the number is followed by a blank, AML will treat
+the number as a check of the count. Thus</p>
+<pre><code>[8 c d e f g a c/]</code></pre>
+<p>will cause AML to detect an error, because there are really only 7
+notes in the sequence – you might not have noticed that at first look.
+But</p>
+<pre><code>[8c d e f g a c/]</code></pre>
+<p>is a sequence with 14 sub-beats, or “counts”. The first C gets 8
+counts, and the remaining notes get one count each.</p>
+<p>A sequence can appear any place that a note can, and its total time
+is the same as the time for an individual note that it might replace.
+Here is a short AML program:</p>
+<pre><code>c d e f g a b c/</code></pre>
+<p>Here is the same program with the last note replaced by a
+sequence:</p>
+<pre><code>c d e f g a b [c d e f g a b c/]</code></pre>
+<p>Both of these programs take 8 beats (8 seconds, at the default
+tempo). The eighth beat of the last program is occupied by a fast 8-note
+scale passage. If we think of this as 4/4 time, each of the single notes
+outside the sequence would be a quarter note, and the notes inside the
+sequence would be 32nd notes.</p>
+<p>Remembering that a sequence can appear anywhere a note can, the
+example could be further expanded as follows:</p>
+<pre><code>c d e f g a b  [c d e f g a b [c d e f g a b c/]]</code></pre>
+<p>This program also takes 8 seconds, but the last sequence happens in a
+32nd note interval – this is a short run of 256th notes. (At this point
+we are in the vicinity of MIDI’s fundamental limits, though with
+practice the ear can pick up a little information from runs this
+fast.)</p>
+<p>Since a sequence can appear anywhere a note can, the following is
+legal:</p>
+<pre><code>c d 2[e f g]</code></pre>
+<p>If this is 4/4 time, the last element represents a quarter-note
+triplet. The whole sequence takes two beats, and within those two beats
+there are three notes. A slightly more complex example is this:</p>
+<pre><code>c d 2[2e f]</code></pre>
+<p>The sequence contains 3 counts, so we still have a triplet figure,
+but with the <code>e</code> occupying 2 of the three counts.</p>
+<p>Complex rhythms are easy to do with sequences:</p>
+<pre><code>c [2 d e] [3 f g [4 a e c e]] [5 b g 3g+] a b c/ c</code></pre>
+<p>Sometimes it is nice to be able to tie a note from one sequence to
+another. The underscore character <code>_</code> is used to indicate
+this:</p>
+<pre><code>c 3[7 4d e f g_] 2[7 _g a a a+ b 2c]</code></pre>
+<p>There are a couple of interesting things to notice about that
+example. One is the tied G – essentially what happens is that only the
+“note on” MIDI signal is sent when a <code>_</code> character is seen
+following a note, and the corresponding “note off” isn’t sent until a
+<code>_</code> preceding the exact same pitch is seen. Another
+interesting feature is the complexity of the rhythm – this would be very
+difficult to notate with conventional notation. Notice that each of the
+sequences is 7 sub-beats long, but that the total durations are
+different. The duration of the <code>d</code> in the first sequence is
+12/7ths of a second. The duration of the G is 3/7 + 2/7 or 5/7 of a
+second.</p>
+<p>Finally, notice the <code>3[7 4d</code>. It couldn’t be written
+without the space between the <code>7</code> and the <code>4</code>.
+What would <code>3[74d e f g_]</code> mean? It could mean
+<code>3[74 e f g_]</code>, a sequence of 74 sub-beats that was
+incorrectly written, or it could mean <code>3[ 74d e f g_]</code>, which
+would be a sequence of 77 sub-beats, with 74 of them applied to the
+first note. In fact, it would mean the latter. AML only uses the first
+number inside a <code>[</code> to mean a sequence count if it is
+separated from the contents of the sequence by a space.</p>
+<h2 id="chords">Chords</h2>
+<p>Sequences order events in time. Frequently one wants to have events
+occur at the same time. In AML, if things are enclosed in braces
+<code>{</code> and <code>}</code>, then they happen at the same time.
+Furthermore, each item in the chord takes the same amount of time. For
+example,</p>
+<pre><code>3{c e g}</code></pre>
+<p>is a C major chord that lasts 3 beats – each note inside gets the
+full three beats.</p>
+<p>Chords can also appear anywhere a note can. Chords can appear in
+sequences and sequences can occur in chords. From this you can see that
+the term “chord” is really a little misleading. What AML calls a chord
+is really a general simultaneous grouping. For example,</p>
+<pre><code>[{c e} {d f} {e g}]</code></pre>
+<p>represents a triplet run of thirds. This could also be notated as</p>
+<pre><code>{ [c d e] [e f g] }</code></pre>
+<p>AML doesn’t care about lines, so it might be better to write the
+preceding example as</p>
+<pre><code>{
+  [e f g]
+  [c d e]
+}</code></pre>
+<p>In transcribing contrapuntal music or orchestral music, where one
+thinks of the music as parallel sequences, it works out fairly neatly to
+organize it something like the following example:</p>
+<pre><code>12{
+   [12 c5 c d | e e f | g g a | [f+ g f+] [g f+ e= f+] g_  ]
+   [12 2c3  r | c c d | e e c | d         c            b=\ ]
+}</code></pre>
+<p>This example is the beginning of a simple minuet by Bach. It
+continues like this:</p>
+<pre><code>12{
+  [12 -o5 [_g a] [f= e=] f_ | [_f g] [e d] e | [c b=\] c d | 3g\             ]
+  [12 -o2 2b             a= | 2a           g | 2a        f | g [g3 f] [e3 d] ]
+}</code></pre>
+<p>Several new things are introduced by these examples. First of all,
+the letter <code>r</code> in the second sequence means “rest”. It is
+considered to be a note name character, just like <code>c</code>, but it
+doesn’t make any noise.</p>
+<p>This piece is in 3/4 time, and each set of braces represents 4
+measures. The <code>12</code> preceding each opening brace
+<code>{</code> means that the “chord” is 12 beats long. However, each of
+the parallel sequences is also 12 long, so the individual notes inside
+end up being 1 second (or one beat) each. The <code>|</code> marks are
+measure marks. AML really doesn’t pay any attention to them, but
+experience has taught that it really helps to have some mark like that
+available to keep track of where you are.</p>
+<p>Notice the <code>-o5</code> and the <code>-o2</code> strings in the
+sequences. The <code>-o</code> means “set the default octave”. These are
+“Parameters”, and they will be explained in the next section.</p>
+<p>Notice that some attempt has been made to keep notes that sound at
+the same time in vertical alignment. It isn’t really necessary, but it
+helps a great deal when transcribing music. AML is a very terse
+language, and it is extremely easy to lose your place while you are
+typing.</p>
+<p>AML doesn’t know anything about the vertical alignment, however. It
+always reads characters left to right, one line after another. As far as
+AML is concerned these examples might as well be written this way:</p>
+<pre><code>12{[12 c5 c d e e f g g a [f+ g f+] [g f+ e= f+] g_] [12 2c3 r c c d e e
+c d c b=\]} 12{[12 -o5 [_g a] [f= e=] f_ [_f g] [e d] e [c b=\] c d 3g\
+] [12 -o2 2b a= 2a g 2a f g [g3 f] [e3 d]]}</code></pre>
+<p>You would go blind or insane in a short time if you tried to read
+stuff like this.</p>
+<h2 id="parameters">Parameters</h2>
+<p>We just saw an example of a parameter. Here are some more – the
+actual first line of the Bach minuet looks like this:</p>
+<pre><code>-t108 -ac e- -ac b- -ac a-</code></pre>
+<p>This line reads “set the default tempo to 108 beats per minute, set
+the default accidental for E to flat, the default accidental for B to
+flat, and the default accidental for A to flat”. That is, set the key
+signature to C minor. These are all examples of parameters.</p>
+<p>A parameter always begins with a dash. After the dash comes an
+abbreviation for the parameter name. After the parameter name may come a
+number, or a note name, or anything else that is appropriate for the
+particular parameter setting. The current parameters are:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-ac</code></td>
+<td>Set accidental (using a note name; default all naturals)</td>
+</tr>
+<tr class="even">
+<td><code>-ch</code></td>
+<td>Set MIDI channel (0-15; default 0)</td>
+</tr>
+<tr class="odd">
+<td><code>-v</code></td>
+<td>Set overall volume (0-127; default 64)</td>
+</tr>
+<tr class="even">
+<td><code>-o</code></td>
+<td>Set default octave number (0-9; default 4)</td>
+</tr>
+<tr class="odd">
+<td><code>-t</code></td>
+<td>Set tempo in beats per minute (top level only)</td>
+</tr>
+<tr class="even">
+<td><code>-d</code></td>
+<td>Set duty cycle as a percentage (top level only)</td>
+</tr>
+</tbody>
+</table>
+<p>Parameters are scoped: a parameter set inside a sequence or chord
+affects only that construct and its contents – it does not persist once
+the enclosing <code>[...]</code> or <code>{...}</code> closes. The
+exceptions are <code>-t</code> and <code>-d</code>, which are explicitly
+restricted to the top level and modify global state.</p>
+<h2 id="dynamics">Dynamics</h2>
+<p>Two marks can be used to change the relative volume of a note,
+sequence, or chord. The “emphasize” character is <code>!</code>, and it
+multiplies the volume (as represented by the MIDI velocity number) by
+about 1.2. The “subdue” character is <code>?</code>, and it multiplies
+the MIDI velocity number by the inverse of 1.2. That is, <code>?!</code>
+leaves the volume unchanged. These operators can be stacked, like the
+relative octave designators. The following AML program plays a short
+scale gradually increasing in volume:</p>
+<pre><code>???c ??c ?c c !c !!c !!!c</code></pre>
+<p>Dynamic marks are like relative octave designators, in that they only
+change the volume of the entity to which they are prefixed. This might
+seem to be a severe limitation, but in practice it isn’t, since the
+operator can be applied to whole lines of music making the line into a
+sequence, and prefixing the sequence with the appropriate dynamic
+marking.</p>
+<h2 id="functions-and-macros">Functions and Macros</h2>
+<p>Functions are invoked with parentheses:</p>
+<pre><code>(functionname arguments...)</code></pre>
+<p>A function call is an event, just like a note or a sequence, and can
+appear anywhere an event can. The arguments, if any, follow the function
+name inside the parentheses. Functions are transparent to the
+surrounding context – a function that expands to N events in a sequence
+is treated as though those N events appeared directly in the
+sequence.</p>
+<h3 id="turn-note">(turn note)</h3>
+<p>Plays a four-note ornament: upper neighbor, the note itself, lower
+neighbor, the note itself again. The neighbors are diatonic (they follow
+the key signature). The four notes divide the allocated time
+equally.</p>
+<pre><code>(turn c)</code></pre>
+<p>plays B, C, D, C in rapid succession (in the default key of C major).
+The turn can be used inside a sequence like any other event:</p>
+<pre><code>[a b (turn c) d e]</code></pre>
+<h3 id="cresc-start-dyn-end-dyn-elements">(cresc start-dyn end-dyn
+elements…)</h3>
+<h3 id="decresc-start-dyn-end-dyn-elements">(decresc start-dyn end-dyn
+elements…)</h3>
+<p>Apply a linear volume ramp across one or more elements. The dynamic
+levels are specified using runs of <code>!</code> (louder) and
+<code>?</code> (softer), just like the prefix dynamics described above.
+<code>cresc</code> ramps from the start level up to the end level;
+<code>decresc</code> ramps from the start level down to the end level.
+For example:</p>
+<pre><code>(cresc ?? !!! [c d e f g])</code></pre>
+<p>plays a five-note ascending scale with volume increasing from two
+steps below the base level to three steps above it. The ramp is applied
+linearly across all the notes.</p>
+<pre><code>(decresc !! ? {c e g})</code></pre>
+<p>plays a chord with volume decreasing from two steps above the base to
+one step below it.</p>
+<p>The dynamics notation follows the same rules as prefix dynamics: each
+<code>!</code> multiplies the velocity by approximately 1.2, and each
+<code>?</code> divides by 1.2, so <code>?!</code> leaves the volume
+unchanged and the marks are true inverses of each other.</p>
+<h3 id="rpt-n-elements">(rpt n elements…)</h3>
+<p>Repeats the given elements n times in sequence. The numeric argument
+is optional; if omitted, the default is 2 (repeat once, i.e. play twice
+total).</p>
+<pre><code>(rpt 3 [c d e])</code></pre>
+<p>plays the sequence [c d e] three times back to back.</p>
+<pre><code>(rpt [c d e])</code></pre>
+<p>plays it twice. The repeated elements can be any combination of
+notes, sequences, chords, or other function calls:</p>
+<pre><code>(rpt 4 {c e g})</code></pre>
+<p>plays a C major chord four times in succession.</p>
+<h3 id="def-name-body">(def name body)</h3>
+<p>Defines a zero-parameter macro named <code>name</code> with the given
+body. After the definition, <code>(name)</code> anywhere in the program
+is replaced by the body text and re-parsed in place. The body can
+contain any AML notation.</p>
+<pre><code>(def run1 c d e f g)</code></pre>
+<p>After this definition, writing <code>(run1)</code> is exactly
+equivalent to writing <code>c d e f g</code>. In a sequence:</p>
+<pre><code>[(run1) a b]</code></pre>
+<p>is treated as though it were <code>[c d e f g a b]</code> – the macro
+contributes 5 elements to the sequence count, not 1.</p>
+<p>Macro bodies may contain function calls, sequences, chords, or other
+macros (including recursive references, up to the nesting limit). A
+macro definition itself produces no musical output; it is a compile-time
+directive only. Definitions must appear at the top level of the program,
+not inside a sequence, chord, or function call.</p>
+<p>A macro may be redefined at the top level – for example, to use one
+pattern in the first half of a piece and a different one in the second
+half. Redefining a macro causes a warning on stderr; suppress it with
+the <code>-w</code> compiler flag (see Appendix A).</p>
+<h3 id="def-name-p1-p2-pn-body">(def (name p1 p2 … pn) body)</h3>
+<p>Defines a parametric macro. The parameter names are listed inside
+parentheses after the macro name. In the body, each parameter is
+referenced as <code>$pname</code>. When the macro is invoked, the
+arguments are substituted for the corresponding <code>$pname</code>
+references and the result is re-parsed in place.</p>
+<pre><code>(def (triad root) $root . {. .// .//})</code></pre>
+<p>After this definition:</p>
+<pre><code>(triad c)</code></pre>
+<p>expands and plays: C, C (current note), then the chord {C, E, G}.</p>
+<pre><code>(triad e)</code></pre>
+<p>expands and plays: E, E, then the chord {E, G, B}.</p>
+<p>Arguments at the call site are separated by whitespace. A bracketed
+group <code>[...]</code>, <code>{...}</code>, or <code>(...)</code> is
+treated as a single argument, so compound expressions can be passed:</p>
+<pre><code>(def (loud x) !!!$x)
+(loud [c d e])          # plays [c d e] at high volume</code></pre>
+<p>Parameter names consist of letters and digits and must start with a
+letter. The <code>$name</code> reference in the body uses greedy
+longest-match, so <code>$root</code> does not fire inside
+<code>$rootnote</code> – they are distinct names. If you need a
+parameter reference immediately followed by a literal digit (e.g. param
+<code>v</code> then <code>2c</code>), insert a space:
+<code>$v 2c</code>.</p>
+<h3 id="the-.-notation-current-note-and-diatonic-stepping">The ‘.’
+notation: current note and diatonic stepping</h3>
+<p>The <code>.</code> character refers to the “current note” – the last
+note played. It can appear anywhere a note can. Suffix <code>/</code>
+and <code>\</code> modifiers step the current note up or down by
+diatonic scale degrees (following the current key signature), exactly as
+<code>/</code> and <code>\</code> shift octaves on a regular note.</p>
+<pre><code>.       play the current note again
+./      step up one diatonic degree and play
+.//     step up two diatonic degrees and play
+.\      step down one diatonic degree and play
+.\\     step down two diatonic degrees and play</code></pre>
+<p>Every note event – whether a named note, a <code>.</code> expression,
+or a macro expansion – updates the current note. This includes notes
+inside chords, which are processed left to right, so successive
+<code>.</code> expressions within a chord build on each other:</p>
+<pre><code>c . {. .// .//}</code></pre>
+<p>plays C, C, then the chord {C, E, G} – each <code>.//</code> steps
+two degrees from wherever the current note currently stands.</p>
+<p>The current note is global and persists across sequences and chords.
+At the top level:</p>
+<pre><code>a b c . ./ c</code></pre>
+<p>is equivalent to <code>a b c c d c</code> – the <code>.</code>
+repeats C, the <code>./</code> steps to D, then <code>c</code> plays C
+and resets the current note to C.</p>
+<p>The initial default current note is middle C.</p>
+<h3 id="prog-n">(prog n)</h3>
+<p>Sends a MIDI Program Change on the current channel. Program numbers
+are 0-127; General MIDI instruments are numbered 0-127 (often displayed
+as 1-128 in software). The program change takes effect immediately at
+the point where <code>(prog n)</code> appears.</p>
+<pre><code>(prog 40) c d e f g</code></pre>
+<p>plays a scale on program 40 (violin in General MIDI). A program
+change at the top level persists for the rest of the piece; inside a
+sequence or chord it fires at the start time of that position.</p>
+<h3 id="cc-n-v">(cc n v)</h3>
+<p>Sends a MIDI Control Change message: controller number <code>n</code>
+(0-127), value <code>v</code> (0-127). Commonly useful controllers
+include:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Controller</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>7</td>
+<td>Channel volume</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Pan</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>Expression</td>
+</tr>
+<tr class="even">
+<td>64</td>
+<td>Sustain pedal</td>
+</tr>
+</tbody>
+</table>
+<p>Example – set volume to 100 then play a chord:</p>
+<pre><code>(cc 7 100) {c e g}</code></pre>
+<h3 id="bend-n">(bend n)</h3>
+<p>Sends a MIDI Pitch Bend message. The value <code>n</code> ranges from
+0 to 16383, with 8192 representing no bend. The actual pitch deviation
+depends on the synthesizer’s bend range setting (typically +/- 2
+semitones).</p>
+<pre><code>(bend 12288) c d (bend 8192) e f</code></pre>
+<p>bends up (12288 is halfway between center and maximum), plays two
+notes, then resets the bend before continuing.</p>
+<p>All three control functions use the channel set by <code>-ch</code>.
+They are zero-duration events and do not consume any time in the
+sequence – they fire at the same moment as the next note.</p>
+<h2 id="scope-operator-order-and-other-technical-details">Scope,
+Operator Order, and Other Technical Details</h2>
+<p>Sequences, chords, and functions are nested constructs. That is, they
+define a strict hierarchy wherever they occur – one can’t overlap
+another. For example,</p>
+<pre><code>{ [...] [...] {...} }
+[ {...} { [...] [...] } ]</code></pre>
+<p>are correctly nested. On the other hand, strings like
+<code>{ [ } ]</code> are illegal. The first line is a chord that
+strictly contains two sequences and a subsidiary chord. The second line
+is a sequence that contains two chords. The second chord itself contains
+two sequences.</p>
+<p>Sometimes it is clearer to indicate the levels by using extra lines
+and indentation. The above two lines might be more clearly represented
+as:</p>
+<pre><code>{           # level 1
+  [...]     # level 2
+  [...]     # level 2
+  {...}     # level 2
+}           # level 1
+[           # level 1
+  {...}     # level 2
+  {         # level 2
+    [...]   # level 3
+    [...]   # level 3
+  }         # level 2
+]           # level 1</code></pre>
+<h3 id="comments">Comments</h3>
+<p>AML supports two comment styles:</p>
+<ul>
+<li><code>#</code> introduces a line comment: everything from
+<code>#</code> to the end of the line is ignored.</li>
+<li><code>/* ... */</code> is a block comment: everything between
+<code>/*</code> and <code>*/</code> is ignored, including newlines.</li>
+</ul>
+<p>Block comments are useful for temporarily disabling large sections of
+AML source without deleting them.</p>
+<hr />
+<h2 id="appendix-a-running-the-compiler">Appendix A: Running the
+Compiler</h2>
+<p>The AML compiler is invoked as:</p>
+<pre><code>aml [options] inputfile</code></pre>
+<p>The input file is conventionally given a <code>.bch</code> extension.
+The output is a MIDI file; by default it is written to
+<code>inputfile.mid</code>.</p>
+<p>Options:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-o file</code></td>
+<td>Write MIDI output to <code>file</code> instead of the default</td>
+</tr>
+<tr class="even">
+<td><code>-t</code></td>
+<td>Enable trace output to stderr (for debugging)</td>
+</tr>
+<tr class="odd">
+<td><code>-P</code></td>
+<td>Print the internal event representation to stdout</td>
+</tr>
+<tr class="even">
+<td><code>-w</code></td>
+<td>Suppress compiler warnings (e.g. macro redefinition)</td>
+</tr>
+<tr class="odd">
+<td><code>-p</code></td>
+<td>Play the MIDI file after compiling</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code>aml -o minuet.mid minuet.bch
+aml -p minuet.bch</code></pre>
+<p>The <code>-p</code> flag always writes the MIDI file first, then
+invokes the player. The player command is selected in this order:</p>
+<ol type="1">
+<li>The <code>AML_PLAYER</code> environment variable, if set</li>
+<li>The default compiled into the binary at build time</li>
+<li>The hardcoded fallback <code>fluidsynth -i</code></li>
+</ol>
+<p>The player is invoked as <code>player-command midifile</code>, so any
+player that accepts a filename as its last argument will work. Common
+choices:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Platform</th>
+<th>Player</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Linux</td>
+<td><code>fluidsynth -i</code></td>
+<td>Default; requires JACK or PipeWire</td>
+</tr>
+<tr class="even">
+<td>Linux</td>
+<td><code>timidity</code></td>
+<td>Lighter-weight alternative</td>
+</tr>
+<tr class="odd">
+<td>macOS</td>
+<td><code>afplay</code></td>
+<td>Built in, no install needed</td>
+</tr>
+<tr class="even">
+<td>macOS</td>
+<td><code>fluidsynth -i</code></td>
+<td>Higher quality; via Homebrew</td>
+</tr>
+</tbody>
+</table>
+<p>To change the compiled-in default, build with:</p>
+<pre><code>make PLAYER=&quot;afplay&quot;</code></pre>
+<p>See <code>doc/Notes</code> for platform-specific setup details.</p>
+<hr />
+<p><em>Copyright (c) 1989 by Songbird Software and Kent Crispin. All
+rights reserved.</em></p>
