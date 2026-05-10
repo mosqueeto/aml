@@ -177,11 +177,9 @@ problem:the final '4r' is missing from the second sequence, and the
 timing is off -- all the other notes and rests have to stretch their
 time out a little, to compensate for the missing time in the '4r'.
 
-Because 
 
-
-           otes
-           ----
+           Notes
+           -----
 
 
 The preceeding examples have used a fairly restricted set of notes.  
@@ -287,6 +285,7 @@ subdivided using 'sequences'.
 
 
     Sequences
+    ---------
 
 
 A sequence is a list of events that will be occur one after another. 
@@ -445,7 +444,7 @@ The "12" preceeding each opening brace ("{") means that the "chord" is
 12 beats long.  However, each of the parallel sequences is also 12 long,
 so the individual notes inside end up being 1 second (or one beat) each. 
 The "|" marks are measure marks.  AML really doesn't pay any attention
-to them, but experienc has taught that it really helps to have some mark
+to them, but experience has taught that it really helps to have some mark
 like that available to keep track of where you are.
 
 Notice the "-o5" and the "-o3" strings in the third and fourth
@@ -497,13 +496,7 @@ Other parameters are in the works.
                 Dynamics
                 --------
 
-Two marks can be used to change the relative volume of a note, sequence
-or chord.  The "emphasize" character is the "!", and it multiplies the
-volume (as represented by the MIDI velocity number) by about 1.1.  The
-"subdue" character is the "?", and it multiplies the MIDI velocity
-number by about 0.9.  These operators can be stacked, like the relative
-octave designators.  The following AML program plays a short scale
-gradually increasing in volume:
+Two marks can be used to change the relative volume of a note, sequence or chord. The "emphasize" character is the "!", and it multiplies the volume (as represented by the MIDI velocity number) by about 1.2. The "subdue" character is the "?", and it multiplies the MIDI velocity number by the inverse of 1.2. That is, ?! leaves the volume unchanged. These operators can be stacked, like the relative octave designators. The following AML program plays a short scale gradually increasing in volume:
 
         ???c ??c ?c c !c !!c !!!c
 
@@ -549,6 +542,11 @@ The above two lines might be more clearly represented as
                   ---->0
 
 (Here a "nesting level" number has been added.)
+
+
+--------------------------------------
+
+Notes
 
 The scope of an operator or value is the 
 
