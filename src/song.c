@@ -130,6 +130,20 @@ node *basic(char c, ENVIRONMENT *env)
 	else if( c == '.' ) {
 		list = dot_note(env);
 	}
+	else if( c == OCTAVE_UP || c == OCTAVE_DOWN ) {
+		int rel_oct = 0;
+		while( c == OCTAVE_UP || c == OCTAVE_DOWN ) {
+			if( c == OCTAVE_UP ) rel_oct++;
+			else rel_oct--;
+			c = nextc();
+		}
+		if( !is_real_note(c) && c != TIE ) {
+			parse_error("basic: octave prefix must precede a note");
+			return NULL;
+		}
+		list = note(c, env);
+		if( list != NULL ) list->note += rel_oct * 12;
+	}
 	else if( is_note_name(c) || c == TIE ) {
 		list = note(c,env);
 	}

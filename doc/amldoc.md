@@ -226,7 +226,10 @@ Incidentally, 4 is the default octave number.
 The characters `/` and `\` are used to indicate a shift in pitch of one
 octave -- `/` indicates raising the pitch one octave; `\` indicates that the
 pitch should be dropped one octave. These characters can be "cascaded" -- `//`
-means raise the pitch two octaves, for example.
+means raise the pitch two octaves, for example. They may appear either after
+the note name (postfix: `c/`, `c\`) or before it (prefix: `/c`, `\c`); both
+forms are equivalent. Prefix and postfix shifts stack: `\c/` is a net shift
+of zero.
 
 The following AML program would play a C major scale, one note per second,
 starting on middle C, and ending on the `c` an octave higher:

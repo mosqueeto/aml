@@ -188,7 +188,11 @@ default octave number.</p>
 a shift in pitch of one octave – <code>/</code> indicates raising the
 pitch one octave; <code>\</code> indicates that the pitch should be
 dropped one octave. These characters can be “cascaded” – <code>//</code>
-means raise the pitch two octaves, for example.</p>
+means raise the pitch two octaves, for example. They may appear either
+after the note name (postfix: <code>c/</code>, <code>c\</code>) or
+before it (prefix: <code>/c</code>, <code>\c</code>); both forms are
+equivalent. Prefix and postfix shifts stack: <code>\c/</code> is a net
+shift of zero.</p>
 <p>The following AML program would play a C major scale, one note per
 second, starting on middle C, and ending on the <code>c</code> an octave
 higher:</p>
